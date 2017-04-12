@@ -9,14 +9,15 @@ import java.awt.geom.Rectangle2D;
 
 import javax.swing.JPanel;
 
-public class FighterRepresent extends JPanel implements KeyListener {
+public class FighterRepresent extends JPanel{
     private int xPos, yPos;
     private int xMovement, yMovement;
     private int xSize, ySize;
     private int xParent, yParent;
+    private Color color;
 
     public FighterRepresent(int xPos, int xSize, int ySize, int xParent,
-	    int yParent) {
+	    int yParent,Color color) {
 	super();
 	this.xSize = xSize;
 	this.ySize = ySize;
@@ -26,78 +27,44 @@ public class FighterRepresent extends JPanel implements KeyListener {
 	this.xPos = xPos;
 	this.xMovement = 0;
 	this.yMovement = 0;
-	addKeyListener(this);
+	this.color=color;
     }
 
     public void paintComponent(Graphics g) {
-	super.paintComponent(g);
 	
 	Graphics2D g2 = (Graphics2D) g;
-	g2.setColor(Color.PINK);
+	
+	g2.setColor(color);
 	g2.fillRect(xPos, yPos, xSize, ySize);
 	
     }
 
-    private void refresh() {
+    public void refresh() {
 	xPos+=xMovement;
 	yPos+=yMovement;
-	repaint();
+	paintComponent(getGraphics());
     }
 
-    @Override
-    public void addNotify() {
-        super.addNotify();
-        requestFocus();
+    
+   
+    public void move(int xMov,int yMov){
+	xMovement=xMov;
+	yMovement=yMov;
+	refresh();
     }
     
-    @Override
-    public void keyTyped(KeyEvent e) {
-
+    public void stop(boolean horizontal){
+	if(horizontal)
+	    xMovement=0;
+	else
+	    yMovement=0;
     }
 
-    @Override
-    public void keyPressed(KeyEvent e) {
-	switch (e.getKeyCode()) {
-	    case KeyEvent.VK_LEFT:
-		xMovement = -5;
-		break;
-	    case KeyEvent.VK_UP:
-		yMovement = -5;
-		break;
-	    case KeyEvent.VK_RIGHT:
-		xMovement = 5;
-		break;
-	    case KeyEvent.VK_DOWN:
-		yMovement = 5;
-		break;
-
-	    default:
-		break;
-	}
-	refresh();
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
+    public void punch() {
+	// TODO Auto-generated method stub
 	
-	switch (e.getKeyCode()) {
-	    case KeyEvent.VK_LEFT:
-		xMovement = 0;
-		break;
-	    case KeyEvent.VK_UP:
-		yMovement = 0;
-		break;
-	    case KeyEvent.VK_RIGHT:
-		xMovement = 0;
-		break;
-	    case KeyEvent.VK_DOWN:
-		yMovement = 0;
-		break;
-
-	    default:
-		break;
-	}
-	refresh();
     }
+
+	
 
 }
