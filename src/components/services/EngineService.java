@@ -59,6 +59,7 @@ public interface EngineService {
      *       getPlayer(init(h,w,d,p1,p2),1).getX()==d<p>
      *       getPlayer(init(h,w,d,p1,p2),2).getX()==w-d<p>
      *       getPlayer(init(h,w,d,p1,p2),1).getY()==0<p>
+     *       getPlayer(init(h,w,d,p1,p2),2).getY()==0<p>
      *       getPlayer(init(h,w,d,p1,p2),1).isFacingRight==true<p>
      *       getPlayer(init(h,w,d,p1,p2),2).isFacingRight==false<p>
      *
