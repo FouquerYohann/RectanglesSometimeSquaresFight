@@ -4,7 +4,7 @@ public interface HitboxService {
 
 	// Observator
 	/**
-	 * @return position x of the hitbox
+	 * @return position x of the hitbox <p>
 	 */
 	int getPositionX();
 
@@ -44,7 +44,7 @@ public interface HitboxService {
 	 * 
 	 * @param x
 	 * @param y
-	 * @post moveTo(x,y); x == positionX() && y == positionY() 
+	 * @post moveTo(x,y); x == positionX() && y == positionY() <p>
 	 * /forall int u,v
 	 *       H.belongsTo(u,v) <=>
 	 *       H.belongsTo(u-(x-H.positionX()),v-(y-H.positionY()))

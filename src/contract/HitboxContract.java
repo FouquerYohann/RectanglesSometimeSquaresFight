@@ -2,26 +2,17 @@ package contract;
 
 import components.services.HitboxService;
 import contract.decorator.HitboxDecorator;
+import contract.util.PostconditionError;
 
 public class HitboxContract extends HitboxDecorator {
 	private final static String	service	= "Hitbox";
-	private int					w, h;
 
-	public HitboxContract(HitboxService delegate, int w, int h) {
+	public HitboxContract(HitboxService delegate) {
 		super(delegate);
-		this.w = w;
-		this.h = h;
 	}
 
 	public void checkInvariant() {
-		for (int i = 0; i < w * h; i++) {
-			int x=i/h;
-			int y=i%h;
-		}
-	}
-
-	public void checkInvariant(HitboxService hb, int w, int h) {
-		new HitboxContract(hb, w, h).checkInvariant();
+		// rien a tester
 	}
 
 	@Override
@@ -31,7 +22,6 @@ public class HitboxContract extends HitboxDecorator {
 
 	@Override
 	public int getPositionY() {
-
 		return super.getPositionY();
 	}
 
@@ -52,12 +42,45 @@ public class HitboxContract extends HitboxDecorator {
 
 	@Override
 	public void init(int x, int y) {
+		String method = "init";
 		super.init(x, y);
+		if (getPositionX() != x)
+			throw new PostconditionError(service, method, "x devrais valoir "
+					+ x + "apres l'initialisation");
+
+		if (getPositionY() != y)
+			throw new PostconditionError(service, method, "y devrais valoir "
+					+ y + "apres l'initialisation");
+		checkInvariant();
 	}
 
 	@Override
 	public void moveTo(int x, int y) {
+		String method = "moveTo";
+		// je valide pas ce truc c'est la correction du partiel
+		checkInvariant();
+		// Capture
+		int preX = getPositionX();
+		int preY = getPositionY();
+		boolean pre = belongsTo(preX, preY);
+		boolean pre100 = belongsTo(preX + 100, preY + 100);
+		boolean preAbs = belongsTo(300, 0);
+
 		super.moveTo(x, y);
+
+		checkInvariant();
+
+		if ((!belongsTo(getPositionX(), getPositionY()) == pre))
+			throw new PostconditionError(service, method,
+					"euh y a une erreur je suppose");
+
+		if ((!belongsTo(getPositionX() + 100, getPositionY() + 100) == pre100))
+			throw new PostconditionError(service, method,
+					"euh y a une erreur je suppose mais +100 donc ça va ");
+
+		if ((!belongsTo(300 + (x - preX), 0 + (y - preY)) == preAbs))
+			throw new PostconditionError(service, method,
+					"euh y a une erreur absolu quoi que ça veuille dire ");
 	}
 
 }
