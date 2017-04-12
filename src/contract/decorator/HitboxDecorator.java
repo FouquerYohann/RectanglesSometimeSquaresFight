@@ -1,12 +1,11 @@
-package contract.util;
+package contract.decorator;
 
 import components.services.HitboxService;
 
 public class HitboxDecorator implements HitboxService {
 
-	private HitboxService delegate;
-	
-	
+	private HitboxService	delegate;
+
 	public HitboxDecorator(HitboxService delegate) {
 		super();
 		this.delegate = delegate;
@@ -14,44 +13,38 @@ public class HitboxDecorator implements HitboxService {
 
 	@Override
 	public int getPositionX() {
-		// TODO Auto-generated method stub
-		return 0;
+		return delegate.getPositionX();
 	}
 
 	@Override
 	public int getPositionY() {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return delegate.getPositionY();
 	}
 
 	@Override
 	public boolean belongsTo(int x, int y) {
-		// TODO Auto-generated method stub
-		return false;
+		return delegate.belongsTo(x, y);
 	}
 
 	@Override
 	public boolean collidesWith(HitboxService hitbox) {
-		// TODO Auto-generated method stub
-		return false;
+		return delegate.collidesWith(hitbox);
 	}
 
 	@Override
 	public boolean equalsTo(HitboxService hitbox) {
-		// TODO Auto-generated method stub
-		return false;
+		return delegate.equalsTo(hitbox);
 	}
 
 	@Override
 	public void init(int x, int y) {
-		// TODO Auto-generated method stub
-
+		delegate.init(x, y);
 	}
 
 	@Override
 	public void moveTo(int x, int y) {
-		// TODO Auto-generated method stub
-
+		delegate.moveTo(x, y);
 	}
 
 }
