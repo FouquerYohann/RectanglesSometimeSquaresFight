@@ -40,8 +40,8 @@ public interface FighterService {
     
     //Invariant
     /*
-     * getX()>0 && getX()<getEngine.getWidth()
-     * getY()>0 && getY()<getEngine.getHeight()
+     * getX()>=0 && getX()<getEngine.getWidth()
+     * getY()>=0 && getY()<getEngine.getHeight()
      * isDead() == !(getLife()>0)
      * 
      */
@@ -106,9 +106,9 @@ public interface FighterService {
      * @param c COMMANDE
      *      
      * @post 
-     * 		step(LEFT)  == moveLeft()
-     * 		step(RIGHT) == moveRight()
-     * 		step(NEUTRAL) == this
+     * 		step(LEFT)  <=> moveLeft()
+     * 		step(RIGHT) <=> moveRight()
+     * 		step(NEUTRAL) <=> void
      */
     
     public void step(Commande c);
