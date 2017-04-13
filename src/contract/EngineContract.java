@@ -13,7 +13,7 @@ public class EngineContract extends EngineDecorator {
     
     public void checkInvariant(){
 	for(int i=1;i<3;i++){
-	    if(getPlayer(i).isDead()==true)
+	    if(getFighter(i).isDead()==true)
 		if(isGameOver()==false)
 		    throw new InvariantError(service, "Game is not over even though one fighter is dead");
 	}
@@ -31,8 +31,8 @@ public class EngineContract extends EngineDecorator {
     }
 
     @Override
-    public FighterService getChar(int i) {
-	return super.getChar(i);
+    public FighterService getFighter(int i) {
+	return super.getFighter(i);
     }
 
     @Override
@@ -40,6 +40,13 @@ public class EngineContract extends EngineDecorator {
 	return super.getPlayer(i);
     }
 
+    @Override
+    public boolean isGameOver() {
+	// TODO Auto-generated method stub
+	return super.isGameOver();
+    }
+
+    
     @Override
     public void init(int height, int width, int distance, PlayerService p1,
            PlayerService p2) {
@@ -57,6 +64,8 @@ public class EngineContract extends EngineDecorator {
 	
 	super.init(height, width, distance, p1, p2);
 	
+	checkInvariant();
+	
 	if(!(getHeight()==height))
 	    throw new PostconditionError(service, method, "height not initialized correctly");
 	if(!(getWidth()==width))
@@ -65,23 +74,44 @@ public class EngineContract extends EngineDecorator {
 	    throw new PostconditionError(service, method, "player 1 not initilalized correctly");
 	if(!(getPlayer(2)==p2))
 	    throw new PostconditionError(service, method, "player 2 not initilalized correctly");
-	if(!(getPlayer(1).getX()==p1))
-	    throw new PostconditionError(service, method, "player 1 not initilalized correctly");
-	if(!(getPlayer(2).getX==p2))
-	    throw new PostconditionError(service, method, "player 2 not initilalized correctly");
+	if(!(getFighter(1).getX()==distance))
+	    throw new PostconditionError(service, method, "fighter 1 x position not initilalized correctly");
+	if(!(getFighter(2).getX()==width-distance))
+	    throw new PostconditionError(service, method, "fighter 2 x position not initilalized correctly");
+	if(!(getFighter(1).getY()==0))
+	    throw new PostconditionError(service, method, "fighter 1 y position not initilalized correctly");
+	if(!(getFighter(2).getY()==0))
+	    throw new PostconditionError(service, method, "fighter 2 y position not initilalized correctly");
+	if(!(getFighter(1).isFacingRight()==true))
+		throw new PostconditionError(service, method, "fighter 1 is not facing right");
+	if(!(getFighter(2).isFacingRight()==false))
+		throw new PostconditionError(service, method, "fighter 2 is not facing left");
+	
 	
     }
 
-    @Override
-    public boolean isGameOver() {
-	// TODO Auto-generated method stub
-	return super.isGameOver();
-    }
-
+    
     @Override
     public void step(COMMANDE comP1, COMMANDE comP2) {
-	// TODO Auto-generated method stub
+	String method="step";
+	checkInvariant();
+
+	//TODO clone method
+	//FighterService preFighter1=(FighterContract)getFighter(1).clone();
+	//FighterService preFighter2=(FighterContract)getFighter(1).clone();
+	
+	if(!(isGameOver()==false))
+	    throw new PreconditionError(service, method, "Game is Over");
+	
+	
 	super.step(comP1, comP2);
+	
+//	if(!(getFighter(1).equals(preFighter1.step(comP1))))
+//	    throw new PostconditionError(service, method, "step methods do not return same fighter 1");
+//	if(!(getFighter(1).equals(preFighter2.step(comP2))))
+//	    throw new PostconditionError(service, method, "step methods do not return same fighter 2");
+	
+	checkInvariant();
     }
     
 }

@@ -16,8 +16,8 @@ public class EngineDecorator implements EngineService {
 	return delegate.getWidth();
     }
 
-    public FighterService getChar(int i) {
-	return delegate.getChar(i);
+    public FighterService getFighter(int i) {
+	return delegate.getFighter(i);
     }
 
     public PlayerService getPlayer(int i) {
