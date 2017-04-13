@@ -2,11 +2,16 @@ package contract;
 
 import components.enums.Commande;
 import components.services.EngineService;
+import components.services.FighterService;
 import components.services.HitboxService;
-
 import contract.decorator.FighterDecorator;
 
 public class FighterContract extends FighterDecorator {
+
+    public FighterContract(FighterService delegate) {
+	super(delegate);
+	// TODO Auto-generated constructor stub
+    }
 
     @Override
     public int getX() {

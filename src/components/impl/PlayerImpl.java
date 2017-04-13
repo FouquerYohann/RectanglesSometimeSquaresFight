@@ -9,7 +9,25 @@ public class PlayerImpl implements PlayerService{
     private String name;
     private ArrayList<Commande> list_bouchon;
     
+    public PlayerImpl(){
+	init("Bouchon");
+	list_bouchon.add(Commande.LEFT);
+	list_bouchon.add(Commande.LEFT);
+	list_bouchon.add(Commande.LEFT);
+	list_bouchon.add(Commande.LEFT);
+	list_bouchon.add(Commande.LEFT);
+	list_bouchon.add(Commande.LEFT);
+	list_bouchon.add(Commande.RIGHT);
+	list_bouchon.add(Commande.RIGHT);
+	list_bouchon.add(Commande.RIGHT);
+	list_bouchon.add(Commande.RIGHT);
+	list_bouchon.add(Commande.RIGHT);
+	
+    }
     
+    public PlayerImpl(String name) {
+	init(name);
+    }
     
     @Override
     public String getName() {

@@ -8,6 +8,13 @@ import components.services.HitboxService;
 public class FighterDecorator implements FighterService {
     private FighterService delegate;
 
+    
+    
+    public FighterDecorator(FighterService delegate) {
+	super();
+	this.delegate = delegate;
+    }
+
     public int getX() {
 	return delegate.getX();
     }
