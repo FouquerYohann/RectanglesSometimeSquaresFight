@@ -102,4 +102,16 @@ public class FighterImpl implements FighterService {
 	}
     }
 
+    @Override
+    public FighterService clone() {
+	// TODO Auto-generated method stub
+	return null;
+    }
+
+    @Override
+    public boolean equals(FighterService fighter) {
+	// TODO Auto-generated method stub
+	return false;
+    }
+
 }
