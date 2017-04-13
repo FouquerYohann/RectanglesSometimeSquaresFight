@@ -1,5 +1,7 @@
 package contract.decorator;
 
+import java.util.Observable;
+
 import components.enums.Commande;
 import components.services.EngineService;
 import components.services.FighterService;

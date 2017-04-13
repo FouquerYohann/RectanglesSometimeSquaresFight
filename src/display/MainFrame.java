@@ -3,12 +3,13 @@ package display;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JFrame;
 
-public class MainFrame extends JFrame {
-    private static FighterRepresent fighter1;
-    private static FighterRepresent fighter2;
+public class MainFrame extends JFrame implements Observer {
+   
     private static int              frameHeight   = 768;
     private static int              frameWidth    = 1024;
     private static int              fighterHeight = 300;
@@ -16,29 +17,22 @@ public class MainFrame extends JFrame {
 
     public MainFrame(String titre) {
 	super(titre);
-	fighter1 = new FighterRepresent(0, fighterWidth, fighterHeight,
-	        frameWidth, frameHeight, Color.BLUE);
-	fighter2 = new FighterRepresent(frameWidth - fighterWidth,
-	        fighterWidth, fighterHeight, frameWidth, frameHeight, Color.RED);
+	
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setSize(frameWidth, frameHeight);
-	add(fighter1);
-	setVisible(true);
-	add(fighter2);
 	setVisible(true);
     }
 
     private void refresh() {
 	paint(getGraphics());
-        fighter1.refresh();
-        fighter2.refresh();
+        
         
     }
     
     public static void main(String[] args) {
 	MainFrame fenetre = new MainFrame("RectanglesSometimeSquaresFight");
 
-	
+	/*
 	fenetre.addKeyListener(new KeyListener() {
 
 	    @Override
@@ -122,6 +116,13 @@ public class MainFrame extends JFrame {
 
 	fenetre.addNotify();
 	fenetre.requestFocus();
-
+	*/
+    }
+	
+	
+    @Override
+    public void update(Observable o, Object arg) {
+	// TODO Auto-generated method stub
+	
     }
 }
