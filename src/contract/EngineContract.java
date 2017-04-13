@@ -1,6 +1,6 @@
 package contract;
 
-import components.enums.COMMANDE;
+import components.enums.Commande;
 import components.services.FighterService;
 import components.services.PlayerService;
 import contract.decorator.EngineDecorator;
@@ -92,7 +92,7 @@ public class EngineContract extends EngineDecorator {
 
     
     @Override
-    public void step(COMMANDE comP1, COMMANDE comP2) {
+    public void step(Commande comP1, Commande comP2) {
 	String method="step";
 	checkInvariant();
 

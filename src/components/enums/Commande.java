@@ -1,5 +1,5 @@
 package components.enums;
 
-public enum COMMANDE {
+public enum Commande {
 
 }

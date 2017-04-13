@@ -1,6 +1,6 @@
 package components.services;
 
-import components.enums.COMMANDE;
+import components.enums.Commande;
 
 public interface FighterService {
     //Observator
@@ -71,6 +71,6 @@ public interface FighterService {
     public void moveLeft();
     public void moveRight();
     public void switchSide();
-    public void step(COMMANDE c);
+    public void step(Commande c);
     
 }
