@@ -1,6 +1,6 @@
 package components.services;
 
-import components.enums.COMMANDE;
+import components.enums.Commande;
 
 public interface FighterService {
     //Observator
@@ -111,6 +111,6 @@ public interface FighterService {
      * 		step(NEUTRAL) == this
      */
     
-    public void step(COMMANDE c);
+    public void step(Commande c);
     
 }
