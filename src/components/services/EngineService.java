@@ -18,7 +18,7 @@ public interface EngineService {
      * @require i==1 or i==2
      * @return the i-th fighter
      */
-    public FighterService getChar(int i);
+    public FighterService getFighter(int i);
 
     /**
      * @require i==1 or i==2
@@ -33,7 +33,7 @@ public interface EngineService {
 
     // Invariant
     /*
-     * this.isGameOver()= /exist i in {1,2} where getPlayer(i).isDead==true
+     * this.isGameOver()= /exist i in {1,2} where getFighter(i).isDead==true
      */
 
     // Constructor
@@ -52,16 +52,16 @@ public interface EngineService {
      *            player 2
      *
      * @post 
-     *       getHeight(init(h,w,d,p1,p2))==h<p>
-     *       getWidth(init(h,w,d,p1,p2))==w<p>
-     *       getPlayer(init(h,w,d,p1,p2),1)==p1<p>
-     *       getPlayer(init(h,w,d,p1,p2),2)==p2<p>
-     *       getPlayer(init(h,w,d,p1,p2),1).getX()==d<p>
-     *       getPlayer(init(h,w,d,p1,p2),2).getX()==w-d<p>
-     *       getPlayer(init(h,w,d,p1,p2),1).getY()==0<p>
-     *       getPlayer(init(h,w,d,p1,p2),2).getY()==0<p>
-     *       getPlayer(init(h,w,d,p1,p2),1).isFacingRight==true<p>
-     *       getPlayer(init(h,w,d,p1,p2),2).isFacingRight==false<p>
+     *       getHeight(init(h,w,d,p1,p2))==h && <p>
+     *       getWidth(init(h,w,d,p1,p2))==w && <p>
+     *       getPlayer(init(h,w,d,p1,p2),1)==p1 && <p>
+     *       getPlayer(init(h,w,d,p1,p2),2)==p2 && <p>
+     *       getFighter(init(h,w,d,p1,p2),1).getX()==d && <p>
+     *       getFighter(init(h,w,d,p1,p2),2).getX()==w-d && <p>
+     *       getFighter(init(h,w,d,p1,p2),1).getY()==0 && <p>
+     *       getFighter(init(h,w,d,p1,p2),2).getY()==0 && <p>
+     *       getFighter(init(h,w,d,p1,p2),1).isFacingRight==true && <p>
+     *       getFighter(init(h,w,d,p1,p2),2).isFacingRight==false<p>
      *
      */
     public void init(int height, int width, int distance, PlayerService p1,
@@ -70,6 +70,10 @@ public interface EngineService {
     // Operator
     /**
      * @require this.isGameOver() == false
+     * 
+     * @post
+     * 		getFighter(1)== @pre getFighter(1).step(comP1)
+     * 		getFighter(2)== @pre getFighter(2).step(comP2)
      * 
      */
     public void step(COMMANDE comP1, COMMANDE comP2);

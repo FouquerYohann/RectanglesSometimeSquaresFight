@@ -1,5 +1,6 @@
 package contract.decorator;
 
+import components.enums.COMMANDE;
 import components.services.EngineService;
 import components.services.FighterService;
 import components.services.HitboxService;
@@ -56,8 +57,8 @@ public class FighterDecorate implements FighterService {
 	delegate.switchSide();
     }
 
-    public void step() {
-	delegate.step();
+    public void step(COMMANDE c) {
+	delegate.step(c);
     }
     
     
