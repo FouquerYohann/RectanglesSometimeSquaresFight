@@ -1,6 +1,5 @@
 package contract.decorator;
 
-import java.util.Observable;
 
 import components.enums.Commande;
 import components.services.EngineService;
@@ -9,8 +8,13 @@ import components.services.PlayerService;
 
 public class EngineDecorator implements EngineService {
     private EngineService delegate;
+    
+    public EngineDecorator(EngineService delegate) {
+		super();
+		this.delegate = delegate;
+	}
 
-    public int getHeight() {
+	public int getHeight() {
 	return delegate.getHeight();
     }
 
