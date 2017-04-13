@@ -6,6 +6,19 @@ import components.services.FighterService;
 import components.services.PlayerService;
 
 public class EngineImpl implements EngineService {
+    private static int defaultHeight=768;
+    private static int defaultWidth=1024;
+    private static int defaultDistance=defaultWidth/4;
+    //private static PlayerService defaultPlayer1=new Player;
+    //private static PlayerService defaultPlayer2=new Player;
+    
+    
+    
+    public EngineImpl() {
+	super();
+	//TODO playerconstructor
+	init(defaultHeight,defaultWidth,defaultDistance,null,null);
+    }
 
     @Override
     public int getHeight() {

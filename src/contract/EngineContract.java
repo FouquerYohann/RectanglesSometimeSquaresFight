@@ -1,6 +1,7 @@
 package contract;
 
 import components.enums.Commande;
+import components.services.EngineService;
 import components.services.FighterService;
 import components.services.PlayerService;
 import contract.decorator.EngineDecorator;
@@ -9,6 +10,13 @@ import contract.util.PostconditionError;
 import contract.util.PreconditionError;
 
 public class EngineContract extends EngineDecorator {
+   
+    
+    public EngineContract(EngineService delegate) {
+	super(delegate);
+    }
+
+
     private final static String service="Engine";
     
     public void checkInvariant(){
@@ -18,6 +26,7 @@ public class EngineContract extends EngineDecorator {
 		    throw new InvariantError(service, "Game is not over even though one fighter is dead");
 	}
     }
+    
     
     
     @Override
