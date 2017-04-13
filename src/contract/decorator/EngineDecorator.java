@@ -1,42 +1,44 @@
 package contract.decorator;
 
+import components.enums.COMMANDE;
 import components.services.EngineService;
 import components.services.FighterService;
 import components.services.PlayerService;
 
 public class EngineDecorator implements EngineService {
     private EngineService delegate;
-    
-    
-    @Override
+
     public int getHeight() {
-	// TODO Auto-generated method stub
-	return 0;
+	return delegate.getHeight();
     }
 
-    @Override
     public int getWidth() {
-	// TODO Auto-generated method stub
-	return 0;
+	return delegate.getWidth();
     }
 
-    @Override
     public FighterService getChar(int i) {
-	// TODO Auto-generated method stub
-	return null;
+	return delegate.getChar(i);
     }
 
-    @Override
     public PlayerService getPlayer(int i) {
-	// TODO Auto-generated method stub
-	return null;
+	return delegate.getPlayer(i);
     }
 
-    @Override
     public void init(int height, int width, int distance, PlayerService p1,
-	    PlayerService p2) {
-	// TODO Auto-generated method stub
-
+            PlayerService p2) {
+	delegate.init(height, width, distance, p1, p2);
     }
+
+    public boolean isGameOver() {
+	return delegate.isGameOver();
+    }
+
+    public void step(COMMANDE comP1, COMMANDE comP2) {
+	delegate.step(comP1, comP2);
+    }
+
+   
+    
+   
 
 }
