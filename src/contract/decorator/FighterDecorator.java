@@ -5,7 +5,7 @@ import components.services.EngineService;
 import components.services.FighterService;
 import components.services.HitboxService;
 
-public class FighterDecorate implements FighterService {
+public class FighterDecorator implements FighterService {
     private FighterService delegate;
 
     public int getX() {
