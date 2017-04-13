@@ -235,12 +235,33 @@ public class FighterContract extends FighterDecorator {
 
 	@Override
 	public void step(Commande c) {
-		FighterService clone=super.clone();
+		String method = "step";
+		FighterService clone = super.clone();
 		checkInvariant();
 		super.step(c);
 		checkInvariant();
-		
-		
+
+		switch (c) {
+		case LEFT:
+			clone.moveLeft();
+			if (!super.equals(clone))
+				throw new PostconditionError(service, method, "step(" + c
+						+ ") must be equivalent to moveleft()");
+
+			break;
+		case RIGHT:
+			clone.moveRight();
+			if (!super.equals(clone))
+				throw new PostconditionError(service, method, "step(" + c
+						+ ") must be equivalent to moveRight()");
+			break;
+		case NEUTRAL:
+			if (!super.equals(clone))
+				throw new PostconditionError(service, method, "step(" + c
+						+ ") must not change the fighter");
+			break;
+		}
+
 	}
 
 }
