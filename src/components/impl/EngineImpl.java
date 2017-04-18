@@ -65,6 +65,7 @@ public class EngineImpl implements EngineService {
 		this.distance = distance;
 		this.player1 = p1;
 		this.player2 = p2;
+		
 		this.fighter1 = new FighterContract(new FighterImpl(100,10,300,100,true,this));
 		this.fighter2 = new FighterContract(new FighterImpl(100,10,300,100,false,this));
 	}

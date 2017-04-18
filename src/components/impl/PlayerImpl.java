@@ -12,9 +12,9 @@ public class PlayerImpl implements PlayerService {
 	public PlayerImpl() {
 		init("Bouchon");
 		listBouchon.add(CommandeMovement.LEFT);
-		listBouchon.add(CommandeMovement.LEFT);
-		listBouchon.add(CommandeMovement.LEFT);
-		listBouchon.add(CommandeMovement.LEFT);
+		listBouchon.add(CommandeMovement.CROUCH);
+		listBouchon.add(CommandeMovement.CROUCH);
+		listBouchon.add(CommandeMovement.JUMP);
 		listBouchon.add(CommandeMovement.LEFT);
 		listBouchon.add(CommandeMovement.LEFT);
 		listBouchon.add(CommandeMovement.RIGHT);

@@ -17,9 +17,9 @@ public class FighterImpl implements FighterService {
     private EngineService unrealEngine;
     private HitboxService hitbox;
 
-    public FighterImpl(int speed, int life,int height,int width, boolean faceRight,
-	    EngineService unrealEngine) {
-	init(life, speed,height,width, faceRight, unrealEngine);
+    public FighterImpl(int speed, int life, int height, int width,
+	    boolean faceRight, EngineService unrealEngine) {
+	init(life, speed, height, width, faceRight, unrealEngine);
     }
 
     @Override
@@ -51,17 +51,17 @@ public class FighterImpl implements FighterService {
     public int getSpeed() {
 	return speed;
     }
-    
+
     @Override
     public int getHeight() {
-        return height;
+	return height;
     }
-    
+
     @Override
     public int getWidth() {
-        return width;
+	return width;
     }
-    
+
     @Override
     public boolean isFacingRight() {
 	return faceRight;
@@ -73,16 +73,16 @@ public class FighterImpl implements FighterService {
     }
 
     @Override
-    public void init(int life, int speed, int height, int width, boolean lookRight,
-	    EngineService unrealEngine) {
+    public void init(int life, int speed, int height, int width,
+	    boolean lookRight, EngineService unrealEngine) {
 	// TODO bien faire la distance
 	if (lookRight)
 	    this.x = unrealEngine.getWidth() / 4;
 	else
 	    this.x = 3 * unrealEngine.getWidth() / 4;
 	this.y = 0;
-	this.height=height;
-	this.width=width;
+	this.height = height;
+	this.width = width;
 	this.life = life;
 	this.speed = speed;
 	this.faceRight = lookRight;
@@ -127,7 +127,13 @@ public class FighterImpl implements FighterService {
 	    case RIGHT:
 		moveRight();
 		break;
-
+	    case JUMP:
+		jump();
+		break;
+	    case CROUCH:
+		crouch();
+		break;
+	 
 	    default:
 		break;
 	}
@@ -135,8 +141,8 @@ public class FighterImpl implements FighterService {
 
     @Override
     public FighterService clone() {
-	FighterImpl clone = new FighterImpl(speed, life,height,width, faceRight,
-	        unrealEngine);
+	FighterImpl clone = new FighterImpl(speed, life, height, width,
+	        faceRight, unrealEngine);
 	clone.x = x;
 	clone.y = y;
 	clone.hitbox = new HitboxContract(new HitboxImpl(hitbox.getPositionX(),

@@ -52,7 +52,14 @@ public class FighterContract extends FighterDecorator {
 		if (speed <= 0)
 			throw new PreconditionError(service, method,
 					"speed must be positive :" + speed);
+		
+		if(height <= 0 || height > getEngine().getHeight()/4)
+		    	throw new PreconditionError(service, method, "height is not right :"+ height);
 
+		if(width <=0 || width > getEngine().getWidth()/6)
+		    	throw new PreconditionError(service, method, "width is not right :"+ width);
+
+		
 		super.init(life, speed,height, width, lookRight, unrealEngine);
 		checkInvariant();
 
@@ -63,7 +70,13 @@ public class FighterContract extends FighterDecorator {
 		if (getSpeed() != speed)
 			throw new PostconditionError(service, method,
 					"speed mal initialisé " + getSpeed());
-
+		if (getHeight() != height)
+			throw new PostconditionError(service, method,
+					"speed mal initialisé " + getHeight());
+		if (getWidth() != width)
+			throw new PostconditionError(service, method,
+					"width mal initialisé " + getWidth());		
+		
 		if (isFacingRight() == lookRight)
 			throw new PostconditionError(service, method,
 					"sens mal initialisé ");
