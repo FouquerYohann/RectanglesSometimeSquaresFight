@@ -4,32 +4,18 @@ import components.enums.CommandeMovement;
 import components.services.EngineService;
 import components.services.FighterService;
 import components.services.PlayerService;
-import contract.FighterContract;
-import contract.PlayerContract;
 
 public class EngineImpl implements EngineService {
-	private static int					height;
-	private static int					width;
-	private static int					distance;
-	private FighterService				fighter1;
-	private FighterService				fighter2;
-	private PlayerService				player1;
-	private PlayerService				player2;
-
-	private final static int			defaultHeight	= 768;
-	private final static int			defaultWidth	= 1024;
-	private final static int			defaultDistance	= defaultWidth / 4;
-	private final static PlayerService	defaultPlayer1	= new PlayerContract(
-																new PlayerImpl(
-																		"Yohann"));
-	private final static PlayerService	defaultPlayer2	= new PlayerContract(
-																new PlayerImpl());	;
+	private int				height;
+	private int				width;
+	private int				distance;
+	private FighterService	fighter1;
+	private FighterService	fighter2;
+	private PlayerService	player1;
+	private PlayerService	player2;
 
 	public EngineImpl() {
 		super();
-		init(defaultHeight, defaultWidth, defaultDistance, defaultPlayer1,
-				defaultPlayer2);
-
 	}
 
 	@Override
@@ -66,8 +52,7 @@ public class EngineImpl implements EngineService {
 		this.player1 = p1;
 		this.player2 = p2;
 		
-		this.fighter1 = new FighterContract(new FighterImpl(100,10,300,100,true,this));
-		this.fighter2 = new FighterContract(new FighterImpl(100,10,300,100,false,this));
+		
 	}
 
 	@Override
@@ -77,4 +62,8 @@ public class EngineImpl implements EngineService {
 
 	}
 
+	@Override
+	public int getDistance() {
+		return distance;
+	}
 }

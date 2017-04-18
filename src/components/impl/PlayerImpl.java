@@ -1,32 +1,14 @@
 package components.impl;
 
-import java.util.ArrayList;
-
 import components.enums.CommandeMovement;
+import components.enums.FighterName;
+import components.factories.FighterFactory;
 import components.services.PlayerService;
 
 public class PlayerImpl implements PlayerService {
-	private String				name;
-	private ArrayList<CommandeMovement>	listBouchon;
+	private String	name;
 
 	public PlayerImpl() {
-		init("Bouchon");
-		listBouchon.add(CommandeMovement.LEFT);
-		listBouchon.add(CommandeMovement.CROUCH);
-		listBouchon.add(CommandeMovement.CROUCH);
-		listBouchon.add(CommandeMovement.JUMP);
-		listBouchon.add(CommandeMovement.LEFT);
-		listBouchon.add(CommandeMovement.LEFT);
-		listBouchon.add(CommandeMovement.RIGHT);
-		listBouchon.add(CommandeMovement.RIGHT);
-		listBouchon.add(CommandeMovement.RIGHT);
-		listBouchon.add(CommandeMovement.RIGHT);
-		listBouchon.add(CommandeMovement.RIGHT);
-
-	}
-
-	public PlayerImpl(String name) {
-		init(name);
 	}
 
 	@Override
@@ -36,14 +18,17 @@ public class PlayerImpl implements PlayerService {
 
 	@Override
 	public CommandeMovement getCommande() {
-		if(listBouchon.isEmpty())return CommandeMovement.NEUTRAL;
-		return listBouchon.remove(0);
+		return CommandeMovement.NEUTRAL;
 	}
 
 	@Override
-	public void init(String name) {
+	public void init(String name, FighterFactory factory) {
 		this.name = name;
-		this.listBouchon = new ArrayList<CommandeMovement>();
+	}
+
+	@Override
+	public void chooseFighter(FighterName name) {
+		
 	}
 
 }

@@ -9,6 +9,7 @@ import java.util.Observer;
 
 import javax.swing.JFrame;
 
+import components.factories.EngineFactory;
 import components.impl.EngineImpl;
 import components.impl.Game;
 import components.services.EngineService;
@@ -55,11 +56,25 @@ public class MainFrame extends JFrame implements Observer {
 
 	public static void main(String[] args) {
 		MainFrame fenetre = new MainFrame("RectanglesSometimeSquaresFight",
-				new EngineContract(new EngineImpl()));
+				EngineFactory.defaultEngine());
 
 		fenetre.game.Routine(1000);
 
-		// fenetre.addKeyListener(new KeyListener() {
+		
+
+	}
+
+}
+
+
+
+
+
+
+
+
+
+//fenetre.addKeyListener(new KeyListener() {
 		//
 		// @Override
 		// public void keyTyped(KeyEvent e) {
@@ -140,7 +155,3 @@ public class MainFrame extends JFrame implements Observer {
 		//
 		// fenetre.addNotify();
 		// fenetre.requestFocus();
-
-	}
-
-}

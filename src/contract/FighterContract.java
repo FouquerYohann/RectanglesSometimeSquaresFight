@@ -1,10 +1,8 @@
 package contract;
 
 import components.enums.CommandeMovement;
-import components.impl.FighterImpl;
 import components.services.EngineService;
 import components.services.FighterService;
-import components.services.HitboxService;
 import contract.decorator.FighterDecorator;
 import contract.util.InvariantError;
 import contract.util.PostconditionError;
@@ -249,6 +247,8 @@ public class FighterContract extends FighterDecorator {
 				throw new PostconditionError(service, method, "step(" + c
 						+ ") must not change the fighter");
 
+			break;
+		default:
 			break;
 		}
 

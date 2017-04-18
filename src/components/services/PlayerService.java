@@ -1,6 +1,8 @@
 package components.services;
 
 import components.enums.CommandeMovement;
+import components.enums.FighterName;
+import components.factories.FighterFactory;
 
 public interface PlayerService {
 	/**
@@ -9,10 +11,18 @@ public interface PlayerService {
 	String getName();
 
 	/**
-	 * @return current Commande*/
+	 * @return current Commande
+	 */
 	CommandeMovement getCommande();
 
 	/**
-	 * @param name the name of the player*/
-	void init(String name);
+	 * @param name
+	 *            the name of the player
+	 */
+	void init(String name, FighterFactory factory);
+	
+	/**
+	 * @return name of the fighter
+	 * */
+	FighterName chooseFighter();
 }
