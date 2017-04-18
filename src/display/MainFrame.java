@@ -35,8 +35,10 @@ public class MainFrame extends JFrame implements Observer {
 		FighterService f1 = game.getUnrealEngine().getFighter(1);
 		FighterService f2 = game.getUnrealEngine().getFighter(2);
 		paint(g2);
+		g2.setColor(Color.BLUE);
 		g2.fillRect(f1.getX(), f1.getY(), fighterWidth, fighterHeight);
 		setVisible(true);
+		g2.setColor(Color.RED);
 		g2.fillRect(f2.getX(), f2.getY(), fighterWidth, fighterHeight);
 		setVisible(true);
 	}

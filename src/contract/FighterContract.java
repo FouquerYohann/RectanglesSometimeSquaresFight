@@ -1,6 +1,6 @@
 package contract;
 
-import components.enums.Commande;
+import components.enums.CommandeMovement;
 import components.impl.FighterImpl;
 import components.services.EngineService;
 import components.services.FighterService;
@@ -37,56 +37,9 @@ public class FighterContract extends FighterDecorator {
 		new FighterContract(delegate).checkInvariant();
 	}
 
-	@Override
-	public int getX() {
-		// TODO Auto-generated method stub
-		return super.getX();
-	}
 
 	@Override
-	public int getY() {
-		// TODO Auto-generated method stub
-		return super.getY();
-	}
-
-	@Override
-	public EngineService getEngine() {
-		// TODO Auto-generated method stub
-		return super.getEngine();
-	}
-
-	@Override
-	public HitboxService getHitbox() {
-		// TODO Auto-generated method stub
-		return super.getHitbox();
-	}
-
-	@Override
-	public int getLife() {
-		// TODO Auto-generated method stub
-		return super.getLife();
-	}
-
-	@Override
-	public int getSpeed() {
-		// TODO Auto-generated method stub
-		return super.getSpeed();
-	}
-
-	@Override
-	public boolean isFacingRight() {
-		// TODO Auto-generated method stub
-		return super.isFacingRight();
-	}
-
-	@Override
-	public boolean isDead() {
-		// TODO Auto-generated method stub
-		return super.isDead();
-	}
-
-	@Override
-	public void init(int life, int speed, boolean lookRight,
+	public void init(int life, int speed,int height, int width, boolean lookRight,
 			EngineService unrealEngine) {
 		String method = "init";
 		checkInvariant();
@@ -100,7 +53,7 @@ public class FighterContract extends FighterDecorator {
 			throw new PreconditionError(service, method,
 					"speed must be positive :" + speed);
 
-		super.init(life, speed, lookRight, unrealEngine);
+		super.init(life, speed,height, width, lookRight, unrealEngine);
 		checkInvariant();
 
 		if (getLife() != life)
@@ -214,6 +167,27 @@ public class FighterContract extends FighterDecorator {
 		if (getY() != preY)
 			throw new PostconditionError(service, method, "Y must not change");
 	}
+	
+	@Override
+	public void jump(){
+	    checkInvariant();
+	    
+	    super.jump();
+	    
+	    checkInvariant();
+	    //TODO POST
+	    
+	}
+	
+	@Override
+	public void crouch(){
+	    checkInvariant();
+	    
+	    super.crouch();
+	    
+	    checkInvariant();
+	    //TODO POST
+	}
 
 	@Override
 	public void switchSide() {
@@ -235,7 +209,7 @@ public class FighterContract extends FighterDecorator {
 	}
 
 	@Override
-	public void step(Commande c) {
+	public void step(CommandeMovement c) {
 		System.out.println("Commande " + c);
 		String method = "step";
 		FighterService clone = super.clone();

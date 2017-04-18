@@ -1,6 +1,6 @@
 package contract.decorator;
 
-import components.enums.Commande;
+import components.enums.CommandeMovement;
 import components.services.PlayerService;
 
 public class PlayerDecorator implements PlayerService {
@@ -17,7 +17,7 @@ public class PlayerDecorator implements PlayerService {
 	return delegate.getName();
     }
 
-    public Commande getCommande() {
+    public CommandeMovement getCommande() {
 	return delegate.getCommande();
     }
 

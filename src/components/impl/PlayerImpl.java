@@ -2,26 +2,26 @@ package components.impl;
 
 import java.util.ArrayList;
 
-import components.enums.Commande;
+import components.enums.CommandeMovement;
 import components.services.PlayerService;
 
 public class PlayerImpl implements PlayerService {
 	private String				name;
-	private ArrayList<Commande>	listBouchon;
+	private ArrayList<CommandeMovement>	listBouchon;
 
 	public PlayerImpl() {
 		init("Bouchon");
-		listBouchon.add(Commande.LEFT);
-		listBouchon.add(Commande.LEFT);
-		listBouchon.add(Commande.LEFT);
-		listBouchon.add(Commande.LEFT);
-		listBouchon.add(Commande.LEFT);
-		listBouchon.add(Commande.LEFT);
-		listBouchon.add(Commande.RIGHT);
-		listBouchon.add(Commande.RIGHT);
-		listBouchon.add(Commande.RIGHT);
-		listBouchon.add(Commande.RIGHT);
-		listBouchon.add(Commande.RIGHT);
+		listBouchon.add(CommandeMovement.LEFT);
+		listBouchon.add(CommandeMovement.LEFT);
+		listBouchon.add(CommandeMovement.LEFT);
+		listBouchon.add(CommandeMovement.LEFT);
+		listBouchon.add(CommandeMovement.LEFT);
+		listBouchon.add(CommandeMovement.LEFT);
+		listBouchon.add(CommandeMovement.RIGHT);
+		listBouchon.add(CommandeMovement.RIGHT);
+		listBouchon.add(CommandeMovement.RIGHT);
+		listBouchon.add(CommandeMovement.RIGHT);
+		listBouchon.add(CommandeMovement.RIGHT);
 
 	}
 
@@ -35,15 +35,15 @@ public class PlayerImpl implements PlayerService {
 	}
 
 	@Override
-	public Commande getCommande() {
-		if(listBouchon.isEmpty())return Commande.NEUTRAL;
+	public CommandeMovement getCommande() {
+		if(listBouchon.isEmpty())return CommandeMovement.NEUTRAL;
 		return listBouchon.remove(0);
 	}
 
 	@Override
 	public void init(String name) {
 		this.name = name;
-		this.listBouchon = new ArrayList<Commande>();
+		this.listBouchon = new ArrayList<CommandeMovement>();
 	}
 
 }

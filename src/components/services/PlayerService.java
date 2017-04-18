@@ -1,6 +1,6 @@
 package components.services;
 
-import components.enums.Commande;
+import components.enums.CommandeMovement;
 
 public interface PlayerService {
 	/**
@@ -10,7 +10,7 @@ public interface PlayerService {
 
 	/**
 	 * @return current Commande*/
-	Commande getCommande();
+	CommandeMovement getCommande();
 
 	/**
 	 * @param name the name of the player*/

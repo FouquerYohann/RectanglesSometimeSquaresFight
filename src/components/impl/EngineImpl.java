@@ -1,6 +1,6 @@
 package components.impl;
 
-import components.enums.Commande;
+import components.enums.CommandeMovement;
 import components.services.EngineService;
 import components.services.FighterService;
 import components.services.PlayerService;
@@ -65,12 +65,12 @@ public class EngineImpl implements EngineService {
 		this.distance = distance;
 		this.player1 = p1;
 		this.player2 = p2;
-		this.fighter1 = new FighterContract(new FighterImpl(100,10,true,this));
-		this.fighter2 = new FighterContract(new FighterImpl(100,10,false,this));
+		this.fighter1 = new FighterContract(new FighterImpl(100,10,300,100,true,this));
+		this.fighter2 = new FighterContract(new FighterImpl(100,10,300,100,false,this));
 	}
 
 	@Override
-	public void step(Commande comP1, Commande comP2) {
+	public void step(CommandeMovement comP1, CommandeMovement comP2) {
 		fighter1.step(comP1);
 		fighter2.step(comP2);
 

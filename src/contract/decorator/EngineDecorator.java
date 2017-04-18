@@ -1,7 +1,7 @@
 package contract.decorator;
 
 
-import components.enums.Commande;
+import components.enums.CommandeMovement;
 import components.services.EngineService;
 import components.services.FighterService;
 import components.services.PlayerService;
@@ -39,7 +39,7 @@ public class EngineDecorator implements EngineService {
 	return delegate.isGameOver();
     }
 
-    public void step(Commande comP1, Commande comP2) {
+    public void step(CommandeMovement comP1, CommandeMovement comP2) {
 	delegate.step(comP1, comP2);
     }
 

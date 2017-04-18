@@ -1,6 +1,6 @@
 package components.services;
 
-import components.enums.Commande;
+import components.enums.CommandeMovement;
 
 public interface EngineService {
     // Observator
@@ -76,6 +76,6 @@ public interface EngineService {
      * 		getFighter(2)== @pre getFighter(2).step(comP2)
      * 
      */
-    public void step(Commande comP1, Commande comP2);
+    public void step(CommandeMovement comP1, CommandeMovement comP2);
 
 }

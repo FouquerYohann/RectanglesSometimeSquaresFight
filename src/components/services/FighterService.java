@@ -1,6 +1,6 @@
 package components.services;
 
-import components.enums.Commande;
+import components.enums.CommandeMovement;
 
 public interface FighterService {
     //Observator
@@ -29,6 +29,14 @@ public interface FighterService {
      */
     public int getSpeed();
     /**
+     * @return the height of the fighter
+     */
+    public int getHeight();
+    /**
+     * @return the width of the fighter
+     */
+    public int getWidth();
+    /**
      * @return true if fighter is facing right
      */
     public boolean isFacingRight();
@@ -51,20 +59,26 @@ public interface FighterService {
      * 
      * @param life
      * @param speed
+     * @param height
+     * @param width
      * @param lookRight
      * @param unrealEngine
      * 
      * @require life >0 && speed >0
+     * 		height >0 && height< getEngine().getHeight()/4;
+     * 		width >0 && width < getEngine().getWidth()/6;
      * 
-
-     * 		getLife()=life     && <p>
-     * 		getSpeed()= speed  && <p>
+     * @post
+     * 		getLife()==life     && <p>
+     * 		getSpeed()== speed  && <p>
+     * 		getHeight()== height && <p>
+     * 		getWidth() == width && <p>
      * 		isFacingRight() == lookRight && <p>
      * 		getEngine()== unrealEngine && <p>
      * 		∃ hitbox H, such as getHitbox()==H
      * 
      */
-    public void init(int life,int speed,boolean lookRight,EngineService unrealEngine);
+    public void init(int life,int speed, int height, int width,boolean lookRight,EngineService unrealEngine);
     
     
     //Operators
@@ -94,6 +108,21 @@ public interface FighterService {
     
     public void moveRight();
     
+    
+    /**
+     * 	@post 
+     * 	//TODO
+     */
+    public void jump();
+    
+    
+    /**
+     * @post 
+     * 	//TODO
+     */
+    public void crouch();
+    
+    
     /**
      * 	@post
      * 		isFacingRight() != @pre isFacingRight()
@@ -111,7 +140,7 @@ public interface FighterService {
      * 		step(NEUTRAL) <=> void
      */
     
-    public void step(Commande c);
+    public void step(CommandeMovement c);
     
     public FighterService clone();
     
