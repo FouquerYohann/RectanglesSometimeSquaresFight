@@ -24,6 +24,7 @@ public class MainFrame extends JFrame implements Observer {
 	public MainFrame(String titre, EngineService ue) {
 		super(titre);
 		game=new Game(ue);
+		game.addObserver(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(ue.getWidth(), ue.getHeight());
 		setVisible(true);
@@ -34,7 +35,6 @@ public class MainFrame extends JFrame implements Observer {
 		FighterService f1 = game.getUnrealEngine().getFighter(1);
 		FighterService f2 = game.getUnrealEngine().getFighter(2);
 		paint(g2);
-
 		g2.fillRect(f1.getX(), f1.getY(), fighterWidth, fighterHeight);
 		setVisible(true);
 		g2.fillRect(f2.getX(), f2.getY(), fighterWidth, fighterHeight);
@@ -43,9 +43,10 @@ public class MainFrame extends JFrame implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-
 		if (o instanceof Game) {
 			refresh();
+		}else{
+			System.out.println(o.getClass());
 		}
 
 	}

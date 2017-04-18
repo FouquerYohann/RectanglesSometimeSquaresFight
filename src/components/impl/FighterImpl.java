@@ -109,7 +109,7 @@ public class FighterImpl implements FighterService {
 
 	@Override
 	public FighterService clone() {
-		FighterImpl clone = new FighterImpl(life, speed, faceRight,
+		FighterImpl clone = new FighterImpl( speed,life, faceRight,
 				unrealEngine);
 		clone.x = x;
 		clone.y = y;

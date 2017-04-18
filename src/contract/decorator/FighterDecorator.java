@@ -73,5 +73,9 @@ public class FighterDecorator implements FighterService {
 	public boolean equals(FighterService fighter) {
 		return delegate.equals(fighter);
 	}
+	
+	public String toString(){
+		return delegate.toString();
+	}
 
 }

@@ -1,6 +1,7 @@
 package contract;
 
 import components.enums.Commande;
+import components.impl.FighterImpl;
 import components.services.EngineService;
 import components.services.FighterService;
 import components.services.HitboxService;
@@ -235,7 +236,7 @@ public class FighterContract extends FighterDecorator {
 
 	@Override
 	public void step(Commande c) {
-		System.out.println("Commande "+c);
+		System.out.println("Commande " + c);
 		String method = "step";
 		FighterService clone = super.clone();
 		checkInvariant();
@@ -260,6 +261,7 @@ public class FighterContract extends FighterDecorator {
 			if (!super.equals(clone))
 				throw new PostconditionError(service, method, "step(" + c
 						+ ") must not change the fighter");
+
 			break;
 		}
 
