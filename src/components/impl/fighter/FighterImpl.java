@@ -95,20 +95,20 @@ public class FighterImpl implements FighterService {
 
 	@Override
 	public void moveRight() {
-		x = (x + speed > unrealEngine.getWidth()) ? unrealEngine.getWidth() : x
+		x = (x + speed > unrealEngine.getWidth()) ? unrealEngine.getWidth()-1 : x
 				+ speed;
 	}
 
 	@Override
 	public void jump() {
 		int size = speed / 2;
-		y = (y - size < 0) ? 0 : y - size;
+		y = (y - size < 0) ? 0+1 : y - size;
 	}
 
 	@Override
 	public void crouch() {
 		int size = speed / 2;
-		y = (y + size > unrealEngine.getHeight()) ? 0 : y + size;
+		y = (y + size > unrealEngine.getHeight()) ? unrealEngine.getHeight()-1 : y + size;
 	}
 
 	@Override

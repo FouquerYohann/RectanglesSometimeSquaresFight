@@ -3,12 +3,16 @@ package components.impl.player;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import tools.Controls;
 import components.enums.CommandeMovement;
 import components.impl.fighter.IChoosingFighterStrategy;
 
 public class PlayerBouchon extends PlayerImpl {
 	private ArrayList<CommandeMovement>	listBouchon	= new ArrayList<CommandeMovement>();
 	private static int					cpt			= 0;
+
+	
+	
 
 	@Override
 	public CommandeMovement getCommande() {

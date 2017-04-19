@@ -17,6 +17,14 @@ public class PlayerFactory {
 		return player;
 	}
 
+	public static PlayerService newHumanPlayer(String name
+		) {
+	PlayerService player = new PlayerContract(new PlayerImpl());
+	
+	player.init(name, new ChoosingRandomFighterStrategy());
+	return player;
+}
+	
 	public static PlayerService newBouchonGaucheDroite() {
 		PlayerBouchon b = new PlayerBouchon();
 		b.addCommande(CommandeMovement.LEFT);

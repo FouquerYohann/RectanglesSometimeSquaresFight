@@ -7,8 +7,13 @@ import java.awt.event.KeyListener;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.sound.midi.ControllerEventListener;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
+import tools.Controls;
+import components.factories.ControlsFactory;
 import components.factories.EngineFactory;
 import components.impl.game.EngineImpl;
 import components.impl.game.Game;
@@ -57,8 +62,20 @@ public class MainFrame extends JFrame implements Observer {
 	public static void main(String[] args) {
 		MainFrame fenetre = new MainFrame("RectanglesSometimeSquaresFight",
 				EngineFactory.defaultEngine());
-
-		fenetre.game.Routine(1000);
+		JLabel fight1 =new JLabel(new JFighter(0, 0));
+		
+		JLabel fight2 =new JLabel(new JFighter(0, 0));
+		fenetre.add(fight1);
+		fenetre.add(fight2);
+		
+		
+		Controls controlleur1=ControlsFactory.addSupportPlayer1(fight1);
+		Controls controlleur2=ControlsFactory.addSupportPlayer2(fight2);
+		fenetre.game.getUnrealEngine().getPlayer(1).setControlleur(controlleur1);
+		
+		fenetre.game.getUnrealEngine().getPlayer(2).setControlleur(controlleur2);
+		
+		fenetre.game.Routine(16);
 
 		
 
@@ -68,90 +85,3 @@ public class MainFrame extends JFrame implements Observer {
 
 
 
-
-
-
-
-
-
-//fenetre.addKeyListener(new KeyListener() {
-		//
-		// @Override
-		// public void keyTyped(KeyEvent e) {
-		//
-		// }
-		//
-		// @Override
-		// public void keyPressed(KeyEvent e) {
-		// System.out.println("keypressed");
-		// switch (e.getKeyCode()) {
-		// case KeyEvent.VK_LEFT:
-		// fighter2.move(-1, 0);
-		// break;
-		// case KeyEvent.VK_RIGHT:
-		// fighter2.move(1, 0);
-		// break;
-		// case KeyEvent.VK_UP:
-		// fighter2.move(0, -1);
-		// break;
-		// case KeyEvent.VK_DOWN:
-		// fighter2.move(0, 1);
-		// break;
-		//
-		// case KeyEvent.VK_Q:
-		// fighter1.move(-1, 0);
-		// break;
-		// case KeyEvent.VK_D:
-		// fighter1.move(1, 0);
-		// break;
-		// case KeyEvent.VK_Z:
-		// fighter1.move(0, -1);
-		// break;
-		// case KeyEvent.VK_S:
-		// fighter1.move(0, 1);
-		// break;
-		//
-		// default:
-		// break;
-		// }
-		// fenetre.refresh();
-		// }
-		//
-		// @Override
-		// public void keyReleased(KeyEvent e) {
-		// System.out.println("keyreleased");
-		// switch (e.getKeyCode()) {
-		// case KeyEvent.VK_LEFT:
-		// fighter2.stop(true);
-		// break;
-		// case KeyEvent.VK_RIGHT:
-		// fighter2.stop(true);
-		// break;
-		// case KeyEvent.VK_UP:
-		// fighter2.stop(false);
-		// break;
-		// case KeyEvent.VK_DOWN:
-		// fighter2.stop(false);
-		// break;
-		// case KeyEvent.VK_Q:
-		// fighter1.stop(true);
-		// break;
-		// case KeyEvent.VK_D:
-		// fighter1.stop(true);
-		// break;
-		// case KeyEvent.VK_Z:
-		// fighter1.stop(false);
-		// break;
-		// case KeyEvent.VK_S:
-		// fighter1.stop(false);
-		// break;
-		//
-		// default:
-		// break;
-		// }
-		//
-		// }
-		// });
-		//
-		// fenetre.addNotify();
-		// fenetre.requestFocus();

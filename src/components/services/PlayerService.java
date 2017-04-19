@@ -1,5 +1,6 @@
 package components.services;
 
+import tools.Controls;
 import components.enums.CommandeMovement;
 import components.factories.FighterFactory;
 import components.impl.fighter.IChoosingFighterStrategy;
@@ -15,6 +16,11 @@ public interface PlayerService {
 	 */
 	CommandeMovement getCommande();
 
+	/**
+	 * //TODO
+	 * @param controlleur
+	 */
+	public void setControlleur(Controls controlleur);	
 	/**
 	 * @param name
 	 *            the name of the player

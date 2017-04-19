@@ -1,5 +1,6 @@
 package components.impl.player;
 
+import tools.Controls;
 import components.enums.CommandeMovement;
 import components.factories.FighterFactory;
 import components.impl.fighter.IChoosingFighterStrategy;
@@ -9,8 +10,8 @@ import components.services.PlayerService;
 public class PlayerImpl implements PlayerService {
 	private String						name;
 	private IChoosingFighterStrategy	strategy;
-
-	public PlayerImpl() {}
+	private Controls controlleur;
+	
 
 	@Override
 	public String getName() {
@@ -19,7 +20,7 @@ public class PlayerImpl implements PlayerService {
 
 	@Override
 	public CommandeMovement getCommande() {
-		return CommandeMovement.NEUTRAL;
+		return controlleur.getCurrent();
 	}
 
 	@Override
@@ -33,4 +34,8 @@ public class PlayerImpl implements PlayerService {
 		return strategy.chooseFighter(factory,faceRight);
 	}
 
+	public void setControlleur(Controls controlleur) {
+	    this.controlleur = controlleur;
+	}
+	
 }

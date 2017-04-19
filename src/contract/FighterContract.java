@@ -221,7 +221,7 @@ public class FighterContract extends FighterDecorator {
 
 	@Override
 	public void step(CommandeMovement c) {
-		System.out.println("Commande " + c);
+//		System.out.println("Commande " + c);
 		String method = "step";
 		FighterService clone = super.clone();
 		checkInvariant();

@@ -1,5 +1,6 @@
 package contract.decorator;
 
+import tools.Controls;
 import components.enums.CommandeMovement;
 import components.factories.FighterFactory;
 import components.impl.fighter.IChoosingFighterStrategy;
@@ -21,6 +22,10 @@ public class PlayerDecorator implements PlayerService {
 	public CommandeMovement getCommande() {
 		return delegate.getCommande();
 	}
+
+	public void setControlleur(Controls controlleur) {
+	    delegate.setControlleur(controlleur);
+        }
 
 	@Override
 	public void init(String name, IChoosingFighterStrategy strategy) {
