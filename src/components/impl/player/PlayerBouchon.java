@@ -1,10 +1,10 @@
-package components.impl;
+package components.impl.player;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 import components.enums.CommandeMovement;
-import components.factories.FighterFactory;
+import components.impl.fighter.IChoosingFighterStrategy;
 
 public class PlayerBouchon extends PlayerImpl {
 	private ArrayList<CommandeMovement>	listBouchon	= new ArrayList<CommandeMovement>();
@@ -25,9 +25,9 @@ public class PlayerBouchon extends PlayerImpl {
 	public void addAllCommand(Collection<CommandeMovement> l) {
 		listBouchon.addAll(l);
 	}
-	
-	public void init(FighterFactory factory){
-		super.init("Bouchon" + cpt,factory);
+
+	public void init( IChoosingFighterStrategy strategy) {
+		super.init("Bouchon" + cpt,  strategy);
 		cpt++;
 	}
 }

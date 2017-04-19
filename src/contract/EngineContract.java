@@ -1,6 +1,7 @@
 package contract;
 
 import components.enums.CommandeMovement;
+import components.factories.FighterFactory;
 import components.services.EngineService;
 import components.services.FighterService;
 import components.services.PlayerService;
@@ -56,7 +57,7 @@ public class EngineContract extends EngineDecorator {
 
 	@Override
 	public void init(int height, int width, int distance, PlayerService p1,
-			PlayerService p2) {
+			PlayerService p2, FighterFactory factory) {
 		String method = "init";
 
 		if (!(height > 0))
@@ -68,7 +69,7 @@ public class EngineContract extends EngineDecorator {
 		if (!(p1 != p2))
 			throw new PreconditionError(service, method, "player 1 == player 2");
 
-		super.init(height, width, distance, p1, p2);
+		super.init(height, width, distance, p1, p2, factory);
 
 		checkInvariant();
 

@@ -1,4 +1,4 @@
-package components.impl;
+package components.impl.hitbox;
 
 import components.services.HitboxService;
 

@@ -1,6 +1,7 @@
 package contract.decorator;
 
 import components.enums.CommandeMovement;
+import components.factories.FighterFactory;
 import components.services.EngineService;
 import components.services.FighterService;
 import components.services.PlayerService;
@@ -30,8 +31,8 @@ public class EngineDecorator implements EngineService {
 	}
 
 	public void init(int height, int width, int distance, PlayerService p1,
-			PlayerService p2) {
-		delegate.init(height, width, distance, p1, p2);
+			PlayerService p2, FighterFactory factory) {
+		delegate.init(height, width, distance, p1, p2, factory);
 	}
 
 	public boolean isGameOver() {

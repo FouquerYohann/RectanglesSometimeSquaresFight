@@ -1,7 +1,7 @@
 package contract;
 
 import components.enums.CommandeMovement;
-import components.factories.FighterFactory;
+import components.impl.fighter.IChoosingFighterStrategy;
 import components.services.PlayerService;
 import contract.decorator.PlayerDecorator;
 
@@ -25,9 +25,9 @@ public class PlayerContract extends PlayerDecorator {
 	}
 
 	@Override
-	public void init(String name, FighterFactory factory) {
+	public void init(String name, IChoosingFighterStrategy strategy) {
 		// TODO Auto-generated method stub
-		super.init(name, factory);
+		super.init(name, strategy);
 	}
 
 }

@@ -1,9 +1,8 @@
-package components.impl;
+package components.impl.game;
 
 import java.util.Observable;
 
 import components.services.EngineService;
-import contract.EngineContract;
 
 public class Game extends Observable {
 	private EngineService	unrealEngine;

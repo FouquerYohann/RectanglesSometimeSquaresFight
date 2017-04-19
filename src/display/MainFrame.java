@@ -10,8 +10,8 @@ import java.util.Observer;
 import javax.swing.JFrame;
 
 import components.factories.EngineFactory;
-import components.impl.EngineImpl;
-import components.impl.Game;
+import components.impl.game.EngineImpl;
+import components.impl.game.Game;
 import components.services.EngineService;
 import components.services.FighterService;
 import contract.EngineContract;

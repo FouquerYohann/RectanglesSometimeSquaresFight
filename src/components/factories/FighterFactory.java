@@ -1,8 +1,8 @@
 package components.factories;
 
 import components.enums.FighterName;
-import components.impl.FighterImpl;
-import components.impl.HitboxRectangleImpl;
+import components.impl.fighter.FighterImpl;
+import components.impl.hitbox.HitboxRectangleImpl;
 import components.services.EngineService;
 import components.services.FighterService;
 import components.services.HitboxService;

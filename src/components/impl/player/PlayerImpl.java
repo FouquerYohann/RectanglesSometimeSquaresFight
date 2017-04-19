@@ -1,4 +1,4 @@
-package contract.decorator;
+package components.impl.player;
 
 import components.enums.CommandeMovement;
 import components.factories.FighterFactory;
@@ -6,30 +6,31 @@ import components.impl.fighter.IChoosingFighterStrategy;
 import components.services.FighterService;
 import components.services.PlayerService;
 
-public class PlayerDecorator implements PlayerService {
-	PlayerService	delegate;
+public class PlayerImpl implements PlayerService {
+	private String						name;
+	private IChoosingFighterStrategy	strategy;
 
-	public PlayerDecorator(PlayerService delegate) {
-		super();
-		this.delegate = delegate;
-	}
+	public PlayerImpl() {}
 
+	@Override
 	public String getName() {
-		return delegate.getName();
+		return name;
 	}
 
+	@Override
 	public CommandeMovement getCommande() {
-		return delegate.getCommande();
+		return CommandeMovement.NEUTRAL;
 	}
 
 	@Override
 	public void init(String name, IChoosingFighterStrategy strategy) {
-		delegate.init(name, strategy);
+		this.name = name;
+		this.strategy=strategy;
 	}
 
 	@Override
 	public FighterService chooseFighter(FighterFactory factory,boolean faceRight) {
-		return delegate.chooseFighter(factory,faceRight);
+		return strategy.chooseFighter(factory,faceRight);
 	}
 
 }

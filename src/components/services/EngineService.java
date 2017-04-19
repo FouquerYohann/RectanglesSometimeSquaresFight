@@ -1,6 +1,7 @@
 package components.services;
 
 import components.enums.CommandeMovement;
+import components.factories.FighterFactory;
 
 public interface EngineService {
 	// Observator
@@ -79,7 +80,7 @@ public interface EngineService {
 	 *
 	 */
 	public void init(int height, int width, int distance, PlayerService p1,
-			PlayerService p2);
+			PlayerService p2,FighterFactory factory);
 
 	// Operator
 	/**

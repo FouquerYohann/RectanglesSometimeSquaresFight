@@ -1,6 +1,7 @@
-package components.impl;
+package components.impl.game;
 
 import components.enums.CommandeMovement;
+import components.factories.FighterFactory;
 import components.services.EngineService;
 import components.services.FighterService;
 import components.services.PlayerService;
@@ -45,14 +46,15 @@ public class EngineImpl implements EngineService {
 
 	@Override
 	public void init(int height, int width, int distance, PlayerService p1,
-			PlayerService p2) {
+			PlayerService p2,FighterFactory factory) {
 		this.height = height;
 		this.width = width;
 		this.distance = distance;
 		this.player1 = p1;
 		this.player2 = p2;
 		
-		
+		fighter1=p1.chooseFighter(factory,true);
+		fighter2=p2.chooseFighter(factory,false);
 	}
 
 	@Override

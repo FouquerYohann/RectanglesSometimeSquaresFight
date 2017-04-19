@@ -1,6 +1,6 @@
 package components.factories;
 
-import components.impl.EngineImpl;
+import components.impl.game.EngineImpl;
 import components.services.EngineService;
 import components.services.PlayerService;
 import contract.EngineContract;
@@ -16,15 +16,14 @@ public class EngineFactory {
 		EngineImpl engieImpl = new EngineImpl();
 		EngineService engie = new EngineContract(engieImpl);
 		FighterFactory factory=new FighterFactory(engie);
-		PlayerService defaultPlayer1 = PlayerFactory.newBouchonGaucheDroite(factory);
-		PlayerService defaultPlayer2 = PlayerFactory.newBouchonGaucheDroite(factory);
-
+		PlayerService defaultPlayer1 = PlayerFactory.newBouchonGaucheDroite();
+		PlayerService defaultPlayer2 = PlayerFactory.newBouchonGaucheDroite();
 
 		
 
 
 		engie.init(defaultHeight, defaultWidth, defaultDistance,
-				defaultPlayer1, defaultPlayer2);
+				defaultPlayer1, defaultPlayer2,factory);
 		
 		return engie;
 	}

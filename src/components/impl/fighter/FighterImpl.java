@@ -1,6 +1,7 @@
-package components.impl;
+package components.impl.fighter;
 
 import components.enums.CommandeMovement;
+import components.impl.hitbox.HitboxImpl;
 import components.services.EngineService;
 import components.services.FighterService;
 import components.services.HitboxService;
