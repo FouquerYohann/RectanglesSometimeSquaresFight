@@ -75,7 +75,7 @@ public class MainFrame extends JFrame implements Observer {
 		
 		fenetre.game.getUnrealEngine().getPlayer(2).setControlleur(controlleur2);
 		
-		fenetre.game.Routine(16);
+		fenetre.game.Routine(33);
 
 		
 

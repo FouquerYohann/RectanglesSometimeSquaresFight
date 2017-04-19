@@ -16,6 +16,7 @@ public class FighterContract extends FighterDecorator {
 	}
 
 	public void checkInvariant() {
+	    
 		if (getX() < 0 || (getX() >= getEngine().getWidth()))
 			throw new InvariantError(service, "x out of bound :" + getX());
 

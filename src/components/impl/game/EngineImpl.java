@@ -59,6 +59,7 @@ public class EngineImpl implements EngineService {
 
 	@Override
 	public void step(CommandeMovement comP1, CommandeMovement comP2) {
+	    
 		fighter1.step(comP1);
 		fighter2.step(comP2);
 

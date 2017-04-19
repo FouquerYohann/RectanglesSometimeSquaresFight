@@ -22,12 +22,17 @@ public class HitboxRectangleImpl extends HitboxImpl {
 
 	@Override
 	public boolean belongsTo(int x, int y) {
-		return ((this.getPositionX() >= x && this.getPositionX() + getWidth() < x) && (this
-				.getPositionY() >= y && this.getPositionY() + getHeight() < y));
+	    System.out.println("other : "+x+" "+y);
+	    System.out.println("this  : "+ this.getPositionX()+" "+this.getPositionY());
+	    System.out.println("this2 : "+ (this.getPositionX()+width)+" "+(this.getPositionY()+height));
+		 //TODO other.height
+		return ( x <= this.getPositionX() && this.getPositionX() <= x+width ) 
+		     && (y <= this.getPositionY() && this.getPositionY() <= y+height);
 	}
 
 	@Override
 	public boolean collidesWith(HitboxService hitbox) {
-		return this.belongsTo(hitbox.getPositionX(), hitbox.getPositionY());
+	   return belongsTo(hitbox.getPositionX(), hitbox.getPositionY());
 	}
+	
 }

@@ -38,10 +38,12 @@ public class EngineFactory {
 		PlayerService defaultPlayer2 = PlayerFactory.newHumanPlayer("lala");
 
 		
-
+		
 
 		engie.init(defaultHeight, defaultWidth, defaultDistance,
 				defaultPlayer1, defaultPlayer2,factory);
+		
+		
 		
 		return engie;
 	}
