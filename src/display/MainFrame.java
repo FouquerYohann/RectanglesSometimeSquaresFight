@@ -7,13 +7,8 @@ import java.awt.event.KeyListener;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.sound.midi.ControllerEventListener;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 
-import tools.Controls;
-import components.factories.ControlsFactory;
 import components.factories.EngineFactory;
 import components.impl.game.EngineImpl;
 import components.impl.game.Game;
@@ -29,7 +24,7 @@ public class MainFrame extends JFrame implements Observer {
 
 	public MainFrame(String titre, EngineService ue) {
 		super(titre);
-		game=new Game(ue);
+		game = new Game(ue);
 		game.addObserver(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(ue.getWidth(), ue.getHeight());
@@ -53,7 +48,7 @@ public class MainFrame extends JFrame implements Observer {
 	public void update(Observable o, Object arg) {
 		if (o instanceof Game) {
 			refresh();
-		}else{
+		} else {
 			System.out.println(o.getClass());
 		}
 
@@ -62,26 +57,9 @@ public class MainFrame extends JFrame implements Observer {
 	public static void main(String[] args) {
 		MainFrame fenetre = new MainFrame("RectanglesSometimeSquaresFight",
 				EngineFactory.defaultEngine());
-		JLabel fight1 =new JLabel(new JFighter(0, 0));
-		
-		JLabel fight2 =new JLabel(new JFighter(0, 0));
-		fenetre.add(fight1);
-		fenetre.add(fight2);
-		
-		
-		Controls controlleur1=ControlsFactory.addSupportPlayer1(fight1);
-		Controls controlleur2=ControlsFactory.addSupportPlayer2(fight2);
-		fenetre.game.getUnrealEngine().getPlayer(1).setControlleur(controlleur1);
-		
-		fenetre.game.getUnrealEngine().getPlayer(2).setControlleur(controlleur2);
-		
-		fenetre.game.Routine(33);
 
-		
+		fenetre.game.Routine(1000);
 
 	}
 
 }
-
-
-
