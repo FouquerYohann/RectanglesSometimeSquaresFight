@@ -1,4 +1,4 @@
-package components.impl.fighter;
+package components.impl.fighter.choose;
 
 import components.factories.FighterFactory;
 import components.services.FighterService;

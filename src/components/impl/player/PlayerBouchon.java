@@ -5,7 +5,7 @@ import java.util.Collection;
 
 import tools.Controls;
 import components.enums.CommandeMovement;
-import components.impl.fighter.IChoosingFighterStrategy;
+import components.impl.fighter.choose.IChoosingFighterStrategy;
 
 public class PlayerBouchon extends PlayerImpl {
 	private ArrayList<CommandeMovement>	listBouchon	= new ArrayList<CommandeMovement>();

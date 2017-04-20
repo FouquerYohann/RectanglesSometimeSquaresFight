@@ -1,7 +1,7 @@
 package contract;
 
 import components.enums.CommandeMovement;
-import components.impl.fighter.IChoosingFighterStrategy;
+import components.impl.fighter.choose.IChoosingFighterStrategy;
 import components.services.PlayerService;
 import contract.decorator.PlayerDecorator;
 

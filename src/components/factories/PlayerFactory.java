@@ -1,8 +1,8 @@
 package components.factories;
 
 import components.enums.CommandeMovement;
-import components.impl.fighter.ChoosingRandomFighterStrategy;
-import components.impl.fighter.IChoosingFighterStrategy;
+import components.impl.fighter.choose.ChoosingRandomFighterStrategy;
+import components.impl.fighter.choose.IChoosingFighterStrategy;
 import components.impl.player.PlayerBouchon;
 import components.impl.player.PlayerImpl;
 import components.services.PlayerService;

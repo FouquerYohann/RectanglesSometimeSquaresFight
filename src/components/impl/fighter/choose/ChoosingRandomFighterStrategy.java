@@ -1,4 +1,4 @@
-package components.impl.fighter;
+package components.impl.fighter.choose;
 
 import java.util.Random;
 

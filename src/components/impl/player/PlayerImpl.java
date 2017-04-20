@@ -3,7 +3,7 @@ package components.impl.player;
 import tools.Controls;
 import components.enums.CommandeMovement;
 import components.factories.FighterFactory;
-import components.impl.fighter.IChoosingFighterStrategy;
+import components.impl.fighter.choose.IChoosingFighterStrategy;
 import components.services.FighterService;
 import components.services.PlayerService;
 
