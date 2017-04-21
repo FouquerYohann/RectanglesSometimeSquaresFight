@@ -16,31 +16,6 @@ public class HitboxContract extends HitboxDecorator {
 	}
 
 	@Override
-	public int getPositionX() {
-		return super.getPositionX();
-	}
-
-	@Override
-	public int getPositionY() {
-		return super.getPositionY();
-	}
-
-	@Override
-	public boolean belongsTo(int x, int y) {
-		return super.belongsTo(x, y);
-	}
-
-	@Override
-	public boolean collidesWith(HitboxService hitbox) {
-		return super.collidesWith(hitbox);
-	}
-
-	@Override
-	public boolean equalsTo(HitboxService hitbox) {
-		return super.equalsTo(hitbox);
-	}
-
-	@Override
 	public void init(int x, int y) {
 		String method = "init";
 		super.init(x, y);

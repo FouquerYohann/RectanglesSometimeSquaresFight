@@ -112,10 +112,10 @@ public class MainFrame extends JPanel implements Observer {
 
 	Controls controlleur1 = ControlsFactory.addSupportPlayer1(fight1);
 	Controls controlleur2 = ControlsFactory.addSupportPlayer2(fight2);
-	panel.game.getUnrealEngine().getPlayer(1)
+	panel.game.getUnrealEngine().getPlayer(2)
 	        .setControlleur(controlleur1);
 
-	panel.game.getUnrealEngine().getPlayer(2)
+	panel.game.getUnrealEngine().getPlayer(1)
 	        .setControlleur(controlleur2);
 
 	panel.game.Routine(20);
