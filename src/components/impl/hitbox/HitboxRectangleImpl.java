@@ -2,6 +2,7 @@ package components.impl.hitbox;
 
 import components.services.HitboxRectangleService;
 import components.services.HitboxService;
+import contract.HitboxRectangleContract;
 
 public class HitboxRectangleImpl extends HitboxImpl implements HitboxRectangleService{
 	private int	height;
@@ -36,10 +37,8 @@ public class HitboxRectangleImpl extends HitboxImpl implements HitboxRectangleSe
 	
 	@Override
 	public boolean collidesWith(HitboxService hitbox) {
-		System.out.println(hitbox.getClass());
-		if (hitbox instanceof HitboxRectangleService) {
+		if (hitbox instanceof HitboxRectangleContract) {
 			HitboxRectangleService hRect = (HitboxRectangleService) hitbox;
-			System.out.println("bon collide with");
 			return !( this.getPositionX() > hRect.getPositionX()+hRect.getWidth() ||
 					  this.getPositionX()+width < hRect.getPositionX()            ||
 					  this.getPositionY() > hRect.getPositionY()+hRect.getHeight()||
@@ -51,8 +50,8 @@ public class HitboxRectangleImpl extends HitboxImpl implements HitboxRectangleSe
 	
 	@Override
 	public boolean equalsTo(HitboxService hitbox) {
-		if (hitbox instanceof HitboxRectangleImpl) {
-			HitboxRectangleImpl hRect = (HitboxRectangleImpl) hitbox;
+		if (hitbox instanceof HitboxRectangleContract) {
+			HitboxRectangleService hRect = (HitboxRectangleService) hitbox;
 			return (this.getPositionX()==hRect.getPositionX() && 
 					this.getPositionY()==hRect.getPositionY() &&
 					this.getHeight() == hRect.getHeight() && 

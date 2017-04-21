@@ -2,6 +2,7 @@ package components.impl.game;
 
 import java.util.Observable;
 
+import components.enums.CommandeMovement;
 import components.services.EngineService;
 
 public class Game extends Observable {
@@ -22,8 +23,14 @@ public class Game extends Observable {
 			while (!unrealEngine.isGameOver()) {
 				try {
 					Thread.sleep(delay);
-					unrealEngine.step(unrealEngine.getPlayer(1).getCommande(),
-							unrealEngine.getPlayer(2).getCommande());
+					CommandeMovement comP1 = unrealEngine.getPlayer(1)
+							.getCommande();
+					CommandeMovement comP2 = unrealEngine.getPlayer(2)
+							.getCommande();
+					if (comP1 == CommandeMovement.NEUTRAL
+							&& comP2 == CommandeMovement.NEUTRAL)
+						continue;
+					unrealEngine.step(comP1, comP2);
 					setChanged();
 					notifyObservers();
 				} catch (Exception e) {

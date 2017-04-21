@@ -10,7 +10,7 @@ public class EngineImpl implements EngineService {
 	private int height;
 	private int width;
 	private int distance;
-	private long timer;
+	private long timer=-1;
 	private FighterService fighter1;
 	private FighterService fighter2;
 	private PlayerService player1;

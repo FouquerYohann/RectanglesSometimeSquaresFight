@@ -7,6 +7,7 @@ import components.services.EngineService;
 import components.services.FighterService;
 import components.services.HitboxService;
 import contract.HitboxContract;
+import contract.HitboxRectangleContract;
 
 public class FighterImpl implements FighterService {
 	private int				x;
@@ -99,9 +100,10 @@ public class FighterImpl implements FighterService {
 		this.speed = speed;
 		this.faceRight = lookRight;
 		this.unrealEngine = unrealEngine;
+		if(hitbox!=null)hitbox.moveTo(this.x, this.y);
 		// LAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-		this.hitbox = new HitboxContract(new HitboxRectangleImpl(x, y, height,
-				width));
+//		this.hitbox = new HitboxRectangleContract(new HitboxRectangleImpl(x, y, height,
+//				width));
 
 	}
 
@@ -181,8 +183,9 @@ public class FighterImpl implements FighterService {
 		clone.init(life, speed, height, width, faceRight, unrealEngine);
 		clone.x = x;
 		clone.y = y;
-		clone.hitbox = new HitboxContract(new HitboxRectangleImpl(
+		clone.hitbox = new HitboxRectangleContract(new HitboxRectangleImpl(
 				hitbox.getPositionX(), hitbox.getPositionY(), height, width));
+		
 		return clone;
 	}
 
@@ -196,7 +199,8 @@ public class FighterImpl implements FighterService {
 		return (this.x == fighter.getX()) && (this.y == fighter.getY())
 				&& (this.life == fighter.getLife())
 				&& (this.faceRight == fighter.isFacingRight())
-				&& (this.speed == fighter.getSpeed());
+				&& (this.speed == fighter.getSpeed())
+				&& (this.hitbox.equalsTo(fighter.getHitbox()));
 	}
 
 	@Override

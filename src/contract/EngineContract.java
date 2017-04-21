@@ -113,7 +113,7 @@ public class EngineContract extends EngineDecorator {
 		checkInvariant();
 
 		FighterService preFighter1 =  getFighter(1).clone();
-		FighterService preFighter2 =  getFighter(1).clone();
+		FighterService preFighter2 =  getFighter(2).clone();
 
 		if (!(isGameOver() == false))
 			throw new PreconditionError(service, method, "Game is Over");
@@ -124,7 +124,7 @@ public class EngineContract extends EngineDecorator {
 		if (!(getFighter(1).equals(preFighter1)))
 			throw new PostconditionError(service, method,
 					"step methods do not return same fighter 1");
-		if (!(getFighter(1).equals(preFighter2)))
+		if (!(getFighter(2).equals(preFighter2)))
 			throw new PostconditionError(service, method,
 					"step methods do not return same fighter 2");
 
