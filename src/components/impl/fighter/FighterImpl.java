@@ -110,7 +110,6 @@ public class FighterImpl implements FighterService {
 		x = (x - speed < 0) ? 0 : x - speed;
 		hitbox.moveTo(x, y);
 		if (hitbox.collidesWith(getOtherFighter().getHitbox())) {
-			System.out.println("COOOLISION");
 			x = x + speed;
 			hitbox.moveTo(x, y);
 		}
@@ -122,7 +121,6 @@ public class FighterImpl implements FighterService {
 				: x + speed;
 		hitbox.moveTo(x, y);
 		if (hitbox.collidesWith(getOtherFighter().getHitbox())) {
-			System.out.println("COOOLISION");
 			x = x - speed;
 			hitbox.moveTo(x, y);
 		}
