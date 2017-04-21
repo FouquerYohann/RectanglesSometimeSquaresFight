@@ -18,6 +18,26 @@ public class EngineContract extends EngineDecorator {
 
 	private final static String	service	= "Engine";
 
+	public static void checkInvariant(EngineService delegate){
+		new EngineContract(delegate).checkInvariant();
+	}
+	
+	@Override
+	public FighterService getFighter(int i) {
+		String method="getFighter";
+		if(i!=1&&i!=2)
+			throw new PreconditionError(service, method, "i must be in {1,2}");
+		return super.getFighter(i);
+	}
+	
+	@Override
+	public PlayerService getPlayer(int i) {
+		String method="getPlayer";
+		if(i!=1&&i!=2)
+			throw new PreconditionError(service, method, "i must be in {1,2}");
+		return super.getPlayer(i);
+	}
+	
 	public void checkInvariant() {
 		for (int i = 1; i < 3; i++) {
 			if (getFighter(i) == null)
@@ -27,34 +47,9 @@ public class EngineContract extends EngineDecorator {
 					throw new InvariantError(service,
 							"Game is not over even though one fighter is dead");
 		}
-		if(getTime()<=0 && isGameOver()==false)
-			throw new InvariantError(service, "game is not over even thought time has run out");
-	}
-
-	@Override
-	public int getHeight() {
-		return super.getHeight();
-	}
-
-	@Override
-	public int getWidth() {
-		return super.getWidth();
-	}
-
-	@Override
-	public FighterService getFighter(int i) {
-		return super.getFighter(i);
-	}
-
-	@Override
-	public PlayerService getPlayer(int i) {
-		return super.getPlayer(i);
-	}
-
-	@Override
-	public boolean isGameOver() {
-		// TODO Auto-generated method stub
-		return super.isGameOver();
+		if (getTime() < 0 && isGameOver() == false)
+			throw new InvariantError(service,
+					"game is not over even thought time has run out");
 	}
 
 	@Override
@@ -66,7 +61,7 @@ public class EngineContract extends EngineDecorator {
 			throw new PreconditionError(service, method, " height < 0");
 		if (!(width > 0))
 			throw new PreconditionError(service, method, " width < 0");
-		if (!(distance > 0))
+		if (!(distance <width/2))
 			throw new PreconditionError(service, method, " distance < width/2");
 		if (!(p1 != p2))
 			throw new PreconditionError(service, method, "player 1 == player 2");
@@ -106,9 +101,9 @@ public class EngineContract extends EngineDecorator {
 		if (!(getFighter(2).isFacingRight() == false))
 			throw new PostconditionError(service, method,
 					"fighter 2 is not facing left");
-//TODO
-//		if(!(getTime()!=null))
-//			throw new PostconditionError(service, method, "timer not initialized");
+		if ((getTime() < 0))
+			throw new PostconditionError(service, method,
+					"timer not initialized");
 
 	}
 
@@ -117,21 +112,21 @@ public class EngineContract extends EngineDecorator {
 		String method = "step";
 		checkInvariant();
 
-		// TODO clone method
-		// FighterService preFighter1=(FighterContract)getFighter(1).clone();
-		// FighterService preFighter2=(FighterContract)getFighter(1).clone();
+		FighterService preFighter1 =  getFighter(1).clone();
+		FighterService preFighter2 =  getFighter(1).clone();
 
 		if (!(isGameOver() == false))
 			throw new PreconditionError(service, method, "Game is Over");
 
 		super.step(comP1, comP2);
-
-		// if(!(getFighter(1).equals(preFighter1.step(comP1))))
-		// throw new PostconditionError(service, method,
-		// "step methods do not return same fighter 1");
-		// if(!(getFighter(1).equals(preFighter2.step(comP2))))
-		// throw new PostconditionError(service, method,
-		// "step methods do not return same fighter 2");
+		preFighter1.step(comP1);
+		preFighter2.step(comP2);
+		if (!(getFighter(1).equals(preFighter1)))
+			throw new PostconditionError(service, method,
+					"step methods do not return same fighter 1");
+		if (!(getFighter(1).equals(preFighter2)))
+			throw new PostconditionError(service, method,
+					"step methods do not return same fighter 2");
 
 		checkInvariant();
 	}
