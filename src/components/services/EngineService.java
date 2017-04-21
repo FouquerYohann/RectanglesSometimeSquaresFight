@@ -1,5 +1,7 @@
 package components.services;
 
+import java.util.function.LongToIntFunction;
+
 import components.enums.CommandeMovement;
 import components.factories.FighterFactory;
 
@@ -15,6 +17,12 @@ public interface EngineService {
 	 */
 	public int getWidth();
 
+	
+	/**
+	 * 
+	 * @return return the time left for the fight
+	 */
+	public long getTime();
 	/**
 	 * @return distance from the wall
 	 */
@@ -39,7 +47,7 @@ public interface EngineService {
 
 	// Invariant
 	/*
-	 * this.isGameOver()= /exist i in {1,2} where getFighter(i).isDead==true
+	 * this.isGameOver()= /exist i in {1,2} where getFighter(i).isDead==true || getTimer()<=0
 	 */
 
 	// Constructor
@@ -77,6 +85,7 @@ public interface EngineService {
 	 *       <p>
 	 *       getFighter(init(h,w,d,p1,p2),2).isFacingRight==false
 	 *       <p>
+	 *       getTime() != null
 	 *
 	 */
 	public void init(int height, int width, int distance, PlayerService p1,

@@ -2,6 +2,7 @@ package display;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.util.Observable;
 import java.util.Observer;
@@ -64,14 +65,20 @@ public class MainFrame extends JPanel implements Observer {
 	g.drawRect(2 * engineWidth / 3 - 20, 20, engineWidth / 3,
 	        engineHeight / 18);
 
+	Font timeFont=new Font("SansSerif", Font.BOLD, 120);
+	g.setFont(timeFont);
+	
+	g.drawString(""+ue.getTime(), engineWidth / 2 ,  engineHeight / 9 );
+    
+	
+	
 	g.setColor(Color.RED);
 	int longueur = f1.getLife() / fighter1HealthMax * engineWidth / 3;
 	g.fillRect(21, 21, longueur, engineHeight / 18);
 
 	longueur = f2.getLife() / fighter2HealthMax * engineWidth / 3;
 	g.fillRect(2 * engineWidth / 3 - 20, 21, longueur, engineHeight / 18);
-
-    }
+	}
 
     @Override
     public void update(Observable o, Object arg) {

@@ -21,6 +21,11 @@ public class EngineDecorator implements EngineService {
 	public int getWidth() {
 		return delegate.getWidth();
 	}
+	
+	
+	public long getTime() {
+		return delegate.getTime();
+	}
 
 	public FighterService getFighter(int i) {
 		return delegate.getFighter(i);

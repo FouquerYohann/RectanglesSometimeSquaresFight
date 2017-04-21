@@ -27,6 +27,8 @@ public class EngineContract extends EngineDecorator {
 					throw new InvariantError(service,
 							"Game is not over even though one fighter is dead");
 		}
+		if(getTime()<=0 && isGameOver()==false)
+			throw new InvariantError(service, "game is not over even thought time has run out");
 	}
 
 	@Override
@@ -104,6 +106,9 @@ public class EngineContract extends EngineDecorator {
 		if (!(getFighter(2).isFacingRight() == false))
 			throw new PostconditionError(service, method,
 					"fighter 2 is not facing left");
+//TODO
+//		if(!(getTime()!=null))
+//			throw new PostconditionError(service, method, "timer not initialized");
 
 	}
 

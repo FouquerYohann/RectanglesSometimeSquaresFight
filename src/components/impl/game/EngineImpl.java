@@ -7,13 +7,14 @@ import components.services.FighterService;
 import components.services.PlayerService;
 
 public class EngineImpl implements EngineService {
-	private int				height;
-	private int				width;
-	private int				distance;
-	private FighterService	fighter1;
-	private FighterService	fighter2;
-	private PlayerService	player1;
-	private PlayerService	player2;
+	private int height;
+	private int width;
+	private int distance;
+	private long timer;
+	private FighterService fighter1;
+	private FighterService fighter2;
+	private PlayerService player1;
+	private PlayerService player2;
 
 	public EngineImpl() {
 		super();
@@ -45,21 +46,20 @@ public class EngineImpl implements EngineService {
 	}
 
 	@Override
-	public void init(int height, int width, int distance, PlayerService p1,
-			PlayerService p2,FighterFactory factory) {
+	public void init(int height, int width, int distance, PlayerService p1, PlayerService p2, FighterFactory factory) {
 		this.height = height;
 		this.width = width;
 		this.distance = distance;
 		this.player1 = p1;
 		this.player2 = p2;
-		
-		fighter1=p1.chooseFighter(factory,true);
-		fighter2=p2.chooseFighter(factory,false);
+		this.timer=System.currentTimeMillis();
+		fighter1 = p1.chooseFighter(factory, true);
+		fighter2 = p2.chooseFighter(factory, false);
 	}
 
 	@Override
 	public void step(CommandeMovement comP1, CommandeMovement comP2) {
-	    
+
 		fighter1.step(comP1);
 		fighter2.step(comP2);
 
@@ -68,5 +68,12 @@ public class EngineImpl implements EngineService {
 	@Override
 	public int getDistance() {
 		return distance;
+	}
+
+	@Override
+	public long getTime() {
+		long timeNow=System.currentTimeMillis();
+		
+		return (60- (timeNow-timer)/1000);
 	}
 }
