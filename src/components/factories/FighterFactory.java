@@ -8,6 +8,7 @@ import components.services.FighterService;
 import components.services.HitboxService;
 import contract.FighterContract;
 import contract.HitboxContract;
+import contract.HitboxRectangleContract;
 
 public class FighterFactory {
     private EngineService unrealEngine;
@@ -35,7 +36,7 @@ public class FighterFactory {
 	int width = 100;
 	FighterImpl impl = new FighterImpl();
 
-	HitboxService hitbox = new HitboxContract(new HitboxRectangleImpl(impl.getX(),
+	HitboxService hitbox = new HitboxRectangleContract(new HitboxRectangleImpl(impl.getX(),
 	        impl.getY(), height, width));
 
 	impl.setHitbox(hitbox);
@@ -52,7 +53,7 @@ public class FighterFactory {
 	int width = 200;
 	FighterImpl impl = new FighterImpl();
 
-	HitboxService hitbox = new HitboxContract(new HitboxRectangleImpl(impl.getX(),
+	HitboxService hitbox = new HitboxRectangleContract(new HitboxRectangleImpl(impl.getX(),
 	        impl.getY(), height, width));
 
 	impl.setHitbox(hitbox);

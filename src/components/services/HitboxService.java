@@ -34,6 +34,8 @@ public interface HitboxService {
 	 *            position x of the hitbox
 	 * @param y
 	 *            position y of the hitbox
+	 * @pre x>0 && y>0
+	 * 
 	 * @post x == positionX() && y == positionY()
 	 */
 	void init(int x, int y);
