@@ -21,7 +21,7 @@ public class Game extends Observable {
 
 	public void Routine(int delay) {
 		new Thread(() -> {
-			while (!unrealEngine.isGameOver()) {
+			while (!unrealEngine.isGameOver() && unrealEngine.getTime()>0) {
 				try {
 					Thread.sleep(delay);
 					Commande comP1 = unrealEngine.getPlayer(1).getCommande();

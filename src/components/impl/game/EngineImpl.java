@@ -42,7 +42,7 @@ public class EngineImpl implements EngineService {
 
 	@Override
 	public boolean isGameOver() {
-		return (fighter1.isDead() || fighter2.isDead());
+		return (fighter1.isDead() || fighter2.isDead() || getTime()<0 );
 	}
 
 	@Override
@@ -74,6 +74,6 @@ public class EngineImpl implements EngineService {
 	public long getTime() {
 		long timeNow=System.currentTimeMillis();
 		
-		return (60- (timeNow-timer)/1000);
+		return (5- (timeNow-timer)/1000);
 	}
 }

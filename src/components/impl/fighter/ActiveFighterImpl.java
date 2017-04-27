@@ -50,7 +50,6 @@ public class ActiveFighterImpl extends FighterImpl implements
 			if (otherFighter.techFrame() && !otherFighter.techHasAlreadyHit()) {
 				TechService tequila = otherFighter.tech();
 				if (tequila.getHitbox().collidesWith(getHitbox())) {
-					System.out.println("ouille");
 					tech = null;
 					teching = false;
 					techCpt = -1;

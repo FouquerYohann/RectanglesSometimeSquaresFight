@@ -15,143 +15,161 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class MainFrame extends JPanel implements Observer {
-	private static final long	serialVersionUID	= 1096504000554348122L;
-	private final int			fighter1HealthMax;
-	private final int			fighter2HealthMax;
-	private JLabel				chronoLab;
-	private Game				game;
+    private static final long serialVersionUID = 1096504000554348122L;
+    private final int fighter1HealthMax;
+    private final int fighter2HealthMax;
+    private JLabel chronoLab;
+    private Game game;
 
-	public MainFrame(EngineService ue) {
-		super();
-		game = new Game(ue);
-		fighter1HealthMax = ue.getFighter(1).getLife();
-		fighter2HealthMax = ue.getFighter(2).getLife();
-		chronoLab = new JLabel();
-		game.addObserver(this);
-		setSize(ue.getWidth(), ue.getHeight());
-		setVisible(true);
-	}
+    public MainFrame(EngineService ue) {
+        super();
+        game = new Game(ue);
+        fighter1HealthMax = ue.getFighter(1).getLife();
+        fighter2HealthMax = ue.getFighter(2).getLife();
+        chronoLab = new JLabel();
+        game.addObserver(this);
+        setSize(ue.getWidth(), ue.getHeight());
+        setVisible(true);
+    }
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		EngineService ue = EngineFactory.defaultEngine();
+        EngineService ue = EngineFactory.defaultEngine();
 
-		JFrame fenetre = new JFrame();
-		fenetre.setTitle("RectanglesSometimesSquaresFight");
-		fenetre.setVisible(true);
-		fenetre.setResizable(false);
-		fenetre.setSize(ue.getWidth(), ue.getHeight());
-		fenetre.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        JFrame fenetre = new JFrame();
+        fenetre.setTitle("RectanglesSometimesSquaresFight");
+        fenetre.setVisible(true);
+        fenetre.setResizable(false);
+        fenetre.setSize(ue.getWidth(), ue.getHeight());
+        fenetre.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-		MainFrame panel = new MainFrame(ue);
-		panel.setDoubleBuffered(true);
-		fenetre.setContentPane(panel);
-		fenetre.setIgnoreRepaint(true);
-		JLabel fight1 = new JLabel(new JFighter(0, 0));
+        MainFrame panel = new MainFrame(ue);
+        panel.setDoubleBuffered(true);
+        fenetre.setContentPane(panel);
+        fenetre.setIgnoreRepaint(true);
+        JLabel fight1 = new JLabel(new JFighter(0, 0));
 
-		JLabel fight2 = new JLabel(new JFighter(0, 0));
-		panel.add(fight1);
-		panel.add(fight2);
+        JLabel fight2 = new JLabel(new JFighter(0, 0));
+        panel.add(fight1);
+        panel.add(fight2);
 
-		Controls controlleur1 = ControlsFactory.addSupportPlayer1(fight1);
-		Controls controlleur2 = ControlsFactory.addSupportPlayer2(fight2);
-		panel.game.getUnrealEngine().getPlayer(2).setControlleur(controlleur1);
+        Controls controlleur1 = ControlsFactory.addSupportPlayer1(fight1);
+        Controls controlleur2 = ControlsFactory.addSupportPlayer2(fight2);
+        panel.game.getUnrealEngine().getPlayer(2).setControlleur(controlleur1);
 
-		panel.game.getUnrealEngine().getPlayer(1).setControlleur(controlleur2);
+        panel.game.getUnrealEngine().getPlayer(1).setControlleur(controlleur2);
 
-		panel.chronoLab = new JLabel("" + ue.getTime());
+        panel.chronoLab = new JLabel("" + ue.getTime());
 
-		panel.chronoLab.setFont(new Font("SansSerif", Font.BOLD, 110));
-		panel.add(panel.chronoLab);
+        panel.chronoLab.setFont(new Font("SansSerif", Font.BOLD, 110));
+        panel.add(panel.chronoLab);
 
-		panel.game.Routine(10);
+        panel.game.Routine(10);
 
-		fenetre.pack();
+        fenetre.pack();
 
-	}
+    }
 
-	@Override
-	public Dimension getPreferredSize() {
-		return (new Dimension(game.getUnrealEngine().getWidth(), game
-				.getUnrealEngine().getHeight()));
-	}
+    @Override
+    public Dimension getPreferredSize() {
+        return (new Dimension(game.getUnrealEngine().getWidth(), game
+                .getUnrealEngine().getHeight()));
+    }
 
-	@Override
-	public void paintComponent(Graphics g) {
-		
-			
-		Graphics2D g2 = (Graphics2D) g;
-		// if (comP1 == CommandeMovement.NEUTRAL
-		// && comP2 == CommandeMovement.NEUTRAL)
-		// continue;
-		EngineService ue = game.getUnrealEngine();
-		int engineWidth = ue.getWidth();
-		int engineHeight = ue.getHeight();
-		ActiveFighterService f1 = ue.getFighter(1);
-		ActiveFighterService f2 = ue.getFighter(2);
+    @Override
+    public void paintComponent(Graphics g) {
 
-		g2.clearRect(0, 0, engineWidth, engineHeight);
 
-		g2.setColor(Color.BLACK);
-		g2.drawRect(20, 20, engineWidth / 3, engineHeight / 18);
-		g2.drawRect(2 * engineWidth / 3 - 20, 20, engineWidth / 3,
-				engineHeight / 18);
+        Graphics2D g2 = (Graphics2D) g;
+        // if (comP1 == CommandeMovement.NEUTRAL
+        // && comP2 == CommandeMovement.NEUTRAL)
+        // continue;
+        EngineService ue = game.getUnrealEngine();
+        int engineWidth = ue.getWidth();
+        int engineHeight = ue.getHeight();
+        ActiveFighterService f1 = ue.getFighter(1);
+        ActiveFighterService f2 = ue.getFighter(2);
 
-		chronoLab.setText("" + ue.getTime());
+        g2.clearRect(0, 0, engineWidth, engineHeight);
 
-		if (!f1.isTeching())
-			g2.setColor(Color.BLUE);
-		else {
-			g2.setColor(Color.GREEN);
-			if (f1.techFrame()) {
-				HitboxRectangleService hb = f1.tech().getHitbox();
-				g2.fillRect(hb.getPositionX(),
-						engineHeight - (hb.getPositionY() + hb.getHeight()),
-						hb.getWidth(), hb.getHeight());
-			}
-		}
-		g2.fillRect(f1.getX(), engineHeight - (f1.getY() + f1.getHeight()),
-				f1.getWidth(), f1.getHeight());
+        g2.setColor(Color.BLACK);
+        g2.drawRect(20, 20, engineWidth / 3, engineHeight / 18);
+        g2.drawRect(2 * engineWidth / 3 - 20, 20, engineWidth / 3,
+                engineHeight / 18);
 
-		if (!f2.isTeching())
-			g2.setColor(Color.RED);
-		else {
-			g2.setColor(Color.ORANGE);
-			if (f2.techFrame()) {
-				HitboxRectangleService hb = f2.tech().getHitbox();
-				g2.fillRect(hb.getPositionX(),
-						engineHeight - (hb.getPositionY() + hb.getHeight()),
-						hb.getWidth(), hb.getHeight());
-			}
-		}
-		g2.fillRect(f2.getX(), engineHeight - (f2.getY() + f2.getHeight()),
-				f2.getWidth(), f2.getHeight());
+        chronoLab.setText("" + ue.getTime());
 
-		g2.setColor(Color.BLUE);
-		int longueur = f1.getLife() / fighter1HealthMax * engineWidth / 3;
-		g2.fillRect(21, 21, longueur, engineHeight / 18);
+        if (!f1.isTeching())
+            g2.setColor(Color.BLUE);
+        else {
+            g2.setColor(Color.GREEN);
+            if (f1.techFrame()) {
+                HitboxRectangleService hb = f1.tech().getHitbox();
+                g2.fillRect(hb.getPositionX(),
+                        engineHeight - (hb.getPositionY() + hb.getHeight()),
+                        hb.getWidth(), hb.getHeight());
+            }
+        }
+        g2.fillRect(f1.getX(), engineHeight - (f1.getY() + f1.getHeight()),
+                f1.getWidth(), f1.getHeight());
 
-		g2.setColor(Color.RED);
-		longueur = f2.getLife() / fighter2HealthMax * engineWidth / 3;
-		g2.fillRect(2 * engineWidth / 3 - 20, 21, longueur, engineHeight / 18);
-		
-		if(game.isGameOver()){
-			Font font = new Font("Verdana", Font.BOLD, 165);
-			   g.setFont(font);
-			   g.setColor(Color.BLACK);
-			   g.drawString("Game Over",0 ,engineWidth/2);
-		}
-		setVisible(true);
-	}
+        if (!f2.isTeching())
+            g2.setColor(Color.RED);
+        else {
+            g2.setColor(Color.ORANGE);
+            if (f2.techFrame()) {
+                HitboxRectangleService hb = f2.tech().getHitbox();
+                g2.fillRect(hb.getPositionX(),
+                        engineHeight - (hb.getPositionY() + hb.getHeight()),
+                        hb.getWidth(), hb.getHeight());
+            }
+        }
+        g2.fillRect(f2.getX(), engineHeight - (f2.getY() + f2.getHeight()),
+                f2.getWidth(), f2.getHeight());
 
-	@Override
-	public void update(Observable o, Object arg) {
-		if (o instanceof Game) {
-			repaint();
-		} else {
-			System.out.println(o.getClass());
-		}
+        g2.setColor(Color.BLUE);
 
-	}
+
+        int longueur = (int) (((double) f1.getLife() / fighter1HealthMax) * engineWidth / 3);
+        g2.fillRect(21, 21, longueur, engineHeight / 18);
+
+        g2.setColor(Color.RED);
+        longueur = (int) (((double) f2.getLife() / fighter2HealthMax) * engineWidth / 3);
+        g2.fillRect(2 * engineWidth / 3 - 20, 21, longueur, engineHeight / 18);
+
+        g2.setColor(Color.WHITE);
+
+        g2.fillOval(f1.getX(), engineHeight-f1.getHeight(), 50, 50);
+        g2.fillOval(f2.getX(), engineHeight-f2.getHeight(), 50, 50);
+        g2.fillOval(f1.getX() + f1.getWidth()-50, engineHeight-f1.getHeight(), 50, 50);
+        g2.fillOval(f2.getX() + f2.getWidth()-50, engineHeight-f2.getHeight(), 50, 50);
+
+        g2.setColor(Color.BLACK);
+        g2.fillOval(f1.getX()+25, engineHeight-f1.getHeight()+25, 10, 10);
+        g2.fillOval(f2.getX()+15, engineHeight-f2.getHeight()+25, 10, 10);
+        g2.fillOval(f1.getX() + f1.getWidth()-25, engineHeight-f1.getHeight()+25, 10, 10);
+        g2.fillOval(f2.getX() + f2.getWidth()-35, engineHeight-f2.getHeight()+25, 10, 10);
+
+
+
+
+        if (game.isGameOver()) {
+            Font font = new Font("Verdana", Font.BOLD, 165);
+            g.setFont(font);
+            g.setColor(Color.BLACK);
+            g.drawString("Game Over", 0, engineWidth / 2);
+        }
+        setVisible(true);
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if (o instanceof Game) {
+            repaint();
+        } else {
+            System.out.println(o.getClass());
+        }
+
+    }
 
 }
