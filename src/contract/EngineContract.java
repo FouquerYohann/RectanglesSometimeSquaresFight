@@ -1,7 +1,8 @@
 package contract;
 
-import components.enums.CommandeMovement;
+import components.enums.Commande;
 import components.factories.FighterFactory;
+import components.services.ActiveFighterService;
 import components.services.EngineService;
 import components.services.FighterService;
 import components.services.PlayerService;
@@ -18,26 +19,26 @@ public class EngineContract extends EngineDecorator {
 
 	private final static String	service	= "Engine";
 
-	public static void checkInvariant(EngineService delegate){
+	public static void checkInvariant(EngineService delegate) {
 		new EngineContract(delegate).checkInvariant();
 	}
-	
+
 	@Override
-	public FighterService getFighter(int i) {
-		String method="getFighter";
-		if(i!=1&&i!=2)
+	public ActiveFighterService getFighter(int i) {
+		String method = "getFighter";
+		if (i != 1 && i != 2)
 			throw new PreconditionError(service, method, "i must be in {1,2}");
 		return super.getFighter(i);
 	}
-	
+
 	@Override
 	public PlayerService getPlayer(int i) {
-		String method="getPlayer";
-		if(i!=1&&i!=2)
+		String method = "getPlayer";
+		if (i != 1 && i != 2)
 			throw new PreconditionError(service, method, "i must be in {1,2}");
 		return super.getPlayer(i);
 	}
-	
+
 	public void checkInvariant() {
 		for (int i = 1; i < 3; i++) {
 			if (getFighter(i) == null)
@@ -61,7 +62,7 @@ public class EngineContract extends EngineDecorator {
 			throw new PreconditionError(service, method, " height < 0");
 		if (!(width > 0))
 			throw new PreconditionError(service, method, " width < 0");
-		if (!(distance <width/2))
+		if (!(distance < width / 2))
 			throw new PreconditionError(service, method, " distance < width/2");
 		if (!(p1 != p2))
 			throw new PreconditionError(service, method, "player 1 == player 2");
@@ -108,25 +109,33 @@ public class EngineContract extends EngineDecorator {
 	}
 
 	@Override
-	public void step(CommandeMovement comP1, CommandeMovement comP2) {
+	public void step(Commande comP1, Commande comP2) {
 		String method = "step";
 		checkInvariant();
 
-		FighterService preFighter1 =  getFighter(1).clone();
-		FighterService preFighter2 =  getFighter(2).clone();
+		FighterService preFighter1 = getFighter(1).clone();
+		FighterService preFighter2 = getFighter(2).clone();
 
 		if (!(isGameOver() == false))
 			throw new PreconditionError(service, method, "Game is Over");
-
-		super.step(comP1, comP2);
+		
+		
+		
 		preFighter1.step(comP1);
+
+		
+		super.step(comP1, comP2);
+		
 		preFighter2.step(comP2);
+		
 		if (!(getFighter(1).equals(preFighter1)))
 			throw new PostconditionError(service, method,
-					"step methods do not return same fighter 1");
+					"step methods do not return same fighter 1\n"
+							+ getFighter(1) + "\n" + preFighter1);
 		if (!(getFighter(2).equals(preFighter2)))
 			throw new PostconditionError(service, method,
-					"step methods do not return same fighter 2");
+					"step methods do not return same fighter 2\n"
+							+ getFighter(2) + "\n" + preFighter2+"\n"+getFighter(2).getHitbox().getPositionX()+preFighter2.getHitbox().getPositionX());
 
 		checkInvariant();
 	}

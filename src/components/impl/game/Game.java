@@ -2,11 +2,12 @@ package components.impl.game;
 
 import java.util.Observable;
 
-import components.enums.CommandeMovement;
+import components.enums.Commande;
 import components.services.EngineService;
 
 public class Game extends Observable {
 	private EngineService	unrealEngine;
+	private boolean			isGameOver	= false;
 
 	public EngineService getUnrealEngine() {
 		return unrealEngine;
@@ -23,21 +24,27 @@ public class Game extends Observable {
 			while (!unrealEngine.isGameOver()) {
 				try {
 					Thread.sleep(delay);
-					CommandeMovement comP1 = unrealEngine.getPlayer(1)
-							.getCommande();
-					CommandeMovement comP2 = unrealEngine.getPlayer(2)
-							.getCommande();
-					if (comP1 == CommandeMovement.NEUTRAL
-							&& comP2 == CommandeMovement.NEUTRAL)
-						continue;
-					unrealEngine.step(comP1, comP2);
-					setChanged();
-					notifyObservers();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+					Commande comP1 = unrealEngine.getPlayer(1).getCommande();
+					Commande comP2 = unrealEngine.getPlayer(2).getCommande();
+					// if (comP1 == CommandeMovement.NEUTRAL
+					// && comP2 == CommandeMovement.NEUTRAL)
+					// continue;
+				unrealEngine.step(comP1, comP2);
+				setChanged();
+				notifyObservers();
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			System.out.println("LE Jeu est game over");
-		}).start();
+		}
+		System.out.println("LE Jeu est game over");
+		isGameOver = true;
+		setChanged();
+		notifyObservers();
+	}	).start();
 	}
+
+	public boolean isGameOver() {
+		return isGameOver;
+	}
+
 }

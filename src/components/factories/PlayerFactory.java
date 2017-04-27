@@ -1,6 +1,6 @@
 package components.factories;
 
-import components.enums.CommandeMovement;
+import components.enums.Commande;
 import components.impl.fighter.choose.ChoosingRandomFighterStrategy;
 import components.impl.fighter.choose.IChoosingFighterStrategy;
 import components.impl.player.PlayerBouchon;
@@ -27,17 +27,17 @@ public class PlayerFactory {
 	
 	public static PlayerService newBouchonGaucheDroite() {
 		PlayerBouchon b = new PlayerBouchon();
-		b.addCommande(CommandeMovement.LEFT);
-		b.addCommande(CommandeMovement.LEFT);
-		b.addCommande(CommandeMovement.LEFT);
-		b.addCommande(CommandeMovement.LEFT);
-		b.addCommande(CommandeMovement.LEFT);
-		b.addCommande(CommandeMovement.LEFT);
-		b.addCommande(CommandeMovement.RIGHT);
-		b.addCommande(CommandeMovement.RIGHT);
-		b.addCommande(CommandeMovement.RIGHT);
-		b.addCommande(CommandeMovement.RIGHT);
-		b.addCommande(CommandeMovement.RIGHT);
+		b.addCommande(Commande.LEFT);
+		b.addCommande(Commande.LEFT);
+		b.addCommande(Commande.LEFT);
+		b.addCommande(Commande.LEFT);
+		b.addCommande(Commande.LEFT);
+		b.addCommande(Commande.LEFT);
+		b.addCommande(Commande.RIGHT);
+		b.addCommande(Commande.RIGHT);
+		b.addCommande(Commande.RIGHT);
+		b.addCommande(Commande.RIGHT);
+		b.addCommande(Commande.RIGHT);
 		IChoosingFighterStrategy strategy = new ChoosingRandomFighterStrategy();
 		b.init(strategy);
 		PlayerService s = new PlayerContract(b);

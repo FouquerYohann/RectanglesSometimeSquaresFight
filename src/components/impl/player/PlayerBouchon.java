@@ -4,29 +4,29 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import tools.Controls;
-import components.enums.CommandeMovement;
+import components.enums.Commande;
 import components.impl.fighter.choose.IChoosingFighterStrategy;
 
 public class PlayerBouchon extends PlayerImpl {
-	private ArrayList<CommandeMovement>	listBouchon	= new ArrayList<CommandeMovement>();
+	private ArrayList<Commande>	listBouchon	= new ArrayList<Commande>();
 	private static int					cpt			= 0;
 
 	
 	
 
 	@Override
-	public CommandeMovement getCommande() {
+	public Commande getCommande() {
 		if (listBouchon.isEmpty())
-			return CommandeMovement.NEUTRAL;
+			return Commande.NEUTRAL;
 		return listBouchon.remove(0);
 	}
 
-	public void addCommande(CommandeMovement c) {
+	public void addCommande(Commande c) {
 		listBouchon.add(c);
 
 	}
 
-	public void addAllCommand(Collection<CommandeMovement> l) {
+	public void addAllCommand(Collection<Commande> l) {
 		listBouchon.addAll(l);
 	}
 

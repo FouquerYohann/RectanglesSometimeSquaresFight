@@ -1,65 +1,65 @@
 package components.factories;
 
 import components.enums.FighterName;
-import components.impl.fighter.FighterImpl;
+import components.impl.fighter.ActiveFighterImpl;
 import components.impl.hitbox.HitboxRectangleImpl;
+import components.services.ActiveFighterService;
 import components.services.EngineService;
-import components.services.FighterService;
+import components.services.HitboxRectangleService;
 import components.services.HitboxService;
-import contract.FighterContract;
-import contract.HitboxContract;
+import contract.ActiveFighterContract;
 import contract.HitboxRectangleContract;
 
 public class FighterFactory {
-    private EngineService unrealEngine;
+	private EngineService	unrealEngine;
 
-    public FighterFactory(EngineService unrealEngine) {
-	super();
-	this.unrealEngine = unrealEngine;
-    }
-
-    public FighterService getFighter(FighterName name, boolean faceRight) {
-	switch (name) {
-	    case rectangle:
-		return newRectangleFighter(faceRight);
-
-	    case square:
-		return newSquareFighter(faceRight);
+	public FighterFactory(EngineService unrealEngine) {
+		super();
+		this.unrealEngine = unrealEngine;
 	}
-	return null;
-    }
 
-    private FighterService newRectangleFighter(boolean faceRight) {
-	int speed = 10;
-	int life = 100;
-	int height = 300;
-	int width = 100;
-	FighterImpl impl = new FighterImpl();
+	public ActiveFighterService getFighter(FighterName name, boolean faceRight) {
+		switch (name) {
+		case rectangle:
+			return newRectangleFighter(faceRight);
 
-	HitboxService hitbox = new HitboxRectangleContract(new HitboxRectangleImpl(impl.getX(),
-	        impl.getY(), height, width));
+		case square:
+			return newSquareFighter(faceRight);
+		}
+		return null;
+	}
 
-	impl.setHitbox(hitbox);
+	private ActiveFighterService newRectangleFighter(boolean faceRight) {
+		int speed = 10;
+		int life = 100000;
+		int height = 300;
+		int width = 100;
+		ActiveFighterImpl impl = new ActiveFighterImpl();
 
-	impl.init(life, speed, height, width, faceRight, unrealEngine);
-	FighterService ret = new FighterContract(impl);
-	return ret;
-    }
+		HitboxRectangleService hitbox = new HitboxRectangleContract(
+				new HitboxRectangleImpl(impl.getX(), impl.getY(), height, width));
 
-    private FighterService newSquareFighter(boolean faceRight) {
-	int speed = 10;
-	int life = 100;
-	int height = 200;
-	int width = 200;
-	FighterImpl impl = new FighterImpl();
+		impl.setHitbox(hitbox);
 
-	HitboxService hitbox = new HitboxRectangleContract(new HitboxRectangleImpl(impl.getX(),
-	        impl.getY(), height, width));
+		impl.init(life, speed, height, width, faceRight, unrealEngine);
+		ActiveFighterService ret = new ActiveFighterContract(impl);
+		return ret;
+	}
 
-	impl.setHitbox(hitbox);
+	private ActiveFighterService newSquareFighter(boolean faceRight) {
+		int speed = 10;
+		int life = 100000;
+		int height = 200;
+		int width = 200;
+		ActiveFighterImpl impl = new ActiveFighterImpl();
 
-	impl.init(life, speed, height, width, faceRight, unrealEngine);
-	FighterService ret = new FighterContract(impl);
-	return ret;
-    }
+		HitboxRectangleService hitbox = new HitboxRectangleContract(
+				new HitboxRectangleImpl(impl.getX(), impl.getY(), height, width));
+
+		impl.setHitbox(hitbox);
+
+		impl.init(life, speed, height, width, faceRight, unrealEngine);
+		ActiveFighterService ret = new ActiveFighterContract(impl);
+		return ret;
+	}
 }

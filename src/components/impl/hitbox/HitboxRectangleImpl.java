@@ -53,10 +53,11 @@ public class HitboxRectangleImpl extends HitboxImpl implements HitboxRectangleSe
 		if (hitbox instanceof HitboxRectangleContract) {
 			HitboxRectangleService hRect = (HitboxRectangleService) hitbox;
 			return (this.getPositionX()==hRect.getPositionX() && 
-					this.getPositionY()==hRect.getPositionY() &&
-					this.getHeight() == hRect.getHeight() && 
+					this.getPositionY()==hRect.getPositionY() /*&&
+					this.getHeight() == hRect.getHeight()*/ && 
 					this.getWidth() == hRect.getWidth());
 		}
+		
 		return false;
 	}
 	

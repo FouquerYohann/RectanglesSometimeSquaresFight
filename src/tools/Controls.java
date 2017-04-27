@@ -1,6 +1,6 @@
 package tools;
 
-import components.enums.CommandeMovement;
+import components.enums.Commande;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -12,9 +12,9 @@ public class Controls {
     private static final String PRESSED = "pressed ";
     private static final String RELEASED = "released ";
     private JComponent component;
-    private Map<String, CommandeMovement> pressedKeys = new HashMap<String, CommandeMovement>();
+    private Map<String, Commande> pressedKeys = new HashMap<String, Commande>();
     private Timer timer;
-    private CommandeMovement current = CommandeMovement.NEUTRAL;
+    private Commande current = Commande.NEUTRAL;
 
 
     public Controls(JComponent component) {
@@ -22,11 +22,11 @@ public class Controls {
         this.component = component;
     }
 
-    public CommandeMovement getCurrent() {
+    public Commande getCurrent() {
         return current;
     }
 
-    public void addAction(String name, CommandeMovement cmd) {
+    public void addAction(String name, Commande cmd) {
 
         int offset = name.lastIndexOf(" ");
         String key = (offset == -1) ? name : name.substring(offset + 1);
@@ -50,10 +50,10 @@ public class Controls {
 
     }
 
-    public void handleKeyEvent(String key, CommandeMovement command) {
+    public void handleKeyEvent(String key, Commande command) {
         if (command == null) {
             if (current == pressedKeys.remove(key))
-                for (CommandeMovement tmp : pressedKeys.values()) {
+                for (Commande tmp : pressedKeys.values()) {
                     current = tmp;
                     break;
                 }
@@ -61,18 +61,18 @@ public class Controls {
             pressedKeys.put(key, command);
 
         if (pressedKeys.size() == 1) {
-            if (current == CommandeMovement.NEUTRAL)
+            if (current == Commande.NEUTRAL)
                 current = command;
         }
         if (pressedKeys.size() == 0) {
-            current = CommandeMovement.NEUTRAL;
+            current = Commande.NEUTRAL;
         }
     }
 
     private class myAction extends AbstractAction implements ActionListener {
-        private CommandeMovement command;
+        private Commande command;
 
-        public myAction(String name, CommandeMovement cm) {
+        public myAction(String name, Commande cm) {
             super(name);
 
             this.command = cm;

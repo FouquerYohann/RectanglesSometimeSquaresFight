@@ -1,7 +1,7 @@
 package components.services;
 
 import tools.Controls;
-import components.enums.CommandeMovement;
+import components.enums.Commande;
 import components.factories.FighterFactory;
 import components.impl.fighter.choose.IChoosingFighterStrategy;
 
@@ -14,7 +14,7 @@ public interface PlayerService {
 	/**
 	 * @return current Commande
 	 */
-	CommandeMovement getCommande();
+	Commande getCommande();
 
 	/**
 	 * //TODO
@@ -30,5 +30,5 @@ public interface PlayerService {
 	/**
 	 * @return the fighter of the player
 	 * */
-	FighterService chooseFighter(FighterFactory factory,boolean faceRight);
+	ActiveFighterService chooseFighter(FighterFactory factory,boolean faceRight);
 }

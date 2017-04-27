@@ -1,25 +1,24 @@
 package components.impl.fighter;
 
-import components.enums.CommandeMovement;
-import components.impl.hitbox.HitboxImpl;
+import components.enums.Commande;
 import components.impl.hitbox.HitboxRectangleImpl;
 import components.services.EngineService;
 import components.services.FighterService;
+import components.services.HitboxRectangleService;
 import components.services.HitboxService;
-import contract.HitboxContract;
 import contract.HitboxRectangleContract;
 
 public class FighterImpl implements FighterService {
-	private int				x;
-	private int				y;
-	private int				speed;
-	private int				life;
-	private int				height;
-	private int				width;
-	private boolean			faceRight;
-	private EngineService	unrealEngine;
-	private HitboxService	hitbox;
-	private FighterService	otherFighter	= null;
+	protected int						x;
+	protected int						y;
+	private int							speed;
+	protected int						life;
+	private int							height;
+	private int							width;
+	private boolean						faceRight;
+	private EngineService				unrealEngine;
+	protected HitboxRectangleService	hitbox;
+	private FighterService				otherFighter	= null;
 
 	public FighterImpl() {}
 
@@ -73,7 +72,7 @@ public class FighterImpl implements FighterService {
 		return life <= 0;
 	}
 
-	public void setHitbox(HitboxService hitbox) {
+	public void setHitbox(HitboxRectangleService hitbox) {
 		this.hitbox = hitbox;
 	}
 
@@ -100,10 +99,12 @@ public class FighterImpl implements FighterService {
 		this.speed = speed;
 		this.faceRight = lookRight;
 		this.unrealEngine = unrealEngine;
-		if(hitbox!=null)hitbox.moveTo(this.x, this.y);
+		if (hitbox != null)
+			hitbox.moveTo(this.x, this.y);
 		// LAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-//		this.hitbox = new HitboxRectangleContract(new HitboxRectangleImpl(x, y, height,
-//				width));
+		// this.hitbox = new HitboxRectangleContract(new HitboxRectangleImpl(x,
+		// y, height,
+		// width));
 
 	}
 
@@ -157,7 +158,7 @@ public class FighterImpl implements FighterService {
 	}
 
 	@Override
-	public void step(CommandeMovement c) {
+	public void step(Commande c) {
 		switch (c) {
 		case LEFT:
 			moveLeft();
@@ -171,7 +172,9 @@ public class FighterImpl implements FighterService {
 		case CROUCH:
 			crouch();
 			break;
-
+		case NEUTRAL:
+			getOtherFighter();
+			break;
 		default:
 			break;
 		}
@@ -185,7 +188,7 @@ public class FighterImpl implements FighterService {
 		clone.y = y;
 		clone.hitbox = new HitboxRectangleContract(new HitboxRectangleImpl(
 				hitbox.getPositionX(), hitbox.getPositionY(), height, width));
-		
+
 		return clone;
 	}
 
@@ -197,10 +200,13 @@ public class FighterImpl implements FighterService {
 			return true;
 
 		return (this.x == fighter.getX()) && (this.y == fighter.getY())
-				&& (this.life == fighter.getLife())
-				&& (this.faceRight == fighter.isFacingRight())
+
+		&& (this.faceRight == fighter.isFacingRight())
 				&& (this.speed == fighter.getSpeed())
-				&& (this.hitbox.equalsTo(fighter.getHitbox()));
+		/*
+		 * && (this.hitbox.equalsTo(fighter.getHitbox())) && (this.life ==
+		 * fighter.getLife())
+		 */;
 	}
 
 	@Override

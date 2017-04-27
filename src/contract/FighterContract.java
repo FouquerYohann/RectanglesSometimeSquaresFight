@@ -1,6 +1,6 @@
 package contract;
 
-import components.enums.CommandeMovement;
+import components.enums.Commande;
 import components.services.EngineService;
 import components.services.FighterService;
 import contract.decorator.FighterDecorator;
@@ -221,7 +221,7 @@ public class FighterContract extends FighterDecorator {
 	}
 
 	@Override
-	public void step(CommandeMovement c) {
+	public void step(Commande c) {
 //		System.out.println("Commande " + c);
 		String method = "step";
 		FighterService clone = super.clone();

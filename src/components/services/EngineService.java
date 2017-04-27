@@ -1,8 +1,7 @@
 package components.services;
 
-import java.util.function.LongToIntFunction;
 
-import components.enums.CommandeMovement;
+import components.enums.Commande;
 import components.factories.FighterFactory;
 
 public interface EngineService {
@@ -32,7 +31,7 @@ public interface EngineService {
 	 * @require i==1 or i==2
 	 * @return the i-th fighter
 	 */
-	public FighterService getFighter(int i);
+	public ActiveFighterService getFighter(int i);
 
 	/**
 	 * @require i==1 or i==2
@@ -99,6 +98,6 @@ public interface EngineService {
 	 *       getFighter(2).step(comP2)
 	 * 
 	 */
-	public void step(CommandeMovement comP1, CommandeMovement comP2);
+	public void step(Commande comP1, Commande comP2);
 
 }

@@ -1,6 +1,6 @@
 package components.services;
 
-import components.enums.CommandeMovement;
+import components.enums.Commande;
 
 public interface FighterService {
     //Observator
@@ -140,7 +140,7 @@ public interface FighterService {
      * 		step(NEUTRAL) <=> void
      */
     
-    public void step(CommandeMovement c);
+    public void step(Commande c);
     
     public FighterService clone();
     

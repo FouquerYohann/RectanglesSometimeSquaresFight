@@ -13,5 +13,7 @@ public interface TechService {
 
 	int getRframe();
 
-	HitboxService getHitbox(int x, int y);
+	HitboxRectangleService getHitbox();
+	
+	void moveTo(FighterService fighter);
 }

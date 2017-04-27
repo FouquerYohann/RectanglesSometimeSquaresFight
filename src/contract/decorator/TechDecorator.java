@@ -1,5 +1,7 @@
 package contract.decorator;
 
+import components.services.FighterService;
+import components.services.HitboxRectangleService;
 import components.services.HitboxService;
 import components.services.TechService;
 
@@ -42,8 +44,13 @@ public class TechDecorator implements TechService {
 	}
 
 	@Override
-	public HitboxService getHitbox(int x, int y) {
-		return delegate.getHitbox(x, y);
+	public HitboxRectangleService getHitbox() {
+		return delegate.getHitbox();
+	}
+
+	@Override
+	public void moveTo(FighterService fighter) {
+		delegate.moveTo(fighter);		
 	}
 	
 	

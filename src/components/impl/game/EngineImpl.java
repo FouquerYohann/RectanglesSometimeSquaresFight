@@ -1,9 +1,9 @@
 package components.impl.game;
 
-import components.enums.CommandeMovement;
+import components.enums.Commande;
 import components.factories.FighterFactory;
+import components.services.ActiveFighterService;
 import components.services.EngineService;
-import components.services.FighterService;
 import components.services.PlayerService;
 
 public class EngineImpl implements EngineService {
@@ -11,8 +11,8 @@ public class EngineImpl implements EngineService {
 	private int width;
 	private int distance;
 	private long timer=-1;
-	private FighterService fighter1;
-	private FighterService fighter2;
+	private ActiveFighterService fighter1;
+	private ActiveFighterService fighter2;
 	private PlayerService player1;
 	private PlayerService player2;
 
@@ -31,7 +31,7 @@ public class EngineImpl implements EngineService {
 	}
 
 	@Override
-	public FighterService getFighter(int i) {
+	public ActiveFighterService getFighter(int i) {
 		return (i == 1) ? fighter1 : fighter2;
 	}
 
@@ -58,7 +58,7 @@ public class EngineImpl implements EngineService {
 	}
 
 	@Override
-	public void step(CommandeMovement comP1, CommandeMovement comP2) {
+	public void step(Commande comP1, Commande comP2) {
 
 		fighter1.step(comP1);
 		fighter2.step(comP2);

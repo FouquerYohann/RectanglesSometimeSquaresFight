@@ -1,9 +1,10 @@
 package contract.decorator;
 
 import tools.Controls;
-import components.enums.CommandeMovement;
+import components.enums.Commande;
 import components.factories.FighterFactory;
 import components.impl.fighter.choose.IChoosingFighterStrategy;
+import components.services.ActiveFighterService;
 import components.services.FighterService;
 import components.services.PlayerService;
 
@@ -19,7 +20,7 @@ public class PlayerDecorator implements PlayerService {
 		return delegate.getName();
 	}
 
-	public CommandeMovement getCommande() {
+	public Commande getCommande() {
 		return delegate.getCommande();
 	}
 
@@ -33,7 +34,7 @@ public class PlayerDecorator implements PlayerService {
 	}
 
 	@Override
-	public FighterService chooseFighter(FighterFactory factory,boolean faceRight) {
+	public ActiveFighterService chooseFighter(FighterFactory factory,boolean faceRight) {
 		return delegate.chooseFighter(factory,faceRight);
 	}
 

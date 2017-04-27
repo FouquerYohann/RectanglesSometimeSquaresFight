@@ -3,25 +3,27 @@ package components.factories;
 import javax.swing.JComponent;
 
 import tools.Controls;
-import components.enums.CommandeMovement;
+import components.enums.Commande;
 
 public class ControlsFactory {
 
     public static Controls addSupportPlayer1(JComponent comp) {
 	Controls ct = new Controls(comp);
-	ct.addAction("LEFT", CommandeMovement.LEFT);
-	ct.addAction("RIGHT", CommandeMovement.RIGHT);
-	ct.addAction("UP", CommandeMovement.JUMP);
-	ct.addAction("DOWN", CommandeMovement.CROUCH);
+	ct.addAction("LEFT", Commande.LEFT);
+	ct.addAction("RIGHT", Commande.RIGHT);
+	ct.addAction("UP", Commande.JUMP);
+	ct.addAction("DOWN", Commande.CROUCH);
+	ct.addAction("ENTER", Commande.PUNCH);
 	return ct;
     }
 
     public static Controls addSupportPlayer2(JComponent comp) {
 	Controls ct = new Controls(comp);
-	ct.addAction("Q", CommandeMovement.LEFT);
-	ct.addAction("D", CommandeMovement.RIGHT);
-	ct.addAction("Z", CommandeMovement.JUMP);
-	ct.addAction("S", CommandeMovement.CROUCH);
+	ct.addAction("Q", Commande.LEFT);
+	ct.addAction("D", Commande.RIGHT);
+	ct.addAction("Z", Commande.JUMP);
+	ct.addAction("S", Commande.CROUCH);
+	ct.addAction("SPACE", Commande.PUNCH);
 	return ct;
     }
 

@@ -1,6 +1,6 @@
 package contract;
 
-import components.enums.CommandeMovement;
+import components.enums.Commande;
 import components.impl.fighter.choose.IChoosingFighterStrategy;
 import components.services.PlayerService;
 import contract.decorator.PlayerDecorator;
@@ -19,7 +19,7 @@ public class PlayerContract extends PlayerDecorator {
 	}
 
 	@Override
-	public CommandeMovement getCommande() {
+	public Commande getCommande() {
 		// TODO Auto-generated method stub
 		return super.getCommande();
 	}

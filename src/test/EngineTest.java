@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.fail;
-import components.enums.CommandeMovement;
+import components.enums.Commande;
 import components.factories.EngineFactory;
 import components.factories.FighterFactory;
 import components.factories.PlayerFactory;
@@ -161,7 +161,7 @@ public class EngineTest {
 	@Test
 	public void testStepPos() {
 			try {
-				engine.step(CommandeMovement.NEUTRAL, CommandeMovement.NEUTRAL);
+				engine.step(Commande.NEUTRAL, Commande.NEUTRAL);
 
 			} catch (PreconditionError e) {
 				fail();
@@ -175,7 +175,7 @@ public class EngineTest {
 				Thread.sleep(60000);
 			} catch (InterruptedException e) {}
 			engine = EngineFactory.defaultBotEngine();
-			engine.step(CommandeMovement.NEUTRAL, CommandeMovement.NEUTRAL);
+			engine.step(Commande.NEUTRAL, Commande.NEUTRAL);
 			fail();
 		} catch (PreconditionError e) {
 

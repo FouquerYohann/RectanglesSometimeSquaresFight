@@ -1,8 +1,8 @@
 package components.impl.fighter.choose;
 
 import components.factories.FighterFactory;
-import components.services.FighterService;
+import components.services.ActiveFighterService;
 
 public interface IChoosingFighterStrategy {
-	public FighterService chooseFighter(FighterFactory factory, boolean faceRight);
+	public ActiveFighterService chooseFighter(FighterFactory factory, boolean faceRight);
 }

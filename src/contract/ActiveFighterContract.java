@@ -1,6 +1,6 @@
 package contract;
 
-import components.enums.CommandeMovement;
+import components.enums.Commande;
 import components.services.ActiveFighterService;
 import components.services.EngineService;
 import components.services.FighterService;
@@ -148,7 +148,7 @@ public class ActiveFighterContract extends ActiveFighterDecorator {
 		fcontrat.switchSide();
 	}
 
-	public void step(CommandeMovement c) {
+	public void step(Commande c) {
 		fcontrat.step(c);
 	}
 

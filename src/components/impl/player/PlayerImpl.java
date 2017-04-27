@@ -1,9 +1,10 @@
 package components.impl.player;
 
 import tools.Controls;
-import components.enums.CommandeMovement;
+import components.enums.Commande;
 import components.factories.FighterFactory;
 import components.impl.fighter.choose.IChoosingFighterStrategy;
+import components.services.ActiveFighterService;
 import components.services.FighterService;
 import components.services.PlayerService;
 
@@ -19,7 +20,7 @@ public class PlayerImpl implements PlayerService {
 	}
 
 	@Override
-	public CommandeMovement getCommande() {
+	public Commande getCommande() {
 		return controlleur.getCurrent();
 	}
 
@@ -30,7 +31,7 @@ public class PlayerImpl implements PlayerService {
 	}
 
 	@Override
-	public FighterService chooseFighter(FighterFactory factory,boolean faceRight) {
+	public ActiveFighterService chooseFighter(FighterFactory factory,boolean faceRight) {
 		return strategy.chooseFighter(factory,faceRight);
 	}
 
