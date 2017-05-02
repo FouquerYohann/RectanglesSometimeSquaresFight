@@ -113,8 +113,8 @@ public class EngineContract extends EngineDecorator {
 		String method = "step";
 		checkInvariant();
 
-		FighterService preFighter1 = getFighter(1).clone();
-		FighterService preFighter2 = getFighter(2).clone();
+		ActiveFighterService preFighter1 = (ActiveFighterService) getFighter(1).clone();
+		ActiveFighterService preFighter2 = (ActiveFighterService) getFighter(2).clone();
 
 		if (!(isGameOver() == false))
 			throw new PreconditionError(service, method, "Game is Over");

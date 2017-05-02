@@ -7,7 +7,7 @@ import components.services.EngineService;
 import components.services.PlayerService;
 
 public class EngineImpl implements EngineService {
-	private static final long	TIME	= 50;
+	private static final long	TIME	= 500;
 	private int height;
 	private int width;
 	private int distance;

@@ -35,9 +35,25 @@ public class EngineFactory {
 		EngineService engie = new EngineContract(engieImpl);
 		FighterFactory factory=new FighterFactory(engie);
 		PlayerService defaultPlayer1 = PlayerFactory.newHumanPlayer("coucou");
-//		PlayerService defaultPlayer2 = PlayerFactory.punchAndMove();
-
 		PlayerService defaultPlayer2 = PlayerFactory.newHumanPlayer("azeazedqsd");
+		
+		
+
+		engie.init(defaultHeight, defaultWidth, defaultDistance,
+				defaultPlayer1, defaultPlayer2,factory);
+		
+		
+		
+		return engie;
+	}
+	
+public static EngineService randomEngine() {
+		
+		EngineImpl engieImpl = new EngineImpl();
+		EngineService engie = new EngineContract(engieImpl);
+		FighterFactory factory=new FighterFactory(engie);
+		PlayerService defaultPlayer1 = PlayerFactory.randomPlayer();
+		PlayerService defaultPlayer2 = PlayerFactory.randomPlayer();
 		
 		
 
