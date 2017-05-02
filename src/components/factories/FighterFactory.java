@@ -31,7 +31,7 @@ public class FighterFactory {
 
 	private ActiveFighterService newRectangleFighter(boolean faceRight) {
 		int speed = 10;
-		int life = 500;
+		int life = 20;
 		int height = 300;
 		int width = 100;
 		ActiveFighterImpl impl = new ActiveFighterImpl();
@@ -48,7 +48,7 @@ public class FighterFactory {
 
 	private ActiveFighterService newSquareFighter(boolean faceRight) {
 		int speed = 10;
-		int life = 500;
+		int life = 20;
 		int height = 200;
 		int width = 200;
 		ActiveFighterImpl impl = new ActiveFighterImpl();

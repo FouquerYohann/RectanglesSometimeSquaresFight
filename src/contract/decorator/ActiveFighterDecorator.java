@@ -7,7 +7,7 @@ import components.services.FighterService;
 import components.services.HitboxService;
 import components.services.TechService;
 
-public class ActiveFighterDecorator implements ActiveFighterService{
+public class ActiveFighterDecorator implements ActiveFighterService {
 	private ActiveFighterService	delegate;
 
 	public ActiveFighterDecorator(ActiveFighterService delegate) {
@@ -124,6 +124,8 @@ public class ActiveFighterDecorator implements ActiveFighterService{
 		delegate.startTech(tech);
 	}
 
-	
-
+	@Override
+	public String toString() {
+		return delegate.toString();
+	}
 }

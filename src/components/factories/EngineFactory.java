@@ -35,8 +35,9 @@ public class EngineFactory {
 		EngineService engie = new EngineContract(engieImpl);
 		FighterFactory factory=new FighterFactory(engie);
 		PlayerService defaultPlayer1 = PlayerFactory.newHumanPlayer("coucou");
-		PlayerService defaultPlayer2 = PlayerFactory.newHumanPlayer("lala");
+//		PlayerService defaultPlayer2 = PlayerFactory.punchAndMove();
 
+		PlayerService defaultPlayer2 = PlayerFactory.newHumanPlayer("azeazedqsd");
 		
 		
 

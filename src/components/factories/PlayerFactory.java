@@ -43,4 +43,14 @@ public class PlayerFactory {
 		PlayerService s = new PlayerContract(b);
 		return s;
 	}
+	
+	public static PlayerService punchAndMove() {
+		PlayerBouchon b = new PlayerBouchon();
+		b.addCommande(Commande.PUNCH);
+		b.addCommande(Commande.LEFT);
+		IChoosingFighterStrategy strategy = new ChoosingRandomFighterStrategy();
+		b.init(strategy);
+		PlayerService s = new PlayerContract(b);
+		return s;
+	}
 }

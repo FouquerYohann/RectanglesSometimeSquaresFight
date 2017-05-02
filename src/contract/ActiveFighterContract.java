@@ -149,7 +149,39 @@ public class ActiveFighterContract extends ActiveFighterDecorator {
 	}
 
 	public void step(Commande c) {
-		fcontrat.step(c);
+		String method = "step";
+		if(isBlockint()||isTeching()||isBlockstunned()||isHitstunned()){
+			super.step(c);return;
+		}
+		ActiveFighterService clone = (ActiveFighterService) super.clone();
+		checkInvariant();
+		super.step(c);
+		checkInvariant();
+		switch (c) {
+		case LEFT:
+			clone.moveLeft();
+			if (!super.equals(clone))
+				throw new PostconditionError(service, method, "step(" + c
+						+ ") must be equivalent to moveleft()\n"
+						+ clone.toString() + "\n" + super.toString());
+
+			break;
+		case RIGHT:
+			clone.moveRight();
+			if (!super.equals(clone))
+				throw new PostconditionError(service, method, "step(" + c
+						+ ") must be equivalent to moveRight()\n"
+						+ clone.toString() + "\n" + super.toString());
+			break;
+		case NEUTRAL:
+			if (!super.equals(clone))
+				throw new PostconditionError(service, method, "step(" + c
+						+ ") must not change the fighter");
+
+			break;
+		default:
+			break;
+		}
 	}
 
 }

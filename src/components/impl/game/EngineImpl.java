@@ -7,6 +7,7 @@ import components.services.EngineService;
 import components.services.PlayerService;
 
 public class EngineImpl implements EngineService {
+	private static final long	TIME	= 50;
 	private int height;
 	private int width;
 	private int distance;
@@ -74,6 +75,6 @@ public class EngineImpl implements EngineService {
 	public long getTime() {
 		long timeNow=System.currentTimeMillis();
 		
-		return (5- (timeNow-timer)/1000);
+		return (TIME- (timeNow-timer)/1000);
 	}
 }

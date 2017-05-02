@@ -159,6 +159,7 @@ public class FighterImpl implements FighterService {
 
 	@Override
 	public void step(Commande c) {
+//		if(true)throw new Error();
 		switch (c) {
 		case LEFT:
 			moveLeft();

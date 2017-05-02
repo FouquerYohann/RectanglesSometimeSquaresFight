@@ -122,10 +122,7 @@ public class EngineContract extends EngineDecorator {
 		
 		
 		preFighter1.step(comP1);
-
-		
 		super.step(comP1, comP2);
-		
 		preFighter2.step(comP2);
 		
 		if (!(getFighter(1).equals(preFighter1)))

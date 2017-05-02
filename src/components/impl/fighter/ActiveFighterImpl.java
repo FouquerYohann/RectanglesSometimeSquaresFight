@@ -22,6 +22,8 @@ public class ActiveFighterImpl extends FighterImpl implements
 	private HitboxRectangleService	hbCrouch		= null;
 	private TechService				tech;
 
+	public ActiveFighterImpl() {}
+
 	@Override
 	public boolean isBlockint() {
 		return blockint;
@@ -44,21 +46,23 @@ public class ActiveFighterImpl extends FighterImpl implements
 
 	@Override
 	public void step(Commande c) {
-		if (c == Commande.NEUTRAL)
-			getOtherFighter();
 		if (getOtherFighter().isTeching())
-			if (otherFighter.techFrame() && !otherFighter.techHasAlreadyHit()) {
-				TechService tequila = otherFighter.tech();
-				if (tequila.getHitbox().collidesWith(getHitbox())) {
-					tech = null;
-					teching = false;
-					techCpt = -1;
-					techFrame = false;
-					if (this.isBlockint())
-						stunnCpt = tequila.getBstun();
-					else {
-						life -= tequila.getDamage();
-						stunnCpt = tequila.getHstun();
+			if (otherFighter.techFrame()) {
+				if (!otherFighter.techHasAlreadyHit()) {
+					TechService tequila = otherFighter.tech();
+					if (tequila.getHitbox().collidesWith(getHitbox())) {
+						tech = null;
+						teching = false;
+						techCpt = -1;
+						techFrame = false;
+						if (this.isBlockint()) {
+							stunnCpt = tequila.getBstun();
+							blockstunned = true;
+						} else {
+							life -= tequila.getDamage();
+							stunnCpt = tequila.getHstun();
+							hitstunned = true;
+						}
 					}
 				}
 			}
@@ -66,6 +70,8 @@ public class ActiveFighterImpl extends FighterImpl implements
 		crouch = false;
 		if (stunnCpt > 0)
 			stunnCpt--;
+		else
+			hitstunned = blockstunned = false;
 
 		if (techCpt != -1)
 			techCpt++;
@@ -77,13 +83,19 @@ public class ActiveFighterImpl extends FighterImpl implements
 					techCpt = 0;
 				}
 			} else {
+				if (tech.getHitbox()
+						.collidesWith(getOtherFighter().getHitbox())) {
+					techHasAlreadyHit = true;
+				}
 				if (tech().getHframe() == techCpt) {
 					techFrame = false;
 					stunnCpt = tech().getRframe();
 					teching = false;
 					techCpt = -1;
+					techHasAlreadyHit = false;
 				}
 			}
+			return;
 		}
 
 		if (isHitstunned() || isBlockstunned())
@@ -98,7 +110,7 @@ public class ActiveFighterImpl extends FighterImpl implements
 
 	@Override
 	public FighterService clone() {
-		FighterImpl clone = new ActiveFighterImpl();
+		ActiveFighterImpl clone = new ActiveFighterImpl();
 		clone.init(getLife(), getSpeed(), getHeight(), getWidth(),
 				isFacingRight(), getEngine());
 		clone.x = x;
@@ -106,7 +118,17 @@ public class ActiveFighterImpl extends FighterImpl implements
 		clone.hitbox = new HitboxRectangleContract(new HitboxRectangleImpl(
 				hitbox.getPositionX(), hitbox.getPositionY(), getHeight(),
 				getWidth()));
-
+		clone.blockint = blockint;
+		clone.blockstunned = blockstunned;
+		clone.teching = teching;
+		clone.techFrame = techFrame;
+		clone.crouch = crouch;
+		clone.hitstunned = hitstunned;
+		clone.techHasAlreadyHit = techHasAlreadyHit;
+		clone.tech = tech;
+		clone.techCpt = techCpt;
+		clone.stunnCpt = stunnCpt;
+		clone.hbCrouch = hbCrouch;
 		return clone;
 	}
 

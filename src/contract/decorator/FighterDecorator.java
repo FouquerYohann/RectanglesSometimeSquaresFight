@@ -6,92 +6,92 @@ import components.services.FighterService;
 import components.services.HitboxService;
 
 public class FighterDecorator implements FighterService {
-    private FighterService delegate;
+	private FighterService	delegate;
 
-    public FighterDecorator(FighterService delegate) {
-	super();
-	this.delegate = delegate;
-    }
+	public FighterDecorator(FighterService delegate) {
+		super();
+		this.delegate = delegate;
+	}
 
-    public int getX() {
-	return delegate.getX();
-    }
+	public int getX() {
+		return delegate.getX();
+	}
 
-    public int getY() {
-	return delegate.getY();
-    }
+	public int getY() {
+		return delegate.getY();
+	}
 
-    public EngineService getEngine() {
-	return delegate.getEngine();
-    }
+	public EngineService getEngine() {
+		return delegate.getEngine();
+	}
 
-    public HitboxService getHitbox() {
-	return delegate.getHitbox();
-    }
+	public HitboxService getHitbox() {
+		return delegate.getHitbox();
+	}
 
-    public int getLife() {
-	return delegate.getLife();
-    }
+	public int getLife() {
+		return delegate.getLife();
+	}
 
-    public int getSpeed() {
-	return delegate.getSpeed();
-    }
-    
-    public int getHeight() {
-	return delegate.getHeight();
-    }
+	public int getSpeed() {
+		return delegate.getSpeed();
+	}
 
-    public int getWidth() {
-	return delegate.getWidth();
-    }
+	public int getHeight() {
+		return delegate.getHeight();
+	}
 
-    public boolean isFacingRight() {
-	return delegate.isFacingRight();
-    }
+	public int getWidth() {
+		return delegate.getWidth();
+	}
 
-    public boolean isDead() {
-	return delegate.isDead();
-    }
+	public boolean isFacingRight() {
+		return delegate.isFacingRight();
+	}
 
-    public void init(int life, int speed,int height, int width, boolean lookRight,
-	    EngineService unrealEngine) {
-	delegate.init(life, speed,height,width, lookRight, unrealEngine);
-    }
+	public boolean isDead() {
+		return delegate.isDead();
+	}
 
-    public void moveLeft() {
-	delegate.moveLeft();
-    }
+	public void init(int life, int speed, int height, int width,
+			boolean lookRight, EngineService unrealEngine) {
+		delegate.init(life, speed, height, width, lookRight, unrealEngine);
+	}
 
-    public void moveRight() {
-	delegate.moveRight();
-    }
+	public void moveLeft() {
+		delegate.moveLeft();
+	}
 
-    public void jump() {
-	delegate.jump();
-    }
+	public void moveRight() {
+		delegate.moveRight();
+	}
 
-    public void crouch() {
-	delegate.crouch();
-    }
+	public void jump() {
+		delegate.jump();
+	}
 
-    public void switchSide() {
-	delegate.switchSide();
-    }
+	public void crouch() {
+		delegate.crouch();
+	}
 
-    public void step(Commande c) {
-	delegate.step(c);
-    }
+	public void switchSide() {
+		delegate.switchSide();
+	}
 
-    public FighterService clone() {
-	return delegate.clone();
-    }
+	public void step(Commande c) {
+		delegate.step(c);
+	}
 
-    public boolean equals(FighterService fighter) {
-	return delegate.equals(fighter);
-    }
+	public FighterService clone() {
+		return delegate.clone();
+	}
 
-    public String toString() {
-	return delegate.toString();
-    }
+	public boolean equals(FighterService fighter) {
+		return delegate.equals(fighter);
+	}
+
+	public String toString() {
+		return delegate.toString();
+	}
 
 }
