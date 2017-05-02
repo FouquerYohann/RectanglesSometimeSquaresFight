@@ -76,13 +76,13 @@ public class FighterContract extends FighterDecorator {
 			throw new PostconditionError(service, method,
 					"width mal initialisé " + getWidth());		
 		
-		if (isFacingRight() == lookRight)
+		if (isFacingRight() != lookRight)
 			throw new PostconditionError(service, method,
 					"sens mal initialisé ");
 
-		if (getEngine() == unrealEngine)
+		if (getEngine() != unrealEngine)
 			throw new PostconditionError(service, method,
-					"sens mal initialisé ");
+					"engine mauvaise reference");
 
 		if (!unrealEngine.equals(getEngine()))
 			throw new PostconditionError(service, method,

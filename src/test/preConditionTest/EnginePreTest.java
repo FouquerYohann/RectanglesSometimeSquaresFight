@@ -1,4 +1,4 @@
-package test;
+package test.preConditionTest;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +15,7 @@ import contract.EngineContract;
 import contract.util.InvariantError;
 import contract.util.PreconditionError;
 
-public class EngineTest {
+public class EnginePreTest {
 
 	private EngineService	engine;
 

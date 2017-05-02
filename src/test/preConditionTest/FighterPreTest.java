@@ -1,5 +1,6 @@
-package test;
+package test.preConditionTest;
 
+import contract.FighterContract;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,14 +12,14 @@ import components.services.EngineService;
 import components.services.FighterService;
 import contract.util.PreconditionError;
 
-public class FighterTest {
+public class FighterPreTest {
 
 	private FighterService	fighter;
 	private EngineService	engine	= new EngineImpl();
 
 	@Before
 	public void beforeTest() {
-		fighter = new FighterImpl();
+		fighter = new FighterContract(new FighterImpl());
 	}
 
 	@Test

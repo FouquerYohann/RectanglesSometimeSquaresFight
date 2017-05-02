@@ -1,4 +1,4 @@
-package test;
+package test.preConditionTest;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -9,7 +9,7 @@ import components.services.HitboxService;
 import contract.HitboxContract;
 import contract.util.PostconditionError;
 
-public class HitboxTest {
+public class HitboxPreTest {
 	private HitboxService	hitbox;
 
 	@Before

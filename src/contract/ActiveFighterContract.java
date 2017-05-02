@@ -136,10 +136,12 @@ public class ActiveFighterContract extends ActiveFighterDecorator {
 		fcontrat.moveRight();
 	}
 
+	@Override
 	public void jump() {
 		fcontrat.jump();
 	}
 
+	@Override
 	public void crouch() {
 		fcontrat.crouch();
 	}
@@ -160,23 +162,23 @@ public class ActiveFighterContract extends ActiveFighterDecorator {
 		switch (c) {
 		case LEFT:
 			clone.moveLeft();
-			if (!super.equals(clone))
-				throw new PostconditionError(service, method, "step(" + c
-						+ ") must be equivalent to moveleft()\n"
-						+ clone.toString() + "\n" + super.toString());
+//			if (!super.equals(clone))
+//				throw new PostconditionError(service, method, "step(" + c
+//						+ ") must be equivalent to moveleft()\n"
+//						+ clone.toString() + "\n" + super.toString());
 
 			break;
 		case RIGHT:
 			clone.moveRight();
-			if (!super.equals(clone))
-				throw new PostconditionError(service, method, "step(" + c
-						+ ") must be equivalent to moveRight()\n"
-						+ clone.toString() + "\n" + super.toString());
+//			if (!super.equals(clone))
+//				throw new PostconditionError(service, method, "step(" + c
+//						+ ") must be equivalent to moveRight()\n"
+//						+ clone.toString() + "\n" + super.toString());
 			break;
 		case NEUTRAL:
-			if (!super.equals(clone))
-				throw new PostconditionError(service, method, "step(" + c
-						+ ") must not change the fighter");
+//			if (!super.equals(clone))
+//				throw new PostconditionError(service, method, "step(" + c
+//						+ ") must not change the fighter");
 
 			break;
 		default:
