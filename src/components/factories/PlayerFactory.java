@@ -5,6 +5,7 @@ import components.impl.fighter.choose.ChoosingRandomFighterStrategy;
 import components.impl.fighter.choose.IChoosingFighterStrategy;
 import components.impl.player.PlayerBouchon;
 import components.impl.player.PlayerImpl;
+import components.impl.player.PlayerRandom;
 import components.services.PlayerService;
 import contract.PlayerContract;
 
@@ -52,5 +53,12 @@ public class PlayerFactory {
 		b.init(strategy);
 		PlayerService s = new PlayerContract(b);
 		return s;
+	}
+	
+	public static PlayerService randomPlayer(){
+		PlayerRandom b=new PlayerRandom();
+		IChoosingFighterStrategy strategy = new ChoosingRandomFighterStrategy();
+		b.init(strategy);
+		return b;
 	}
 }

@@ -86,7 +86,6 @@ public class FighterImpl implements FighterService {
 	@Override
 	public void init(int life, int speed, int height, int width,
 			boolean lookRight, EngineService unrealEngine) {
-		// TODO bien faire la distance
 
 		if (lookRight)
 			this.x = unrealEngine.getDistance();
@@ -101,20 +100,16 @@ public class FighterImpl implements FighterService {
 		this.unrealEngine = unrealEngine;
 		if (hitbox != null)
 			hitbox.moveTo(this.x, this.y);
-		// LAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-		// this.hitbox = new HitboxRectangleContract(new HitboxRectangleImpl(x,
-		// y, height,
-		// width));
 
 	}
 
 	@Override
 	public void moveLeft() {
 		x = (x - speed < 0) ? 0 : x - speed;
-		hitbox.moveTo(x, y);
-		if (hitbox.collidesWith(getOtherFighter().getHitbox())) {
+		getHitbox().moveTo(x, y);
+		if (getOtherFighter().getHitbox().collidesWith(getHitbox())) {
 			x = x + speed;
-			hitbox.moveTo(x, y);
+			getHitbox().moveTo(x, y);
 		}
 	}
 
@@ -122,10 +117,10 @@ public class FighterImpl implements FighterService {
 	public void moveRight() {
 		x = (x + speed > unrealEngine.getWidth()) ? unrealEngine.getWidth() - 1
 				: x + speed;
-		hitbox.moveTo(x, y);
-		if (hitbox.collidesWith(getOtherFighter().getHitbox())) {
+		getHitbox().moveTo(x, y);
+		if (getOtherFighter().getHitbox().collidesWith(getHitbox())) {
 			x = x - speed;
-			hitbox.moveTo(x, y);
+			getHitbox().moveTo(x, y);
 		}
 	}
 
@@ -179,6 +174,10 @@ public class FighterImpl implements FighterService {
 		default:
 			break;
 		}
+		if(getOtherFighter().getX()<getX() && isFacingRight())
+			switchSide();
+		if(getOtherFighter().getX()>getX() && !isFacingRight())
+			switchSide();
 	}
 
 	@Override
@@ -203,11 +202,8 @@ public class FighterImpl implements FighterService {
 		return (this.x == fighter.getX()) && (this.y == fighter.getY())
 
 		&& (this.faceRight == fighter.isFacingRight())
-				&& (this.speed == fighter.getSpeed())
-		/*
-		 * && (this.hitbox.equalsTo(fighter.getHitbox())) && (this.life ==
-		 * fighter.getLife())
-		 */;
+				&& (this.speed == fighter.getSpeed());
+
 	}
 
 	@Override

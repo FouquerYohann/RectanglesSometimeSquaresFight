@@ -1,13 +1,20 @@
 package components.impl.game;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintStream;
 import java.util.Observable;
 
 import components.enums.Commande;
 import components.services.EngineService;
 
 public class Game extends Observable {
-	private EngineService	unrealEngine;
-	private boolean			isGameOver	= false;
+	private EngineService		unrealEngine;
+	private boolean				isGameOver	= false;
+	private int					cpt			= 0;
+	private PrintStream	out;
 
 	public EngineService getUnrealEngine() {
 		return unrealEngine;
@@ -16,31 +23,33 @@ public class Game extends Observable {
 	public Game(EngineService unrealEngine) {
 		super();
 		this.unrealEngine = unrealEngine;
-
+		
+		try {
+			out=new PrintStream(new File("err_log"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void Routine(int delay) {
 		new Thread(() -> {
-			while (!unrealEngine.isGameOver() && unrealEngine.getTime()>0) {
+			while (!unrealEngine.isGameOver() && unrealEngine.getTime() > 0) {
 				try {
 					Thread.sleep(delay);
 					Commande comP1 = unrealEngine.getPlayer(1).getCommande();
 					Commande comP2 = unrealEngine.getPlayer(2).getCommande();
-					// if (comP1 == CommandeMovement.NEUTRAL
-					// && comP2 == CommandeMovement.NEUTRAL)
-					// continue;
-				unrealEngine.step(comP1, comP2);
-				setChanged();
-				notifyObservers();
-			} catch (Exception e) {
-				e.printStackTrace();
+					unrealEngine.step(comP1, comP2);
+					setChanged();
+					notifyObservers();
+				} catch (Throwable e) {
+					e.printStackTrace(out);
+				}
 			}
-		}
-		System.out.println("LE Jeu est game over");
-		isGameOver = true;
-		setChanged();
-		notifyObservers();
-	}	).start();
+			System.out.println("LE Jeu est game over");
+			isGameOver = true;
+			setChanged();
+			notifyObservers();
+		}).start();
 	}
 
 	public boolean isGameOver() {
