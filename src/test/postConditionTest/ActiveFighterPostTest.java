@@ -5,15 +5,12 @@ import components.factories.EngineFactory;
 import components.factories.FighterFactory;
 import components.factories.PlayerFactory;
 import components.impl.game.EngineImpl;
-import components.impl.hitbox.HitboxImpl;
 import components.impl.hitbox.HitboxRectangleImpl;
 import components.services.EngineService;
 import components.services.FighterService;
 import components.services.HitboxRectangleService;
-import components.services.HitboxService;
 import contract.FighterContract;
 import contract.util.PostconditionError;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import test.implBug.FighterImplBug;
@@ -54,7 +51,6 @@ public class ActiveFighterPostTest {
             fighter.init(10, 10, 10, 10, false, engine);
 
         }catch (PostconditionError e) {
-            System.out.println(e);
             fail();
         }
        return;

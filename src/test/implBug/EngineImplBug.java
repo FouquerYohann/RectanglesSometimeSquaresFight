@@ -86,8 +86,15 @@ public class EngineImplBug implements EngineService {
 
 	@Override
 	public void step(Commande comP1, Commande comP2) {
+		if(comP1 == Commande.NEUTRAL && comP2==Commande.NEUTRAL)
+		    return;
+        fighter1.step(comP1);
+        fighter2.step(comP2);
+        fighter2.step(comP2);
+        fighter1.step(comP1);
+        fighter1.step(comP1);
 
-	}
+    }
 
 	@Override
 	public int getDistance() {
