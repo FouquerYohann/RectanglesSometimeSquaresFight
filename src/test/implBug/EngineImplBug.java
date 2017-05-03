@@ -10,6 +10,39 @@ public class EngineImplBug implements EngineService {
 	private static final long	TIME	= 50;
 	private int height;
 	private int width;
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public void setDistance(int distance) {
+		this.distance = distance;
+	}
+
+	public void setTimer(long timer) {
+		this.timer = timer;
+	}
+
+	public void setFighter1(ActiveFighterService fighter1) {
+		this.fighter1 = fighter1;
+	}
+
+	public void setFighter2(ActiveFighterService fighter2) {
+		this.fighter2 = fighter2;
+	}
+
+	public void setPlayer1(PlayerService player1) {
+		this.player1 = player1;
+	}
+
+	public void setPlayer2(PlayerService player2) {
+		this.player2 = player2;
+	}
+
 	private int distance;
 	private long timer=-1;
 	private ActiveFighterService fighter1;
@@ -48,21 +81,11 @@ public class EngineImplBug implements EngineService {
 
 	@Override
 	public void init(int height, int width, int distance, PlayerService p1, PlayerService p2, FighterFactory factory) {
-		this.height = height;
-		this.width = width;
-		this.distance = distance;
-		this.player1 = p1;
-		this.player2 = p2;
-		this.timer=System.currentTimeMillis();
-		fighter1 = p1.chooseFighter(factory, true);
-		fighter2 = p2.chooseFighter(factory, false);
+
 	}
 
 	@Override
 	public void step(Commande comP1, Commande comP2) {
-
-		fighter2.step(comP1);
-		fighter1.step(comP2);
 
 	}
 
