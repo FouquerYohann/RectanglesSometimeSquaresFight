@@ -9,7 +9,7 @@ import contract.HitboxRectangleContract;
 
 public class ActiveFighterImplBug extends FighterImpl implements
         ActiveFighterService {
-    private boolean blockint  = false,
+    private boolean blocking  = false,
             blockstunned      = false,
             teching           = false,
             techFrame         = false,
@@ -18,18 +18,18 @@ public class ActiveFighterImplBug extends FighterImpl implements
             techHasAlreadyHit = false;
 
     private int                    stunnCpt     = 0;
+
     private int                    techCpt      = 0;
     private ActiveFighterService   otherFighter = null;
     private HitboxRectangleService hbCrouch     = null;
     private TechService tech;
-
-
     public ActiveFighterImplBug() {
     }
 
+
     @Override
-    public boolean isBlockint() {
-        return blockint;
+    public boolean isBlocking() {
+        return blocking;
     }
 
     public ActiveFighterService getOtherFighter() {
@@ -65,7 +65,7 @@ public class ActiveFighterImplBug extends FighterImpl implements
         clone.hitbox = new HitboxRectangleContract(new HitboxRectangleImpl(
                 hitbox.getPositionX(), hitbox.getPositionY(), getHeight(),
                 getWidth()));
-        clone.blockint = blockint;
+        clone.blocking = blocking;
         clone.blockstunned = blockstunned;
         clone.teching = teching;
         clone.techFrame = techFrame;
@@ -132,6 +132,10 @@ public class ActiveFighterImplBug extends FighterImpl implements
         return super.getHeight();
     }
 
+    public int getStunnCpt() {
+        return stunnCpt;
+    }
+
     @Override
     public HitboxService getHitbox() {
         if (crouch)
@@ -173,8 +177,8 @@ public class ActiveFighterImplBug extends FighterImpl implements
     }
 
 
-    public void setBlockint(boolean blockint) {
-        this.blockint = blockint;
+    public void setBlocking(boolean blocking) {
+        this.blocking = blocking;
     }
 
     public void setBlockstunned(boolean blockstunned) {

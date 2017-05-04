@@ -25,7 +25,7 @@ public class ActiveFighterImpl extends FighterImpl implements
 	public ActiveFighterImpl() {}
 
 	@Override
-	public boolean isBlockint() {
+	public boolean isBlocking() {
 		return blockint;
 	}
 
@@ -55,7 +55,7 @@ public class ActiveFighterImpl extends FighterImpl implements
 						teching = false;
 						techCpt = -1;
 						techFrame = false;
-						if (this.isBlockint()) {
+						if (this.isBlocking()) {
 							stunnCpt = tequila.getBstun();
 							blockstunned = true;
 						} else {
@@ -90,6 +90,7 @@ public class ActiveFighterImpl extends FighterImpl implements
 				if (tech().getHframe() == techCpt) {
 					techFrame = false;
 					stunnCpt = tech().getRframe();
+					blockstunned=true;
 					teching = false;
 					techCpt = -1;
 					techHasAlreadyHit = false;
@@ -145,6 +146,11 @@ public class ActiveFighterImpl extends FighterImpl implements
 	@Override
 	public boolean isTeching() {
 		return teching;
+	}
+
+	@Override
+	public int getStunnCpt() {
+		return stunnCpt;
 	}
 
 	@Override

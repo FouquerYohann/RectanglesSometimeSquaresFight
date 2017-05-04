@@ -88,8 +88,8 @@ public class ActiveFighterDecorator implements ActiveFighterService {
 		return delegate.equals(fighter);
 	}
 
-	public boolean isBlockint() {
-		return delegate.isBlockint();
+	public boolean isBlocking() {
+		return delegate.isBlocking();
 	}
 
 	public boolean isBlockstunned() {
@@ -102,6 +102,11 @@ public class ActiveFighterDecorator implements ActiveFighterService {
 
 	public boolean isTeching() {
 		return delegate.isTeching();
+	}
+
+	@Override
+	public int getStunnCpt() {
+		return delegate.getStunnCpt();
 	}
 
 	public TechService tech() {

@@ -4,13 +4,15 @@ public interface ActiveFighterService extends FighterService {
 
 	// OBSERVATORS
 
-	boolean isBlockint();
+	boolean isBlocking();
 
 	boolean isBlockstunned();
 
 	boolean isHitstunned();
 
 	boolean isTeching();
+
+	int getStunnCpt();
 
 	/** @require isTeching() */
 	TechService tech();
@@ -22,6 +24,7 @@ public interface ActiveFighterService extends FighterService {
 	boolean techHasAlreadyHit();
 
 	// OPERATOR
+
 	/** @require !isTeching()
 	 * @post isTeching() */
 	void startTech(TechService tech);

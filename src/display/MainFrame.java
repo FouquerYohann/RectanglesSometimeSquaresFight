@@ -16,17 +16,25 @@ import java.util.Observer;
 
 public class MainFrame extends JPanel implements Observer {
     private static final long serialVersionUID = 1096504000554348122L;
-    private final int fighter1HealthMax;
-    private final int fighter2HealthMax;
-    private JLabel chronoLab;
-    private Game game;
-    private static final int DELAY=16;
+    private final int     fighter1HealthMax;
+    private final int     fighter2HealthMax;
+    private       int     fighter1StunMax;
+    private       int     fighter2StunMax;
+    private       boolean fighter1WasStun;
+    private       boolean fighter2WasStun;
+    private       JLabel  chronoLab;
+    private       Game    game;
+    private static final int DELAY = 100;
 
     public MainFrame(EngineService ue) {
         super();
         game = new Game(ue);
         fighter1HealthMax = ue.getFighter(1).getLife();
         fighter2HealthMax = ue.getFighter(2).getLife();
+        fighter1WasStun = false;
+        fighter2WasStun = false;
+        fighter1StunMax = 0;
+        fighter2StunMax = 0;
         chronoLab = new JLabel();
         game.addObserver(this);
         setSize(ue.getWidth(), ue.getHeight());
@@ -37,7 +45,7 @@ public class MainFrame extends JPanel implements Observer {
 
         EngineService ue = EngineFactory.defaultEngine();
 
-//        EngineService ue = EngineFactory.randomEngine();
+        //        EngineService ue = EngineFactory.randomEngine();
 
         JFrame fenetre = new JFrame();
         fenetre.setTitle("RectanglesSometimesSquaresFight");
@@ -93,12 +101,51 @@ public class MainFrame extends JPanel implements Observer {
         ActiveFighterService f1 = ue.getFighter(1);
         ActiveFighterService f2 = ue.getFighter(2);
 
+
+        if (!fighter1WasStun) {
+            if (f1.isBlockstunned() || f1.isHitstunned()) {
+                fighter1WasStun = true;
+                fighter1StunMax = f1.getStunnCpt();
+            }
+        } else {
+            if (!f1.isBlockstunned() && !f1.isHitstunned()) {
+                fighter1WasStun = false;
+            }
+        }
+        if (!fighter2WasStun) {
+            if (f2.isHitstunned() || f2.isBlockstunned()) {
+                fighter2WasStun = true;
+                fighter2StunMax = f2.getStunnCpt();
+            }
+        } else {
+            if (!f2.isBlockstunned() && !f2.isHitstunned()) {
+                fighter1WasStun = false;
+            }
+        }
+
+
         g2.clearRect(0, 0, engineWidth, engineHeight);
 
         g2.setColor(Color.BLACK);
         g2.drawRect(20, 20, engineWidth / 3, engineHeight / 18);
         g2.drawRect(2 * engineWidth / 3 - 20, 20, engineWidth / 3,
                 engineHeight / 18);
+        g2.drawRect(40, 40 + engineHeight / 18, engineWidth / 4, engineHeight / 24);
+
+        g2.drawRect(2 * engineWidth / 3, 40 + engineHeight / 18, engineWidth / 4,
+                engineHeight / 24);
+
+
+        fighter1StunMax=(fighter1StunMax==0)?1:fighter1StunMax;
+        double stunSize1 = ((double) f1.getStunnCpt() / fighter1StunMax) * engineWidth / 4;
+        System.out.println("stun size1 "+stunSize1);
+        fighter2StunMax=(fighter2StunMax==0)?1:fighter2StunMax;
+        double stunSize2 = ((double) f2.getStunnCpt() /  fighter2StunMax) * engineWidth / 4;
+        System.out.println("stun size2 "+stunSize2);
+
+        g2.fillRect(40, 40 + engineHeight / 18, (int)stunSize1, engineHeight / 24);
+        g2.fillRect(2 * engineWidth / 3, 40 + engineHeight / 18, (int)stunSize2,
+                engineHeight / 24);
 
         chronoLab.setText("" + ue.getTime());
 
@@ -142,18 +189,16 @@ public class MainFrame extends JPanel implements Observer {
 
         g2.setColor(Color.WHITE);
 
-        g2.fillOval(f1.getX(), engineHeight-f1.getHeight(), 50, 50);
-        g2.fillOval(f2.getX(), engineHeight-f2.getHeight(), 50, 50);
-        g2.fillOval(f1.getX() + f1.getWidth()-50, engineHeight-f1.getHeight(), 50, 50);
-        g2.fillOval(f2.getX() + f2.getWidth()-50, engineHeight-f2.getHeight(), 50, 50);
+        g2.fillOval(f1.getX(), engineHeight - f1.getHeight(), 50, 50);
+        g2.fillOval(f2.getX(), engineHeight - f2.getHeight(), 50, 50);
+        g2.fillOval(f1.getX() + f1.getWidth() - 50, engineHeight - f1.getHeight(), 50, 50);
+        g2.fillOval(f2.getX() + f2.getWidth() - 50, engineHeight - f2.getHeight(), 50, 50);
 
         g2.setColor(Color.BLACK);
-        g2.fillOval(f1.getX()+25, engineHeight-f1.getHeight()+25, 10, 10);
-        g2.fillOval(f2.getX()+15, engineHeight-f2.getHeight()+25, 10, 10);
-        g2.fillOval(f1.getX() + f1.getWidth()-25, engineHeight-f1.getHeight()+25, 10, 10);
-        g2.fillOval(f2.getX() + f2.getWidth()-35, engineHeight-f2.getHeight()+25, 10, 10);
-
-
+        g2.fillOval(f1.getX() + 25, engineHeight - f1.getHeight() + 25, 10, 10);
+        g2.fillOval(f2.getX() + 15, engineHeight - f2.getHeight() + 25, 10, 10);
+        g2.fillOval(f1.getX() + f1.getWidth() - 25, engineHeight - f1.getHeight() + 25, 10, 10);
+        g2.fillOval(f2.getX() + f2.getWidth() - 35, engineHeight - f2.getHeight() + 25, 10, 10);
 
 
         if (game.isGameOver()) {

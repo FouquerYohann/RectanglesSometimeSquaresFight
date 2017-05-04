@@ -1,6 +1,7 @@
 package test.postConditionTest;
 
 
+import components.enums.Commande;
 import components.factories.EngineFactory;
 import components.factories.FighterFactory;
 import components.factories.PlayerFactory;
@@ -9,6 +10,7 @@ import components.impl.hitbox.HitboxRectangleImpl;
 import components.services.EngineService;
 import components.services.FighterService;
 import components.services.HitboxRectangleService;
+import contract.ActiveFighterContract;
 import contract.FighterContract;
 import contract.util.PostconditionError;
 import org.junit.Before;
@@ -26,7 +28,7 @@ public class ActiveFighterPostTest {
     @Before
     public void beforeTest() {
         engine.init(100, 100, 100, PlayerFactory.newBouchonGaucheDroite(), PlayerFactory.newBouchonGaucheDroite(), new FighterFactory(EngineFactory.defaultBotEngine()));
-        fighter = new FighterContract(guru);
+        fighter = new ActiveFighterContract(guru);
     }
 
     public void fakeInit() {
@@ -38,7 +40,7 @@ public class ActiveFighterPostTest {
         guru.setWidth(10);
         guru.setUnrealEngine(engine);
         guru.setFaceRight(false);
-        guru.setBlockint(false);
+        guru.setBlocking(false);
         guru.setBlockstunned(false);
         guru.setTeching(false);
         guru.setTechFrame(false);
@@ -59,7 +61,7 @@ public class ActiveFighterPostTest {
     @Test
     public void testInvariant(){
         fakeInit();
-        guru.setBlockint(true);
+        guru.setBlocking(true);
         guru.setBlockstunned(true);
 
     }
@@ -162,6 +164,64 @@ public class ActiveFighterPostTest {
             fail();
         } catch (PostconditionError e) {
 
+        }
+    }
+
+    @Test
+    public void testStepPositif(){
+        try {
+            fakeInit();
+            fighter.step(Commande.NEUTRAL);
+        }catch (PostconditionError e){
+            fail();
+        }
+    }
+
+    @Test
+    public void testStepBlocking(){
+        try {
+            fakeInit();
+            guru.setBlocking(true);
+            guru.setX(11);
+            fighter.step(Commande.NEUTRAL);
+            fail();
+        }catch (PostconditionError e){
+        }
+    }
+
+    @Test
+    public void testStepBlockstunned(){
+        try {
+            fakeInit();
+            guru.setBlockstunned(true);
+            guru.setX(11);
+            fighter.step(Commande.NEUTRAL);
+            fail();
+        }catch (PostconditionError e){
+        }
+    }
+
+    @Test
+    public void testStepHitstunned(){
+        try {
+            fakeInit();
+            guru.setHitstunned(true);
+            guru.setX(11);
+            fighter.step(Commande.NEUTRAL);
+            fail();
+        }catch (PostconditionError e){
+        }
+    }
+
+    @Test
+    public void testStepTeching(){
+        try {
+            fakeInit();
+            guru.setTeching(true);
+            guru.setX(11);
+            fighter.step(Commande.NEUTRAL);
+            fail();
+        }catch (PostconditionError e){
         }
     }
 
