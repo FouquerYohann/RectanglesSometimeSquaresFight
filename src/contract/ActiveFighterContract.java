@@ -53,16 +53,97 @@ public class ActiveFighterContract extends ActiveFighterDecorator {
 
 	@Override
 	public void startTech(TechService tech) {
+		checkInvariant();
 		String method = "startTech";
+
 		if (isTeching())
 			throw new PreconditionError(service, method,
 					"fighter already teching");
+
 		super.startTech(tech);
+
+		checkInvariant();
 
 		if (!isTeching())
 			throw new PostconditionError(service, method,
 					"after startTeching fighter must tech");
 	}
+
+
+
+	public void moveLeft() {
+		if(!)
+		checkInvariant();
+		fcontrat.moveLeft();
+		checkInvariant();
+	}
+
+	public boolean equals(Object obj) {
+		return fcontrat.equals(obj);
+	}
+
+	public void moveRight() {
+		checkInvariant();
+		fcontrat.moveRight();
+		checkInvariant();
+	}
+
+	@Override
+	public void jump() {
+		checkInvariant();
+		fcontrat.jump();
+		checkInvariant();
+	}
+
+	@Override
+	public void crouch() {
+		checkInvariant();
+		fcontrat.crouch();
+		checkInvariant();
+	}
+
+	public void switchSide() {
+		checkInvariant();
+		fcontrat.switchSide();
+		checkInvariant();
+	}
+
+	public void step(Commande c) {
+		String method = "step";
+		if(isBlockint()||isTeching()||isBlockstunned()||isHitstunned()){
+			super.step(c);return;
+		}
+		ActiveFighterService clone = (ActiveFighterService) super.clone();
+		checkInvariant();
+		super.step(c);
+		checkInvariant();
+		switch (c) {
+		case LEFT:
+			clone.moveLeft();
+//			if (!super.equals(clone))
+//				throw new PostconditionError(service, method, "step(" + c
+//						+ ") must be equivalent to moveleft()\n"
+//						+ clone.toString() + "\n" + super.toString());
+
+			break;
+		case RIGHT:
+			clone.moveRight();
+//			if (!super.equals(clone))
+//				throw new PostconditionError(service, method, "step(" + c
+//						+ ") must be equivalent to moveRight()\n"
+//						+ clone.toString() + "\n" + super.toString());
+			break;
+		case NEUTRAL:
+//			if (!super.equals(clone))
+//				throw new PostconditionError(service, method, "step(" + c
+//						+ ") must not change the fighter");
+
+			break;
+		default:
+			break;
+		}
+	}
+
 
 	public int getX() {
 		return fcontrat.getX();
@@ -108,9 +189,6 @@ public class ActiveFighterContract extends ActiveFighterDecorator {
 		return fcontrat.isDead();
 	}
 
-	public int hashCode() {
-		return fcontrat.hashCode();
-	}
 
 	public FighterService clone() {
 		return fcontrat.clone();
@@ -120,70 +198,6 @@ public class ActiveFighterContract extends ActiveFighterDecorator {
 		return fcontrat.equals(fighter);
 	}
 
-	public String toString() {
-		return fcontrat.toString();
-	}
 
-	public void moveLeft() {
-		fcontrat.moveLeft();
-	}
-
-	public boolean equals(Object obj) {
-		return fcontrat.equals(obj);
-	}
-
-	public void moveRight() {
-		fcontrat.moveRight();
-	}
-
-	@Override
-	public void jump() {
-		fcontrat.jump();
-	}
-
-	@Override
-	public void crouch() {
-		fcontrat.crouch();
-	}
-
-	public void switchSide() {
-		fcontrat.switchSide();
-	}
-
-	public void step(Commande c) {
-		String method = "step";
-		if(isBlockint()||isTeching()||isBlockstunned()||isHitstunned()){
-			super.step(c);return;
-		}
-		ActiveFighterService clone = (ActiveFighterService) super.clone();
-		checkInvariant();
-		super.step(c);
-		checkInvariant();
-		switch (c) {
-		case LEFT:
-			clone.moveLeft();
-//			if (!super.equals(clone))
-//				throw new PostconditionError(service, method, "step(" + c
-//						+ ") must be equivalent to moveleft()\n"
-//						+ clone.toString() + "\n" + super.toString());
-
-			break;
-		case RIGHT:
-			clone.moveRight();
-//			if (!super.equals(clone))
-//				throw new PostconditionError(service, method, "step(" + c
-//						+ ") must be equivalent to moveRight()\n"
-//						+ clone.toString() + "\n" + super.toString());
-			break;
-		case NEUTRAL:
-//			if (!super.equals(clone))
-//				throw new PostconditionError(service, method, "step(" + c
-//						+ ") must not change the fighter");
-
-			break;
-		default:
-			break;
-		}
-	}
 
 }
