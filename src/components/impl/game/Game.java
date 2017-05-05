@@ -45,7 +45,7 @@ public class Game extends Observable {
 					e.printStackTrace(out);
 				}
 			}
-			System.out.println("LE Jeu est game over");
+			System.out.println("Le Jeu est game over");
 			isGameOver = true;
 			setChanged();
 			notifyObservers();

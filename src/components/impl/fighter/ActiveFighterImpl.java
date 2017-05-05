@@ -2,12 +2,13 @@ package components.impl.fighter;
 
 import components.enums.Commande;
 import components.impl.hitbox.HitboxRectangleImpl;
+import components.impl.techniques.Kick;
 import components.services.ActiveFighterService;
 import components.services.FighterService;
 import components.services.HitboxRectangleService;
 import components.services.HitboxService;
 import components.services.TechService;
-import components.techniques.Punch;
+import components.impl.techniques.Punch;
 import contract.HitboxRectangleContract;
 
 public class ActiveFighterImpl extends FighterImpl implements
@@ -102,8 +103,12 @@ public class ActiveFighterImpl extends FighterImpl implements
 		if (isHitstunned() || isBlockstunned())
 			return;
 
-		if (c == Commande.PUNCH) {
+		if (c == Commande.PUNCH || c==Commande.KICK) {
+			if(c == Commande.PUNCH)
 			startTech(new Punch());
+			if(c == Commande.KICK)
+				startTech(new Kick());
+
 		} else {
 			super.step(c);
 		}

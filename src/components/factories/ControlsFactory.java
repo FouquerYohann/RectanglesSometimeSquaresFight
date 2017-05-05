@@ -11,9 +11,10 @@ public class ControlsFactory {
 	Controls ct = new Controls(comp);
 	ct.addAction("LEFT", Commande.LEFT);
 	ct.addAction("RIGHT", Commande.RIGHT);
-	ct.addAction("UP", Commande.JUMP);
+	ct.addAction("UP", Commande.KICK);
 	ct.addAction("DOWN", Commande.CROUCH);
 	ct.addAction("ENTER", Commande.PUNCH);
+
 	return ct;
     }
 
@@ -21,7 +22,7 @@ public class ControlsFactory {
 	Controls ct = new Controls(comp);
 	ct.addAction("Q", Commande.LEFT);
 	ct.addAction("D", Commande.RIGHT);
-	ct.addAction("Z", Commande.JUMP);
+	ct.addAction("Z", Commande.KICK);
 	ct.addAction("S", Commande.CROUCH);
 	ct.addAction("SPACE", Commande.PUNCH);
 	return ct;
