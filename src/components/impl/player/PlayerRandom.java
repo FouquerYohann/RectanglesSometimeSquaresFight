@@ -25,7 +25,7 @@ public class PlayerRandom extends PlayerImpl {
 	public Commande getCommande() {
 		if (cpt % refresh == 0 && rand.nextInt(100) > taux)
 			curr = Commande.values()[rand.nextInt(Commande.values().length)];
-		if(curr==Commande.JUMP||curr==Commande.KICK)curr=Commande.NEUTRAL;
+		if(curr==Commande.JUMP||curr==Commande.BOUMTMORT)curr=Commande.NEUTRAL;
 		return curr;
 	}
 	

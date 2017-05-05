@@ -42,7 +42,8 @@ public class Game extends Observable {
 					setChanged();
 					notifyObservers();
 				} catch (Throwable e) {
-					e.printStackTrace(out);
+					e.printStackTrace();
+					break;
 				}
 			}
 			System.out.println("Le Jeu est game over");
