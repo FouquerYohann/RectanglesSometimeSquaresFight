@@ -1,4 +1,4 @@
-package components.techniques;
+package components.impl.techniques;
 
 import components.services.TechService;
 
