@@ -20,7 +20,7 @@ public class MainFrame extends JPanel implements Observer {
     private final int fighter2HealthMax;
     private JLabel chronoLab;
     private Game game;
-    private static final int DELAY=1;
+    private static final int DELAY=20;
 
     public MainFrame(EngineService ue) {
         super();
@@ -35,9 +35,9 @@ public class MainFrame extends JPanel implements Observer {
 
     public static void main(String[] args) {
 
-//        EngineService ue = EngineFactory.defaultEngine();
+        EngineService ue = EngineFactory.defaultEngine();
 
-        EngineService ue = EngineFactory.randomEngine();
+//        EngineService ue = EngineFactory.randomEngine();
 
         JFrame fenetre = new JFrame();
         fenetre.setTitle("RectanglesSometimesSquaresFight");

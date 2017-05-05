@@ -4,12 +4,16 @@ import components.impl.hitbox.HitboxRectangleImpl;
 import components.services.FighterService;
 import components.services.HitboxRectangleService;
 
-public class Kick extends TechImpl {
-    private HitboxRectangleService	hitBox	= new HitboxRectangleImpl(0, 0,
-            50, 200);
+/**
+ * Created by 3305392 on 05/05/17.
+ */
+public class Boumtmort extends TechImpl{
 
-    public Kick() {
-        super(1, 10000, 5, 200, 50, 500);
+    private HitboxRectangleService hitBox	= new HitboxRectangleImpl(0, 0,
+            200, 2000);
+
+    public Boumtmort() {
+        super(100000, 1, 5, 5, 50, 1);
     }
 
     @Override
