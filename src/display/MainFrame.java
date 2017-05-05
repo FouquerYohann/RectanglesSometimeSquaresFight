@@ -24,7 +24,7 @@ public class MainFrame extends JPanel implements Observer {
     private       boolean fighter2WasStun;
     private       JLabel  chronoLab;
     private       Game    game;
-    private static final int DELAY = 100;
+    private static final int DELAY = 1;
 
     public MainFrame(EngineService ue) {
         super();
@@ -43,9 +43,9 @@ public class MainFrame extends JPanel implements Observer {
 
     public static void main(String[] args) {
 
-        EngineService ue = EngineFactory.defaultEngine();
+//        EngineService ue = EngineFactory.defaultEngine();
 
-        //        EngineService ue = EngineFactory.randomEngine();
+                EngineService ue = EngineFactory.randomEngine();
 
         JFrame fenetre = new JFrame();
         fenetre.setTitle("RectanglesSometimesSquaresFight");
@@ -138,10 +138,8 @@ public class MainFrame extends JPanel implements Observer {
 
         fighter1StunMax=(fighter1StunMax==0)?1:fighter1StunMax;
         double stunSize1 = ((double) f1.getStunnCpt() / fighter1StunMax) * engineWidth / 4;
-        System.out.println("stun size1 "+stunSize1);
         fighter2StunMax=(fighter2StunMax==0)?1:fighter2StunMax;
         double stunSize2 = ((double) f2.getStunnCpt() /  fighter2StunMax) * engineWidth / 4;
-        System.out.println("stun size2 "+stunSize2);
 
         g2.fillRect(40, 40 + engineHeight / 18, (int)stunSize1, engineHeight / 24);
         g2.fillRect(2 * engineWidth / 3, 40 + engineHeight / 18, (int)stunSize2,
