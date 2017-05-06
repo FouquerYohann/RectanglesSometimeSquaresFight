@@ -13,7 +13,6 @@ public class Controls {
     private static final String RELEASED = "released ";
     private JComponent component;
     private Map<String, Commande> pressedKeys = new HashMap<String, Commande>();
-    private Timer timer;
     private Commande current = Commande.NEUTRAL;
 
 

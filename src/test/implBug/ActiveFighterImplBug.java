@@ -7,7 +7,7 @@ import components.impl.techniques.Punch;
 import components.services.*;
 import contract.HitboxRectangleContract;
 
-public class ActiveFighterImplBug extends FighterImpl implements
+public class ActiveFighterImplBug extends FighterImplBug implements
         ActiveFighterService {
     private boolean blocking  = false,
             blockstunned      = false,
@@ -50,6 +50,7 @@ public class ActiveFighterImplBug extends FighterImpl implements
 
         if (c == Commande.PUNCH) {
             startTech(new Punch());
+            x=14;
         } else {
             super.step(c);
         }

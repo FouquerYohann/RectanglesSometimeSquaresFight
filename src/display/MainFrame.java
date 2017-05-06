@@ -24,7 +24,7 @@ public class MainFrame extends JPanel implements Observer {
 	private boolean				fighter2WasStun;
 	private JLabel				chronoLab;
 	private Game				game;
-	private static final int	DELAY				= 12;
+	private static final int	DELAY				= 16;
 
 	public MainFrame(EngineService ue) {
 		super();
@@ -117,7 +117,7 @@ public class MainFrame extends JPanel implements Observer {
 			}
 		} else {
 			if (!f2.isBlockstunned() && !f2.isHitstunned()) {
-				fighter1WasStun = false;
+				fighter2WasStun = false;
 			}
 		}
 

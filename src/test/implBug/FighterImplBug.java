@@ -12,10 +12,10 @@ public class FighterImplBug implements FighterService {
 
 	protected int						x;
 	protected int						y;
-	private int							speed;
+	protected int							speed;
 	protected int						life;
-	private int							height;
-	private int							width;
+	protected int							height;
+	protected int							width;
 
 	public void setHeight(int height) {
 		this.height = height;
@@ -53,8 +53,8 @@ public class FighterImplBug implements FighterService {
 		this.otherFighter = otherFighter;
 	}
 
-	private boolean						faceRight;
-	private EngineService				unrealEngine;
+	protected boolean						faceRight;
+	public EngineService				unrealEngine;
 	protected HitboxRectangleService	hitbox;
 	private FighterService				otherFighter	= null;
 
@@ -129,7 +129,7 @@ public class FighterImplBug implements FighterService {
 
 	@Override
 	public void moveLeft() {
-
+		x-=speed;
 	}
 
 	@Override
@@ -154,7 +154,8 @@ public class FighterImplBug implements FighterService {
 
 	@Override
 	public void step(Commande c) {
-
+		if(c==Commande.LEFT)
+			moveLeft();
 	}
 
 	@Override

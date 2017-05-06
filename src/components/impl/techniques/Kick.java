@@ -21,10 +21,10 @@ public class Kick extends TechImpl {
     public void moveTo(FighterService fighter) {
         if (fighter.isFacingRight())
             hitBox.moveTo(fighter.getX() + fighter.getWidth(), fighter.getY()
-                    + fighter.getHeight() - hitBox.getHeight());
+                    + fighter.getHeight()/2 - hitBox.getHeight());
         else
             hitBox.moveTo(fighter.getX() -hitBox.getWidth(), fighter.getY()
-                    + fighter.getHeight() - hitBox.getHeight());
+                    + fighter.getHeight()/2 - hitBox.getHeight());
     }
 
 }

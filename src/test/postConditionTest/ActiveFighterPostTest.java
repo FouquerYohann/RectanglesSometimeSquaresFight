@@ -184,7 +184,7 @@ public class ActiveFighterPostTest {
             fakeInit();
             guru.setBlocking(true);
             guru.setX(11);
-            fighter.step(Commande.NEUTRAL);
+            fighter.step(Commande.LEFT);
             fail();
         }catch (PostconditionError e){
         }
@@ -196,7 +196,7 @@ public class ActiveFighterPostTest {
             fakeInit();
             guru.setBlockstunned(true);
             guru.setX(11);
-            fighter.step(Commande.NEUTRAL);
+            fighter.step(Commande.LEFT);
             fail();
         }catch (PostconditionError e){
         }
@@ -208,7 +208,7 @@ public class ActiveFighterPostTest {
             fakeInit();
             guru.setHitstunned(true);
             guru.setX(11);
-            fighter.step(Commande.NEUTRAL);
+            fighter.step(Commande.LEFT);
             fail();
         }catch (PostconditionError e){
         }
@@ -220,7 +220,7 @@ public class ActiveFighterPostTest {
             fakeInit();
             guru.setTeching(true);
             guru.setX(11);
-            fighter.step(Commande.NEUTRAL);
+            fighter.step(Commande.PUNCH);
             fail();
         }catch (PostconditionError e){
         }
