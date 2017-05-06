@@ -53,7 +53,7 @@ public interface EngineService {
 	/**
 	 * @require height>0 and width>0 and distance< width/2 and p1!=p2
 	 * 
-	 * @param heigth
+	 * @param height
 	 *            of stage
 	 * @param width
 	 *            of stage
