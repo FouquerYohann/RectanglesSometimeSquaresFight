@@ -1,11 +1,10 @@
 package components.impl.player;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
-import tools.Controls;
 import components.enums.Commande;
 import components.impl.fighter.choose.IChoosingFighterStrategy;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class PlayerBouchon extends PlayerImpl {
 	private ArrayList<Commande>	listBouchon	= new ArrayList<Commande>();

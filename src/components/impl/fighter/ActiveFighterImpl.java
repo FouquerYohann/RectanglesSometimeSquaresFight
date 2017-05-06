@@ -4,12 +4,8 @@ import components.enums.Commande;
 import components.impl.hitbox.HitboxRectangleImpl;
 import components.impl.techniques.Boumtmort;
 import components.impl.techniques.Kick;
-import components.services.ActiveFighterService;
-import components.services.FighterService;
-import components.services.HitboxRectangleService;
-import components.services.HitboxService;
-import components.services.TechService;
 import components.impl.techniques.Punch;
+import components.services.*;
 import contract.HitboxRectangleContract;
 
 public class ActiveFighterImpl extends FighterImpl implements

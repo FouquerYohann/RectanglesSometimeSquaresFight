@@ -1,19 +1,17 @@
 package test.preConditionTest;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import static org.junit.Assert.fail;
 import components.enums.Commande;
 import components.factories.EngineFactory;
 import components.factories.FighterFactory;
 import components.factories.PlayerFactory;
-import components.impl.game.EngineImpl;
 import components.services.EngineService;
 import components.services.PlayerService;
 import contract.EngineContract;
 import contract.util.InvariantError;
 import contract.util.PreconditionError;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 public class EnginePreTest {
 
@@ -30,10 +28,10 @@ public class EnginePreTest {
 			EngineContract.checkInvariant(engine);
 			if (engine.getFighter(1).isDead() == true)
 				if (engine.isGameOver() == false)
-					fail();
+					Assert.fail();
 			if (engine.getFighter(2).isDead() == true)
 				if (engine.isGameOver() == false)
-					fail();
+					Assert.fail();
 		} catch (InvariantError ie) {
 
 		}
@@ -45,7 +43,7 @@ public class EnginePreTest {
 			engine.getFighter(1);
 			engine.getFighter(2);
 		} catch (PreconditionError e) {
-			fail();
+			Assert.fail();
 		}
 	}
 
@@ -53,7 +51,7 @@ public class EnginePreTest {
 	public void testGetFighterNeg1() {
 		try {
 			engine.getFighter(0);
-			fail();
+			Assert.fail();
 		} catch (PreconditionError e) {
 
 		}
@@ -63,7 +61,7 @@ public class EnginePreTest {
 	public void testGetFighterNeg2() {
 		try {
 			engine.getFighter(3);
-			fail();
+			Assert.fail();
 		} catch (PreconditionError e) {
 
 		}
@@ -75,7 +73,7 @@ public class EnginePreTest {
 			engine.getPlayer(1);
 			engine.getPlayer(2);
 		} catch (PreconditionError e) {
-			fail();
+			Assert.fail();
 		}
 	}
 
@@ -83,7 +81,7 @@ public class EnginePreTest {
 	public void testGetPlayerNeg1() {
 		try {
 			engine.getPlayer(0);
-			fail();
+			Assert.fail();
 		} catch (PreconditionError e) {
 
 		}
@@ -93,7 +91,7 @@ public class EnginePreTest {
 	public void testGetPlayerNeg2() {
 		try {
 			engine.getPlayer(3);
-			fail();
+			Assert.fail();
 		} catch (PreconditionError e) {
 
 		}
@@ -107,7 +105,7 @@ public class EnginePreTest {
 							engine));
 
 		} catch (PreconditionError e) {
-			fail();
+			Assert.fail();
 		}
 	}
 
@@ -117,7 +115,7 @@ public class EnginePreTest {
 			engine.init(-2, 100, 10, PlayerFactory.newHumanPlayer("lolo"),
 					PlayerFactory.newHumanPlayer("bo"), new FighterFactory(
 							engine));
-			fail();
+			Assert.fail();
 		} catch (PreconditionError e) {
 
 		}
@@ -129,7 +127,7 @@ public class EnginePreTest {
 			engine.init(100, -2, -3, PlayerFactory.newHumanPlayer("lolo"),
 					PlayerFactory.newHumanPlayer("bo"), new FighterFactory(
 							engine));
-			fail();
+			Assert.fail();
 		} catch (PreconditionError e) {
 
 		}
@@ -141,7 +139,7 @@ public class EnginePreTest {
 			engine.init(100, 100, 1000, PlayerFactory.newHumanPlayer("lolo"),
 					PlayerFactory.newHumanPlayer("bo"), new FighterFactory(
 							engine));
-			fail();
+			Assert.fail();
 		} catch (PreconditionError e) {
 
 		}
@@ -152,7 +150,7 @@ public class EnginePreTest {
 		try {
 			PlayerService p1 = PlayerFactory.newHumanPlayer("lolo");
 			engine.init(100, 100, 1000, p1, p1, new FighterFactory(engine));
-			fail();
+			Assert.fail();
 		} catch (PreconditionError e) {
 
 		}
@@ -164,7 +162,7 @@ public class EnginePreTest {
 				engine.step(Commande.NEUTRAL, Commande.NEUTRAL);
 
 			} catch (PreconditionError e) {
-				fail();
+				Assert.fail();
 			}
 	}
 
@@ -176,7 +174,7 @@ public class EnginePreTest {
 			} catch (InterruptedException e) {}
 			engine = EngineFactory.defaultBotEngine();
 			engine.step(Commande.NEUTRAL, Commande.NEUTRAL);
-			fail();
+			Assert.fail();
 		} catch (PreconditionError e) {
 
 		}

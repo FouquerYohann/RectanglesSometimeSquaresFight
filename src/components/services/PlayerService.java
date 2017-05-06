@@ -1,9 +1,9 @@
 package components.services;
 
-import tools.Controls;
 import components.enums.Commande;
 import components.factories.FighterFactory;
 import components.impl.fighter.choose.IChoosingFighterStrategy;
+import tools.Controls;
 
 public interface PlayerService {
 	/**

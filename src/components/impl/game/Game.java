@@ -1,14 +1,12 @@
 package components.impl.game;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintStream;
-import java.util.Observable;
-
 import components.enums.Commande;
 import components.services.EngineService;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+import java.util.Observable;
 
 public class Game extends Observable {
 	private EngineService		unrealEngine;

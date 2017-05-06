@@ -1,13 +1,13 @@
 package test.preConditionTest;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import static org.junit.Assert.fail;
 import components.impl.hitbox.HitboxImpl;
 import components.services.HitboxService;
 import contract.HitboxContract;
 import contract.util.PostconditionError;
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.fail;
 
 public class HitboxPreTest {
 	private HitboxService	hitbox;

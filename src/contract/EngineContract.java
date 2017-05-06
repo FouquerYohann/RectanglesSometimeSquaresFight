@@ -4,7 +4,6 @@ import components.enums.Commande;
 import components.factories.FighterFactory;
 import components.services.ActiveFighterService;
 import components.services.EngineService;
-import components.services.FighterService;
 import components.services.PlayerService;
 import contract.decorator.EngineDecorator;
 import contract.util.InvariantError;

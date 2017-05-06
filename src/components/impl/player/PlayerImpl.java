@@ -1,12 +1,11 @@
 package components.impl.player;
 
-import tools.Controls;
 import components.enums.Commande;
 import components.factories.FighterFactory;
 import components.impl.fighter.choose.IChoosingFighterStrategy;
 import components.services.ActiveFighterService;
-import components.services.FighterService;
 import components.services.PlayerService;
+import tools.Controls;
 
 public class PlayerImpl implements PlayerService {
 	private String						name;

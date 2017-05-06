@@ -1,9 +1,6 @@
 package maintest;
 
-import contract.util.ContractError;
 import contract.util.InvariantError;
-import contract.util.PostconditionError;
-import contract.util.PreconditionError;
 
 public class TestException {
 

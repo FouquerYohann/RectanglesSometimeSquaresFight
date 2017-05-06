@@ -2,7 +2,6 @@ package contract.decorator;
 
 import components.services.FighterService;
 import components.services.HitboxRectangleService;
-import components.services.HitboxService;
 import components.services.TechService;
 
 public class TechDecorator implements TechService {

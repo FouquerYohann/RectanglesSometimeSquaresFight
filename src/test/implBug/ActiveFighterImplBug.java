@@ -1,7 +1,6 @@
 package test.implBug;
 
 import components.enums.Commande;
-import components.impl.fighter.FighterImpl;
 import components.impl.hitbox.HitboxRectangleImpl;
 import components.impl.techniques.Punch;
 import components.services.*;

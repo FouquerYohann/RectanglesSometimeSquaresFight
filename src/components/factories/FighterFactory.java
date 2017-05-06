@@ -6,7 +6,6 @@ import components.impl.hitbox.HitboxRectangleImpl;
 import components.services.ActiveFighterService;
 import components.services.EngineService;
 import components.services.HitboxRectangleService;
-import components.services.HitboxService;
 import contract.ActiveFighterContract;
 import contract.HitboxRectangleContract;
 

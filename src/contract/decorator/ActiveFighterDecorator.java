@@ -1,11 +1,7 @@
 package contract.decorator;
 
 import components.enums.Commande;
-import components.services.ActiveFighterService;
-import components.services.EngineService;
-import components.services.FighterService;
-import components.services.HitboxService;
-import components.services.TechService;
+import components.services.*;
 
 public class ActiveFighterDecorator implements ActiveFighterService {
 	private ActiveFighterService	delegate;

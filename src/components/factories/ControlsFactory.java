@@ -1,9 +1,9 @@
 package components.factories;
 
-import javax.swing.JComponent;
-
-import tools.Controls;
 import components.enums.Commande;
+import tools.Controls;
+
+import javax.swing.*;
 
 public class ControlsFactory {
 

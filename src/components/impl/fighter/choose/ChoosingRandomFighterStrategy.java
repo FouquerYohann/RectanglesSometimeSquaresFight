@@ -1,10 +1,10 @@
 package components.impl.fighter.choose;
 
-import java.util.Random;
-
 import components.enums.FighterName;
 import components.factories.FighterFactory;
 import components.services.ActiveFighterService;
+
+import java.util.Random;
 
 public class ChoosingRandomFighterStrategy implements IChoosingFighterStrategy {
 

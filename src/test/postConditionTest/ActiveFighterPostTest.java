@@ -11,13 +11,11 @@ import components.services.EngineService;
 import components.services.FighterService;
 import components.services.HitboxRectangleService;
 import contract.ActiveFighterContract;
-import contract.FighterContract;
 import contract.util.PostconditionError;
 import org.junit.Before;
 import org.junit.Test;
 import test.implBug.ActiveFighterImplBug;
 
-import static com.sun.xml.internal.ws.dump.LoggingDumpTube.Position.Before;
 import static junit.framework.TestCase.fail;
 
 public class ActiveFighterPostTest {

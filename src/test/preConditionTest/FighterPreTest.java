@@ -1,16 +1,16 @@
 package test.preConditionTest;
 
-import contract.FighterContract;
-import org.junit.Before;
-import org.junit.Test;
-
-import static org.junit.Assert.fail;
 import components.enums.Commande;
 import components.impl.fighter.FighterImpl;
 import components.impl.game.EngineImpl;
 import components.services.EngineService;
 import components.services.FighterService;
+import contract.FighterContract;
 import contract.util.PreconditionError;
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.fail;
 
 public class FighterPreTest {
 

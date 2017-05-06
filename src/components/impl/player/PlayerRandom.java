@@ -1,9 +1,9 @@
 package components.impl.player;
 
-import java.util.Random;
-
 import components.enums.Commande;
 import components.impl.fighter.choose.IChoosingFighterStrategy;
+
+import java.util.Random;
 
 public class PlayerRandom extends PlayerImpl {
 	private int			cpt;
