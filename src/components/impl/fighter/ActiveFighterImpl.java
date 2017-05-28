@@ -6,13 +6,12 @@ import components.impl.techniques.Boumtmort;
 import components.impl.techniques.Kick;
 import components.impl.techniques.Punch;
 import components.services.*;
-import contract.HitboxRectangleContract;
 
 public class ActiveFighterImpl extends FighterImpl implements
-		ActiveFighterService {
+        ActiveFighterService {
 	private boolean					blockint		= false,
-			blockstunned = false, teching = false, techFrame = false,
-			crouch = false, hitstunned = false, techHasAlreadyHit = false;
+	        blockstunned = false, teching = false, techFrame = false,
+	        crouch = false, hitstunned = false, techHasAlreadyHit = false;
 
 	private int						stunnCpt		= 0;
 	private int						techCpt			= 0;
@@ -29,8 +28,8 @@ public class ActiveFighterImpl extends FighterImpl implements
 
 	public ActiveFighterService getOtherFighter() {
 		if (otherFighter == null)
-			otherFighter = (getEngine().getFighter(1).equals(this)) ? getEngine()
-					.getFighter(2) : getEngine().getFighter(1);
+		    otherFighter = (getEngine().getFighter(1).equals(this)) ? getEngine()
+		            .getFighter(2) : getEngine().getFighter(1);
 		return otherFighter;
 	}
 
@@ -45,37 +44,37 @@ public class ActiveFighterImpl extends FighterImpl implements
 	@Override
 	public void step(Commande c) {
 		if (getOtherFighter().isTeching())
-			if (otherFighter.techFrame()) {
-				if (!otherFighter.techHasAlreadyHit()) {
-					TechService tequila = otherFighter.tech();
-					if (tequila.getHitbox().collidesWith(getHitbox())) {
-						tech = null;
-						teching = false;
-						techCpt = -1;
-						techFrame = false;
-						if (this.isBlocking()) {
-							System.out.println("ici");
-							stunnCpt = tequila.getBstun();
-							blockstunned = true;
-						} else {
-							life -= tequila.getDamage();
-							stunnCpt = tequila.getHstun();
-							hitstunned = true;
-						}
-					}
-				}
+		    if (otherFighter.techFrame()) {
+			if (!otherFighter.techHasAlreadyHit()) {
+			TechService tequila = otherFighter.tech();
+			if (tequila.getHitbox().collidesWith(getHitbox())) {
+			tech = null;
+			teching = false;
+			techCpt = -1;
+			techFrame = false;
+			if (this.isBlocking()) {
+			System.out.println("ici");
+			stunnCpt = tequila.getBstun();
+			blockstunned = true;
+			} else {
+			life -= tequila.getDamage();
+			stunnCpt = tequila.getHstun();
+			hitstunned = true;
+			}
+			}
+			}
 			}
 
 		crouch = false;
 		if (stunnCpt > 0)
-			stunnCpt--;
+		    stunnCpt--;
 		else {
 
 			hitstunned = false;
 			blockstunned = false;
 		}
 		if (techCpt != -1)
-			techCpt++;
+		    techCpt++;
 
 		if (isTeching()) {
 			if (!techFrame()) {
@@ -85,7 +84,7 @@ public class ActiveFighterImpl extends FighterImpl implements
 				}
 			} else {
 				if (tech.getHitbox()
-						.collidesWith(getOtherFighter().getHitbox())) {
+				        .collidesWith(getOtherFighter().getHitbox())) {
 					techHasAlreadyHit = true;
 				}
 				if (tech().getHframe() == techCpt) {
@@ -101,16 +100,16 @@ public class ActiveFighterImpl extends FighterImpl implements
 		}
 
 		if (isHitstunned() || isBlockstunned())
-			return;
+		    return;
 
 		if (c == Commande.PUNCH || c == Commande.KICK
-				|| c == Commande.BOUMTMORT) {
+		        || c == Commande.BOUMTMORT) {
 			if (c == Commande.PUNCH)
-				startTech(new Punch());
+			    startTech(new Punch());
 			if (c == Commande.KICK)
-				startTech(new Kick());
+			    startTech(new Kick());
 			if (c == Commande.BOUMTMORT)
-				startTech(new Boumtmort());
+			    startTech(new Boumtmort());
 
 		} else {
 			super.step(c);
@@ -121,12 +120,12 @@ public class ActiveFighterImpl extends FighterImpl implements
 	public FighterService clone() {
 		ActiveFighterImpl clone = new ActiveFighterImpl();
 		clone.init(getLife(), getSpeed(), getHeight(), getWidth(),
-				isFacingRight(), getEngine());
+		        isFacingRight(), getEngine());
 		clone.x = x;
 		clone.y = y;
-		clone.hitbox = new HitboxRectangleContract(new HitboxRectangleImpl(
-				hitbox.getPositionX(), hitbox.getPositionY(), getHeight(),
-				getWidth()));
+		clone.hitbox = new HitboxRectangleImpl(
+		        hitbox.getPositionX(), hitbox.getPositionY(), getHeight(),
+		        getWidth());
 		clone.blockint = blockint;
 		clone.blockstunned = blockstunned;
 		clone.teching = teching;
@@ -180,9 +179,9 @@ public class ActiveFighterImpl extends FighterImpl implements
 	public void crouch() {
 		crouch = true;
 		if (hbCrouch == null)
-			hbCrouch = new HitboxRectangleImpl(hitbox.getPositionX(),
-					hitbox.getPositionY(), hitbox.getHeight() / 2,
-					hitbox.getWidth());
+		    hbCrouch = new HitboxRectangleImpl(hitbox.getPositionX(),
+		            hitbox.getPositionY(), hitbox.getHeight() / 2,
+		            hitbox.getWidth());
 		else
 			hbCrouch.moveTo(hitbox.getPositionX(), hitbox.getPositionY());
 
@@ -196,14 +195,14 @@ public class ActiveFighterImpl extends FighterImpl implements
 	@Override
 	public int getHeight() {
 		if (crouch)
-			return super.getHeight() / 2;
+		    return super.getHeight() / 2;
 		return super.getHeight();
 	}
 
 	@Override
 	public HitboxService getHitbox() {
 		if (crouch)
-			return hbCrouch;
+		    return hbCrouch;
 		return super.getHitbox();
 	}
 

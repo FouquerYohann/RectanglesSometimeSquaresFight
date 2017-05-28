@@ -7,20 +7,19 @@ import components.impl.player.PlayerBouchon;
 import components.impl.player.PlayerImpl;
 import components.impl.player.PlayerRandom;
 import components.services.PlayerService;
-import contract.PlayerContract;
 
 public class PlayerFactory {
 
 	public static PlayerService newHumanPlayer(String name,
 			IChoosingFighterStrategy strategy) {
-		PlayerService player = new PlayerContract(new PlayerImpl());
+		PlayerService player = new PlayerImpl();
 		player.init(name, strategy);
 		return player;
 	}
 
 	public static PlayerService newHumanPlayer(String name
 		) {
-	PlayerService player = new PlayerContract(new PlayerImpl());
+	PlayerService player = new PlayerImpl();
 	
 	player.init(name, new ChoosingRandomFighterStrategy());
 	return player;
@@ -41,8 +40,7 @@ public class PlayerFactory {
 		b.addCommande(Commande.RIGHT);
 		IChoosingFighterStrategy strategy = new ChoosingRandomFighterStrategy();
 		b.init(strategy);
-		PlayerService s = new PlayerContract(b);
-		return s;
+		return b;
 	}
 	
 	public static PlayerService punchAndMove() {
@@ -51,8 +49,7 @@ public class PlayerFactory {
 		b.addCommande(Commande.LEFT);
 		IChoosingFighterStrategy strategy = new ChoosingRandomFighterStrategy();
 		b.init(strategy);
-		PlayerService s = new PlayerContract(b);
-		return s;
+		return b;
 	}
 	
 	public static PlayerService randomPlayer(){

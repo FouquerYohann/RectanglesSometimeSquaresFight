@@ -6,11 +6,9 @@ import components.impl.hitbox.HitboxRectangleImpl;
 import components.services.ActiveFighterService;
 import components.services.EngineService;
 import components.services.HitboxRectangleService;
-import contract.ActiveFighterContract;
-import contract.HitboxRectangleContract;
 
 public class FighterFactory {
-	private EngineService	unrealEngine;
+	private EngineService unrealEngine;
 
 	public FighterFactory(EngineService unrealEngine) {
 		super();
@@ -19,11 +17,11 @@ public class FighterFactory {
 
 	public ActiveFighterService getFighter(FighterName name, boolean faceRight) {
 		switch (name) {
-		case rectangle:
-			return newRectangleFighter(faceRight);
+			case rectangle:
+				return newRectangleFighter(faceRight);
 
-		case square:
-			return newSquareFighter(faceRight);
+			case square:
+				return newSquareFighter(faceRight);
 		}
 		return null;
 	}
@@ -35,14 +33,13 @@ public class FighterFactory {
 		int width = 100;
 		ActiveFighterImpl impl = new ActiveFighterImpl();
 
-		HitboxRectangleService hitbox = new HitboxRectangleContract(
-				new HitboxRectangleImpl(impl.getX(), impl.getY(), height, width));
+		HitboxRectangleService hitbox = new HitboxRectangleImpl(impl.getX(), impl.getY(), height,
+		        width);
 
 		impl.setHitbox(hitbox);
 
 		impl.init(life, speed, height, width, faceRight, unrealEngine);
-		ActiveFighterService ret = new ActiveFighterContract(impl);
-		return ret;
+		return impl;
 	}
 
 	private ActiveFighterService newSquareFighter(boolean faceRight) {
@@ -52,13 +49,12 @@ public class FighterFactory {
 		int width = 200;
 		ActiveFighterImpl impl = new ActiveFighterImpl();
 
-		HitboxRectangleService hitbox = new HitboxRectangleContract(
-				new HitboxRectangleImpl(impl.getX(), impl.getY(), height, width));
+		HitboxRectangleService hitbox = new HitboxRectangleImpl(impl.getX(), impl.getY(), height,
+		        width);
 
 		impl.setHitbox(hitbox);
 
 		impl.init(life, speed, height, width, faceRight, unrealEngine);
-		ActiveFighterService ret = new ActiveFighterContract(impl);
-		return ret;
+		return impl;
 	}
 }

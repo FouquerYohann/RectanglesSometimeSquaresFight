@@ -3,7 +3,6 @@ package components.factories;
 import components.impl.game.EngineImpl;
 import components.services.EngineService;
 import components.services.PlayerService;
-import contract.EngineContract;
 
 public class EngineFactory {
 
@@ -12,56 +11,41 @@ public class EngineFactory {
 	private final static int	defaultDistance	= defaultWidth / 4;
 
 	public static EngineService defaultBotEngine() {
-		
+
 		EngineImpl engieImpl = new EngineImpl();
-		EngineService engie = new EngineContract(engieImpl);
-		FighterFactory factory=new FighterFactory(engie);
+		FighterFactory factory = new FighterFactory(engieImpl);
 		PlayerService defaultPlayer1 = PlayerFactory.newBouchonGaucheDroite();
 		PlayerService defaultPlayer2 = PlayerFactory.newBouchonGaucheDroite();
 
-		
+		engieImpl.init(defaultHeight, defaultWidth, defaultDistance,
+		        defaultPlayer1, defaultPlayer2, factory);
 
-
-		engie.init(defaultHeight, defaultWidth, defaultDistance,
-				defaultPlayer1, defaultPlayer2,factory);
-		
-		return engie;
+		return engieImpl;
 	}
-
 
 	public static EngineService defaultEngine() {
-		
+
 		EngineImpl engieImpl = new EngineImpl();
-		EngineService engie = new EngineContract(engieImpl);
-		FighterFactory factory=new FighterFactory(engie);
+		FighterFactory factory = new FighterFactory(engieImpl);
 		PlayerService defaultPlayer1 = PlayerFactory.newHumanPlayer("coucou");
 		PlayerService defaultPlayer2 = PlayerFactory.newHumanPlayer("azeazedqsd");
-		
-		
 
-		engie.init(defaultHeight, defaultWidth, defaultDistance,
-				defaultPlayer1, defaultPlayer2,factory);
-		
-		
-		
-		return engie;
+		engieImpl.init(defaultHeight, defaultWidth, defaultDistance,
+		        defaultPlayer1, defaultPlayer2, factory);
+
+		return engieImpl;
 	}
-	
-public static EngineService randomEngine() {
-		
+
+	public static EngineService randomEngine() {
+
 		EngineImpl engieImpl = new EngineImpl();
-		EngineService engie = new EngineContract(engieImpl);
-		FighterFactory factory=new FighterFactory(engie);
+		FighterFactory factory = new FighterFactory(engieImpl);
 		PlayerService defaultPlayer1 = PlayerFactory.randomPlayer();
 		PlayerService defaultPlayer2 = PlayerFactory.randomPlayer();
-		
-		
 
-		engie.init(defaultHeight, defaultWidth, defaultDistance,
-				defaultPlayer1, defaultPlayer2,factory);
-		
-		
-		
-		return engie;
+		engieImpl.init(defaultHeight, defaultWidth, defaultDistance,
+		        defaultPlayer1, defaultPlayer2, factory);
+
+		return engieImpl;
 	}
 }
