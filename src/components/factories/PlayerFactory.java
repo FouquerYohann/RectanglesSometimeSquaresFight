@@ -6,25 +6,26 @@ import components.impl.fighter.choose.IChoosingFighterStrategy;
 import components.impl.player.PlayerBouchon;
 import components.impl.player.PlayerImpl;
 import components.impl.player.PlayerRandom;
+import components.impl.player.rules.PlayerRules;
+import components.services.EngineService;
 import components.services.PlayerService;
 
 public class PlayerFactory {
 
 	public static PlayerService newHumanPlayer(String name,
-			IChoosingFighterStrategy strategy) {
+	        IChoosingFighterStrategy strategy) {
 		PlayerService player = new PlayerImpl();
 		player.init(name, strategy);
 		return player;
 	}
 
-	public static PlayerService newHumanPlayer(String name
-		) {
-	PlayerService player = new PlayerImpl();
-	
-	player.init(name, new ChoosingRandomFighterStrategy());
-	return player;
-}
-	
+	public static PlayerService newHumanPlayer(String name) {
+		PlayerService player = new PlayerImpl();
+
+		player.init(name, new ChoosingRandomFighterStrategy());
+		return player;
+	}
+
 	public static PlayerService newBouchonGaucheDroite() {
 		PlayerBouchon b = new PlayerBouchon();
 		b.addCommande(Commande.LEFT);
@@ -42,7 +43,7 @@ public class PlayerFactory {
 		b.init(strategy);
 		return b;
 	}
-	
+
 	public static PlayerService punchAndMove() {
 		PlayerBouchon b = new PlayerBouchon();
 		b.addCommande(Commande.PUNCH);
@@ -51,11 +52,21 @@ public class PlayerFactory {
 		b.init(strategy);
 		return b;
 	}
-	
-	public static PlayerService randomPlayer(){
-		PlayerRandom b=new PlayerRandom();
+
+	public static PlayerService randomPlayer() {
+		PlayerRandom b = new PlayerRandom();
 		IChoosingFighterStrategy strategy = new ChoosingRandomFighterStrategy();
 		b.init(strategy);
 		return b;
 	}
+
+	public static PlayerService newRulesPlayer(String name, EngineService engine, int fighter) {
+		PlayerRules player = new PlayerRules();
+		player.addRule(RulesFactory.newDistRulesPunch(engine, fighter));
+
+		player.init(name, new ChoosingRandomFighterStrategy());
+
+		return player;
+	}
+
 }

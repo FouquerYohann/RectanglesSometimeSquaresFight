@@ -7,6 +7,7 @@ import components.services.ActiveFighterService;
 import components.services.EngineService;
 import components.services.HitboxRectangleService;
 import tools.Controls;
+import tools.configuration.GameConfiguration;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,7 +24,7 @@ public class MainFrame extends JPanel implements Observer {
 	private boolean				fighter2WasStun;
 	private JLabel				chronoLab;
 	private Game				game;
-	private static final int	DELAY				= 16;
+	private static final int	DELAY				= GameConfiguration.DELAY;
 
 	public MainFrame(EngineService ue) {
 		super();
@@ -42,10 +43,12 @@ public class MainFrame extends JPanel implements Observer {
 
 	public static void main(String[] args) {
 
-		EngineService ue = EngineFactory.defaultEngine();
+//		EngineService ue = EngineFactory.defaultEngine();
 
 		// EngineService ue = EngineFactory.randomEngine();
 
+		EngineService ue = EngineFactory.ruleEngine();
+		
 		JFrame fenetre = new JFrame();
 		fenetre.setTitle("RectanglesSometimesSquaresFight");
 		fenetre.setVisible(true);
@@ -83,7 +86,7 @@ public class MainFrame extends JPanel implements Observer {
 	@Override
 	public Dimension getPreferredSize() {
 		return (new Dimension(game.getUnrealEngine().getWidth(), game
-				.getUnrealEngine().getHeight()));
+		        .getUnrealEngine().getHeight()));
 	}
 
 	@Override
@@ -125,64 +128,64 @@ public class MainFrame extends JPanel implements Observer {
 		g2.setColor(Color.BLACK);
 		g2.drawRect(20, 20, engineWidth / 3, engineHeight / 18);
 		g2.drawRect(2 * engineWidth / 3 - 20, 20, engineWidth / 3,
-				engineHeight / 18);
+		        engineHeight / 18);
 		g2.drawRect(40, 40 + engineHeight / 18, engineWidth / 4,
-				engineHeight / 24);
+		        engineHeight / 24);
 
 		g2.drawRect(2 * engineWidth / 3, 40 + engineHeight / 18,
-				engineWidth / 4, engineHeight / 24);
+		        engineWidth / 4, engineHeight / 24);
 
 		fighter1StunMax = (fighter1StunMax == 0) ? 1 : fighter1StunMax;
 		double stunSize1 = ((double) f1.getStunnCpt() / fighter1StunMax)
-				* engineWidth / 4;
+		        * engineWidth / 4;
 		fighter2StunMax = (fighter2StunMax == 0) ? 1 : fighter2StunMax;
 		double stunSize2 = ((double) f2.getStunnCpt() / fighter2StunMax)
-				* engineWidth / 4;
+		        * engineWidth / 4;
 
 		g2.fillRect(40, 40 + engineHeight / 18, (int) stunSize1,
-				engineHeight / 24);
+		        engineHeight / 24);
 		g2.fillRect(2 * engineWidth / 3, 40 + engineHeight / 18,
-				(int) stunSize2, engineHeight / 24);
+		        (int) stunSize2, engineHeight / 24);
 
 		chronoLab.setText("" + ue.getTime());
 
 		if (!f1.isTeching())
-			g2.setColor(Color.BLUE);
+		    g2.setColor(Color.BLUE);
 		else {
 			g2.setColor(Color.GREEN);
 			if (f1.techFrame()) {
 				HitboxRectangleService hb = f1.tech().getHitbox();
 				g2.fillRect(hb.getPositionX(),
-						engineHeight - (hb.getPositionY() + hb.getHeight()),
-						hb.getWidth(), hb.getHeight());
+				        engineHeight - (hb.getPositionY() + hb.getHeight()),
+				        hb.getWidth(), hb.getHeight());
 			}
 		}
 		g2.fillRect(f1.getX(), engineHeight - (f1.getY() + f1.getHeight()),
-				f1.getWidth(), f1.getHeight());
+		        f1.getWidth(), f1.getHeight());
 
 		if (!f2.isTeching())
-			g2.setColor(Color.RED);
+		    g2.setColor(Color.RED);
 		else {
 			g2.setColor(Color.ORANGE);
 			if (f2.techFrame()) {
 				HitboxRectangleService hb = f2.tech().getHitbox();
 				g2.fillRect(hb.getPositionX(),
-						engineHeight - (hb.getPositionY() + hb.getHeight()),
-						hb.getWidth(), hb.getHeight());
+				        engineHeight - (hb.getPositionY() + hb.getHeight()),
+				        hb.getWidth(), hb.getHeight());
 			}
 		}
 		g2.fillRect(f2.getX(), engineHeight - (f2.getY() + f2.getHeight()),
-				f2.getWidth(), f2.getHeight());
+		        f2.getWidth(), f2.getHeight());
 
 		g2.setColor(Color.BLUE);
 
 		int longueur = (int) (((double) f1.getLife() / fighter1HealthMax)
-				* engineWidth / 3);
+		        * engineWidth / 3);
 		g2.fillRect(21, 21, longueur, engineHeight / 18);
 
 		g2.setColor(Color.RED);
 		longueur = (int) (((double) f2.getLife() / fighter2HealthMax)
-				* engineWidth / 3);
+		        * engineWidth / 3);
 		g2.fillRect(2 * engineWidth / 3 - 20, 21, longueur, engineHeight / 18);
 
 		g2.setColor(Color.WHITE);
@@ -190,17 +193,17 @@ public class MainFrame extends JPanel implements Observer {
 		g2.fillOval(f1.getX(), engineHeight - f1.getHeight(), 50, 50);
 		g2.fillOval(f2.getX(), engineHeight - f2.getHeight(), 50, 50);
 		g2.fillOval(f1.getX() + f1.getWidth() - 50,
-				engineHeight - f1.getHeight(), 50, 50);
+		        engineHeight - f1.getHeight(), 50, 50);
 		g2.fillOval(f2.getX() + f2.getWidth() - 50,
-				engineHeight - f2.getHeight(), 50, 50);
+		        engineHeight - f2.getHeight(), 50, 50);
 
 		g2.setColor(Color.BLACK);
 		g2.fillOval(f1.getX() + 25, engineHeight - f1.getHeight() + 25, 10, 10);
 		g2.fillOval(f2.getX() + 15, engineHeight - f2.getHeight() + 25, 10, 10);
 		g2.fillOval(f1.getX() + f1.getWidth() - 25,
-				engineHeight - f1.getHeight() + 25, 10, 10);
+		        engineHeight - f1.getHeight() + 25, 10, 10);
 		g2.fillOval(f2.getX() + f2.getWidth() - 35,
-				engineHeight - f2.getHeight() + 25, 10, 10);
+		        engineHeight - f2.getHeight() + 25, 10, 10);
 
 		if (game.isGameOver()) {
 			Font font = new Font("Verdana", Font.BOLD, 165);

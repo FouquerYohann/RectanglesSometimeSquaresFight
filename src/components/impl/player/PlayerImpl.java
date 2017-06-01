@@ -10,8 +10,7 @@ import tools.Controls;
 public class PlayerImpl implements PlayerService {
 	private String						name;
 	private IChoosingFighterStrategy	strategy;
-	private Controls controlleur;
-	
+	private Controls					controlleur;
 
 	@Override
 	public String getName() {
@@ -26,16 +25,16 @@ public class PlayerImpl implements PlayerService {
 	@Override
 	public void init(String name, IChoosingFighterStrategy strategy) {
 		this.name = name;
-		this.strategy=strategy;
+		this.strategy = strategy;
 	}
 
 	@Override
-	public ActiveFighterService chooseFighter(FighterFactory factory,boolean faceRight) {
-		return strategy.chooseFighter(factory,faceRight);
+	public ActiveFighterService chooseFighter(FighterFactory factory, boolean faceRight) {
+		return strategy.chooseFighter(factory, faceRight);
 	}
 
 	public void setControlleur(Controls controlleur) {
-	    this.controlleur = controlleur;
+		this.controlleur = controlleur;
 	}
-	
+
 }

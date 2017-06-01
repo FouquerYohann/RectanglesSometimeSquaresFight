@@ -48,4 +48,19 @@ public class EngineFactory {
 
 		return engieImpl;
 	}
+	
+	
+
+	public static EngineService ruleEngine() {
+
+		EngineImpl engieImpl = new EngineImpl();
+		FighterFactory factory = new FighterFactory(engieImpl);
+		PlayerService defaultPlayer1 = PlayerFactory.newRulesPlayer("bot", engieImpl, 1);
+		PlayerService defaultPlayer2 = PlayerFactory.newHumanPlayer("coucou");
+
+		engieImpl.init(defaultHeight, defaultWidth, defaultDistance,
+		        defaultPlayer1, defaultPlayer2, factory);
+
+		return engieImpl;
+	}
 }
