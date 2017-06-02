@@ -7,6 +7,6 @@ import components.services.EngineService;
 public class RulesFactory {
 
 	public static DistanceRule newDistRulesPunch(EngineService engine, int fighter) {
-		return new DistanceRule(fighter, engine, 50, Commande.PUNCH);
+		return new DistanceRule(fighter, engine, 200, Commande.PUNCH);
 	}
 }

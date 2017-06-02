@@ -45,7 +45,7 @@ public class MainFrame extends JPanel implements Observer {
 
 //		EngineService ue = EngineFactory.defaultEngine();
 
-		// EngineService ue = EngineFactory.randomEngine();
+//		EngineService ue = EngineFactory.randomEngine();
 
 		EngineService ue = EngineFactory.ruleEngine();
 		

@@ -22,7 +22,6 @@ public class PlayerRules extends PlayerImpl {
 		boolean b = false;
 		for (IRule r : rules) {
 			if (r.interprate()) {
-				System.out.println(r.interprate());
 				c = r.getCommande();
 				b = true;
 			}
